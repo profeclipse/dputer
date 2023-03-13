@@ -1,14 +1,14 @@
 
 ; 64tass Turbo Assembler Macro V1.58.2974? listing file
-; 64tass -q -Wmacro-prefix --tab-size=4 -l /Users/davidhunt/Projects/dputer2/src/basic/basic.lbl -L /Users/davidhunt/Projects/dputer2/src/basic/basic.lst -I /Users/davidhunt/Projects/dputer2/src/basic/../kernel -o /Users/davidhunt/Projects/dputer2/src/basic/basic.bin /Users/davidhunt/Projects/dputer2/src/basic/min_mon.asm
-; Sat Mar  4 22:05:42 2023
+; 64tass -q -Wmacro-prefix --tab-size=4 -l /Users/davidhunt/Projects/dputer/src/basic/basic.lbl -L /Users/davidhunt/Projects/dputer/src/basic/basic.lst -I /Users/davidhunt/Projects/dputer/src/basic/../kernel -o /Users/davidhunt/Projects/dputer/src/basic/basic.bin /Users/davidhunt/Projects/dputer/src/basic/min_mon.asm
+; Sun Mar 12 21:40:52 2023
 
 ;Offset	;Hex			;Monitor		;Source
 
-;******  Processing input file: /Users/davidhunt/Projects/dputer2/src/basic/min_mon.asm
+;******  Processing input file: /Users/davidhunt/Projects/dputer/src/basic/min_mon.asm
 
 
-;******  Processing file: /Users/davidhunt/Projects/dputer2/src/basic/../kernel/kernel.lbl
+;******  Processing file: /Users/davidhunt/Projects/dputer/src/basic/../kernel/kernel.lbl
 
 =$fffe									IRQVEC			= $fffe
 =$ff80									CHROUT			= $ff80
@@ -123,7 +123,7 @@
 =2										FILEIO_MODE_WRITE= 2
 =5										TERMIO_CMD_SCREEN_W= 5
 
-;******  Return to file: /Users/davidhunt/Projects/dputer2/src/basic/min_mon.asm
+;******  Return to file: /Users/davidhunt/Projects/dputer/src/basic/min_mon.asm
 
 .b000	a9 2e			lda #$2e			lda #<LAB_getch
 .b002	8d 05 02		sta $0205			sta VEC_IN
@@ -164,7 +164,7 @@
 >b048	68 42 41 53 49 43 20 5b 43 5d 6f 6c 64 2f 5b 57
 >b058	5d 61 72 6d 20 3f 00
 
-;******  Processing file: /Users/davidhunt/Projects/dputer2/src/basic/basic.asm
+;******  Processing file: /Users/davidhunt/Projects/dputer/src/basic/basic.asm
 
 =$00									LAB_WARM 	= USER_ZP		; BASIC warm start entry point
 =1										Wrmjpl 		= USER_ZP+1	; BASIC warm start vector jump low byte
@@ -6376,7 +6376,7 @@
 >d878	6f 6d 20 73 74 61 72 74 0a 00
 .d882									AA_end_basic
 
-;******  Return to file: /Users/davidhunt/Projects/dputer2/src/basic/min_mon.asm
+;******  Return to file: /Users/davidhunt/Projects/dputer/src/basic/min_mon.asm
 
 
 ;******  End of listing

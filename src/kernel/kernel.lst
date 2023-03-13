@@ -1,11 +1,11 @@
 
 ; 64tass Turbo Assembler Macro V1.58.2974? listing file
-; 64tass -q --tab-size=4 --verbose-list -l /Users/davidhunt/Projects/dputer2/src/kernel/kernel.lbl -L /Users/davidhunt/Projects/dputer2/src/kernel/kernel.lst -o /Users/davidhunt/Projects/dputer2/src/kernel/kernel.bin /Users/davidhunt/Projects/dputer2/src/kernel/kernel.asm
-; Sun Feb 26 23:54:59 2023
+; 64tass -q --tab-size=4 --verbose-list -l /Users/davidhunt/Projects/dputer/src/kernel/kernel.lbl -L /Users/davidhunt/Projects/dputer/src/kernel/kernel.lst -o /Users/davidhunt/Projects/dputer/src/kernel/kernel.bin /Users/davidhunt/Projects/dputer/src/kernel/kernel.asm
+; Sun Mar 12 21:40:52 2023
 
 ;Offset	;Hex			;Monitor		;Source
 
-;******  Processing input file: /Users/davidhunt/Projects/dputer2/src/kernel/kernel.asm
+;******  Processing input file: /Users/davidhunt/Projects/dputer/src/kernel/kernel.asm
 
 										;*****************************************************************************
 										; kernel.asm
@@ -27,18 +27,18 @@
 
 												.include "macros.inc"
 
-;******  Processing file: /Users/davidhunt/Projects/dputer2/src/kernel/macros.inc
+;******  Processing file: /Users/davidhunt/Projects/dputer/src/kernel/macros.inc
 
 										;*****************************************************************************
 										; macros.inc
 										;*****************************************************************************
 
 
-;******  Return to file: /Users/davidhunt/Projects/dputer2/src/kernel/kernel.asm
+;******  Return to file: /Users/davidhunt/Projects/dputer/src/kernel/kernel.asm
 
 												.include "termio.inc"
 
-;******  Processing file: /Users/davidhunt/Projects/dputer2/src/kernel/termio.inc
+;******  Processing file: /Users/davidhunt/Projects/dputer/src/kernel/termio.inc
 
 										;*****************************************************************************
 										; termio.inc
@@ -63,11 +63,11 @@
 =7										TERMIO_CMD_GETCUR_X	= 7
 =8										TERMIO_CMD_GETCUR_Y	= 8
 
-;******  Return to file: /Users/davidhunt/Projects/dputer2/src/kernel/kernel.asm
+;******  Return to file: /Users/davidhunt/Projects/dputer/src/kernel/kernel.asm
 
 												.include "kernel.inc"
 
-;******  Processing file: /Users/davidhunt/Projects/dputer2/src/kernel/kernel.inc
+;******  Processing file: /Users/davidhunt/Projects/dputer/src/kernel/kernel.inc
 
 										;*****************************************************************************
 										; kernel.inc
@@ -128,11 +128,11 @@
 =$de00									INPUT_BUFFER		= $DE00		; 255 byte input buffer
 =$ff									INPUT_BUFFER_LEN	= $FF		; max length of input string
 
-;******  Return to file: /Users/davidhunt/Projects/dputer2/src/kernel/kernel.asm
+;******  Return to file: /Users/davidhunt/Projects/dputer/src/kernel/kernel.asm
 
 												.include "fileio.inc"
 
-;******  Processing file: /Users/davidhunt/Projects/dputer2/src/kernel/fileio.inc
+;******  Processing file: /Users/davidhunt/Projects/dputer/src/kernel/fileio.inc
 
 										;*****************************************************************************
 										; fileio.inc
@@ -171,7 +171,7 @@
 =2										FILEIO_MODE_WRITE	= 2
 =3										FILEIO_MODE_RW		= 3
 
-;******  Return to file: /Users/davidhunt/Projects/dputer2/src/kernel/kernel.asm
+;******  Return to file: /Users/davidhunt/Projects/dputer/src/kernel/kernel.asm
 
 
 										        * = $E000
@@ -227,7 +227,7 @@
 
 												.include "termio.asm"
 
-;******  Processing file: /Users/davidhunt/Projects/dputer2/src/kernel/termio.asm
+;******  Processing file: /Users/davidhunt/Projects/dputer/src/kernel/termio.asm
 
 										;*****************************************************************************
 										; termio.asm
@@ -678,7 +678,7 @@
 .e201	60				rts								rts
 														.endblock
 
-;******  Return to file: /Users/davidhunt/Projects/dputer2/src/kernel/kernel.asm
+;******  Return to file: /Users/davidhunt/Projects/dputer/src/kernel/kernel.asm
 
 
 
@@ -781,7 +781,7 @@
 
 												.include "monitor.asm"
 
-;******  Processing file: /Users/davidhunt/Projects/dputer2/src/kernel/monitor.asm
+;******  Processing file: /Users/davidhunt/Projects/dputer/src/kernel/monitor.asm
 
 										;*****************************************************************************
 										; monitor.asm
@@ -2730,7 +2730,7 @@
 .f272	60				rts						rts
 												.endblock
 
-;******  Return to file: /Users/davidhunt/Projects/dputer2/src/kernel/kernel.asm
+;******  Return to file: /Users/davidhunt/Projects/dputer/src/kernel/kernel.asm
 
 
 
