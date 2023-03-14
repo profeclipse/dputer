@@ -5,7 +5,7 @@
 
 MONITOR .block
 		cli
-		; are we here due to BRK instruction?
+
 		lda MON_COLD_START
 		beq monitor1
 		lda #0
@@ -13,6 +13,7 @@ MONITOR .block
 		;jmp $0200
 
 monitor1
+		; are we here due to BRK instruction?
 		lda MON_FROM_BRK
 		beq cmdLoop
 
