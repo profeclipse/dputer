@@ -3,8 +3,8 @@ set (BASICBINS
 	)
 
 set (BASICINC
-	basic.asm
 	../kernel/kernel.lbl
+	basic.asm
 	)
 
 add_custom_command(
