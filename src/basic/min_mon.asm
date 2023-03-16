@@ -45,5 +45,7 @@ no_save
 LAB_mess
 	.text	$0D,$0A,"6502 EhBASIC [C]old/[W]arm ?",$00
 					; sign on string
+REQ_text
+	.text	"Derived from EhBASIC",$00
 
 	.include "basic.asm"
