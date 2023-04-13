@@ -8,6 +8,8 @@
 #include "dhBus.h"
 #include "dhTerm.h"
 
+extern bool profile;
+
 namespace dputer {
 	dhTerm::dhTerm() {
 		init();
@@ -41,6 +43,8 @@ namespace dputer {
 #endif
 	}
 
+	const char *cmdBufferIdx = "\n\nj 0200\nfload extend.f\nhalt\n";
+
 	void dhTerm::tick() {
 		if (bus->read(TERMIO_IREADY) == 0) {
 			bus->releaseIRQ();
@@ -54,14 +58,12 @@ namespace dputer {
 
 		if (bus->read(TERMIO_IREADY) == 0)
 		{
-			/*
-			   if (profile && *cmdBufferIdx) {
-			   bus->write(TERMIO_IDATA,*cmdBufferIdx++);
-			   bus->write(TERMIO_IREADY,0xff);
-			   bus->requestIRQ();
-			   }
-			   else */
-			if (keyq()) {
+			if (profile && *cmdBufferIdx) {
+				bus->write(TERMIO_IDATA,*cmdBufferIdx++);
+				bus->write(TERMIO_IREADY,0xff);
+				bus->requestIRQ();
+				}
+			else if (keyq()) {
 				bus->write(TERMIO_IDATA,key());
 				bus->write(TERMIO_IREADY,0xff);
 				bus->requestIRQ();
