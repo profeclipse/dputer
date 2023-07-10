@@ -987,7 +987,7 @@ PDOPx
 	ldx GP0+1
 	jmp PUSHNEXT
 
-.CODEWORD "J",J
+	.codeword "J",J
 	ldy #8
 	lda (RP),y
 	sta GP0
@@ -1928,7 +1928,7 @@ doUpperCase .proc
 ; Output:
 ;	Equal - a,x == 0,0
 ;	Str1 Short - a,x = -1,-1
-;	Str2 Short - a,x = 1
+;	Str2 Short - a,x = 1,0
 ; Uses:
 ;	GP0
 ;-----------------------------------------------------------------------------
@@ -1979,7 +1979,7 @@ _done:
 	rts
 	.endproc
 
-.CODEWORD "COMPARE",COMPARE
+	.codeword "COMPARE",COMPARE
 	jsr dpopToGP4
 	jsr dpopToGP3
 	jsr dpopToGP2
@@ -3230,7 +3230,7 @@ _L1:.word UNNEST
 
 	; ( addr len -- d f )
 	.colonword "NUMBER?",NUMBERQ
-NUMBERQx ; this is just to get rid of label redifinitions for local labels
+NUMBERQx ; this is just to get rid of label redefinitions for local labels
 	.word FALSECON,DOUBLEQ+4,LIT,$FFFF,DPLOCATION+4
 	.word OVER,CFETCH,LIT,'-',EQUAL,OVER,ZGREATER,DOAND,DUPTOR
 	.word QBRANCH,_L1
@@ -3654,7 +3654,7 @@ L2:	.word UNNEST
 	.word UNNEST
 
 	.colonword "(NUMBER,)",PNUMBERCOMMAP
-PNUMBERCOMMPx ; this is just to get rid of label redefinitions for local labels
+PNUMBERCOMMAPx ; this is just to get rid of label redefinitions for local labels
 	.word DOUBLEQ,ZEQUAL
 	.word QBRANCH,_L1
 		.word DROP
