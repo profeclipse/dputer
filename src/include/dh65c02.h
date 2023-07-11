@@ -47,15 +47,15 @@ namespace dputer {
 				NF = 0b10000000 
 			};
 
-			void resetStatus() {
+			inline void resetStatus() {
 				PS = uF;
 			}
 
-			void setFlag(uint8_t flag,bool value) {
+			inline void setFlag(uint8_t flag,bool value) {
 				PS = value ? PS | flag : PS & ~flag;
 			}
 
-			bool getFlag(uint8_t flag) {
+			inline bool getFlag(uint8_t flag) {
 				return PS & flag;
 			}
 
@@ -80,30 +80,30 @@ namespace dputer {
 
 			void disassemble();
 
-			bool isHalted() {
+			inline bool isHalted() {
 				return halted;
 			}
 
-			uint8_t read(uint16_t addr) {
+			inline uint8_t read(uint16_t addr) {
 				return bus->read(addr);
 			}
 
-			uint16_t readWord(uint16_t addr) {
+			inline uint16_t readWord(uint16_t addr) {
 				return bus->readWord(addr);
 			}
 
-			void write(uint16_t addr,uint8_t value) {
+			inline void write(uint16_t addr,uint8_t value) {
 				bus->write(addr,value);
 			}
 
-			void writeWord(uint16_t addr,uint16_t value) {
+			inline void writeWord(uint16_t addr,uint16_t value) {
 				bus->writeWord(addr,value);
 			}
 
-			void push(uint8_t value);
-			void pushWord(uint16_t value);
-			uint8_t pop();
-			uint16_t popWord();
+			inline void push(uint8_t value);
+			inline void pushWord(uint16_t value);
+			inline uint8_t pop();
+			inline uint16_t popWord();
 
 			typedef uint16_t (dh65c02::*modeFunc)();
 			typedef void (dh65c02::*opFunc)(uint16_t);
