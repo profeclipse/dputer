@@ -43,7 +43,7 @@ namespace dputer {
 #endif
 	}
 
-	const char *cmdBufferIdx = "\n\nj 0200\nfload extend.f\nhalt\n";
+	const char *cmdBufferIdx = "\n\nj 0200\n6000 primes\nhalt\n";
 
 	void dhTerm::tick() {
 		if (bus->read(TERMIO_IREADY) == 0) {
