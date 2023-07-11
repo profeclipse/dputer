@@ -18,12 +18,14 @@ dputer::dhBus bus(&cpu,&term,&file);
 
 bool debug = false;
 bool profile = false;
+bool noclock = false;
 
 static std::string debugopt		= "--debug";
 static std::string profileopt	= "--profile";
 static std::string freqopt		= "--freq";
 static std::string kernelopt	= "--kernel";
 static std::string loadopt		= "--load";
+static std::string noclockopt	= "--noclock";
 
 void setup() {
 }
@@ -105,17 +107,23 @@ int main(int argc, char* argv[]) {
 			++i;
 			loadROM(argv[i],false);
 		}
+		else if (noclockopt == argv[i]) {
+			noclock = true;
+		}
 	}
 
-	cpuClock.start();
+	if (!noclock)
+		cpuClock.start();
 	uint8_t cycles = bus.reset();
 
 	while (true) {
 		if (debug) {
 			doDebug();
 		}
-		cpuClock.wait(cycles);
-		cpuClock.start();
+		if (!noclock) {
+			cpuClock.wait(cycles);
+			cpuClock.start();
+		}
 		cycles = bus.tick();
 		if (cpu.isHalted())
 			break;
