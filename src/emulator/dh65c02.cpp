@@ -320,10 +320,10 @@ namespace dputer {
 
 		if (!waiting) {
 			opcode = read(PC++);
-			struct OPCODE_ENTRY entry = optable[opcode];
-			cyclesUsed += entry.cycles;
-			uint16_t addr = (this->*entry.mode)();
-			(this->*entry.op)(addr);
+			struct OPCODE_ENTRY *entry = &optable[opcode];
+			cyclesUsed += entry->cycles;
+			uint16_t addr = (this->*(entry->mode))();
+			(this->*(entry->op))(addr);
 		}
 
 		return cyclesUsed;
@@ -389,7 +389,7 @@ namespace dputer {
 		}
 		std::cerr << fmt::format(" {:<14}",inst);
 
-		char flags[0];
+		char flags[9];
 		flags[0] = (PS & NF) ? 'N' : '-';
 		flags[1] = (PS & VF) ? 'V' : '-';
 		flags[2] = (PS & uF) ? '-' : '-';

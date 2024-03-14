@@ -46,7 +46,6 @@ NEXT:
 	lda (IP),y
 	sta CFA+1
 	jsr incIP
-	bcc EXEC
 EXEC:
 	lda (CFA)
 	sta RCFA
@@ -68,8 +67,10 @@ DOCOLON:
 	adc #2
 	sta IP
 	lda CFA+1
-	adc #0
-	sta IP+1
+    bcc +
+	;adc #0
+    inc a
++	sta IP+1
 	jmp NEXT
 	
 DOVAR:
@@ -150,8 +151,7 @@ DOVALUESTORE:
 	sta GP0
 	bcs +
 	dec GP0+1
-+
-	jsr dpop
++   jsr dpop
 	sta (GP0)
 	txa
 	ldy #1
@@ -3293,15 +3293,17 @@ doNtoLink .proc
 	adc GP0
 	sta GP0
 	bcc +
-	inc GP0+1
-+	clc
-	lda #3
+	;inc GP0+1
+    inx
+    clc
++	lda #3
 	adc GP0
 	sta GP0
 	bcc +
-	inc GP0+1
+	;inc GP0+1
+    inx
 +	lda GP0
-	ldx GP0+1
+	;ldx GP0+1
 	rts
 	.endproc
 
@@ -3435,9 +3437,9 @@ s1wmatch:
 	sta GP3
 	bcc s1wmatcha
 	inc GP3+1
+    clc
 s1wmatcha:
-	clc							; wlst -> cfa (1 for count, 2 for nla, 2 for lfa
-	lda GP3
+	lda GP3                     ; wlst -> cfa (1 for count, 2 for nla, 2 for lfa
 	adc #5
 	sta GP3
 	bcc s1wmatchb
@@ -3591,8 +3593,8 @@ s1wend:
 	sta DP+2
 	bcc +
 	inc DP+3
-+	clc
-	lda IP
+	clc
++	lda IP
 	adc #2
 	sta IP
 	bcs +

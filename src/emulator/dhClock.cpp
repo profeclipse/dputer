@@ -4,6 +4,7 @@
 // Implements a high-precision CPU clock.
 //============================================================================
 #include <chrono>
+#include <iostream>
 #include "dputer.h"
 #include "dhClock.h"
 
@@ -45,4 +46,8 @@ namespace dputer {
 	uint64_t dhClock::getFrequency() {
 		return 1000000000 / cycleTime;
 	}
+
+    uint64_t dhClock::getCycleTime() {
+        return cycleTime;
+    }
 }

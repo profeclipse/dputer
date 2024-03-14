@@ -29,8 +29,8 @@ target_include_directories(
 
 target_link_libraries(
 	dputer
+	pdcurses
 	fmt::fmt
-    curses
 	)
 
 add_custom_target(run

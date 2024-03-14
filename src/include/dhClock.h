@@ -6,6 +6,7 @@
 #pragma once
 #include <cstdint>
 #include <cstddef>
+#include "dputer.h"
 
 namespace dputer {
 	uint64_t ns();
@@ -20,6 +21,7 @@ namespace dputer {
 			uint64_t getStart();
 			void setFrequency(uint64_t freq);
 			uint64_t getFrequency();
+            uint64_t getCycleTime();
 
 		private:
 			uint64_t cycleTime;

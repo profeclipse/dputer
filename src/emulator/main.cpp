@@ -1,14 +1,13 @@
 #include <iostream>
 #include <fstream>
-#include <unistd.h>
-#include <libproc.h>
-#include <libgen.h>
 #include <fmt/format.h>
 #include "dputer.h"
 #include "dhClock.h"
 #include "dh65c02.h"
 #include "dhTerm.h"
 #include "dhFileIO.h"
+#include <windows.h>
+#include <process.h>
 
 dputer::dhClock cpuClock;
 dputer::dh65c02 cpu;
@@ -17,20 +16,27 @@ dputer::dhFileIO file;
 dputer::dhBus bus(&cpu,&term,&file);
 
 bool debug = false;
-bool profile = false;
 bool noclock = false;
+bool profile = false;
 
 static std::string debugopt		= "--debug";
-static std::string profileopt	= "--profile";
 static std::string freqopt		= "--freq";
 static std::string kernelopt	= "--kernel";
 static std::string loadopt		= "--load";
 static std::string noclockopt	= "--noclock";
+static std::string profileopt   = "--profile";
+
+HANDLE hRunMutex;
+HANDLE hTerminalThread;
 
 void setup() {
+    hRunMutex = CreateMutexW(NULL,TRUE,NULL);
+    hTerminalThread = (HANDLE)_beginthread(dputer::dhTerm::terminalThread,0,(void*)&term);
 }
 
 void shutdown() {
+    ReleaseMutex(hRunMutex);
+    CloseHandle(hRunMutex);
 }
 
 void loadROM(const char *fn,bool setResetVector) {
@@ -83,15 +89,30 @@ void doDebug() {
 	cpu.disassemble();
 }
 
-int main(int argc, char* argv[]) {
-	setup();
+std::ofstream profileStream;
+void startProfiler() {
+    profileStream.open("profile.out",std::ios::out);
+}
 
+void stopProfiler() {
+    profileStream.close();
+}
+
+void doProfile(uint8_t cycles) {
+    uint64_t start = cpuClock.getStart();
+    uint64_t end = dputer::ns();
+    uint64_t expected = cycles * cpuClock.getCycleTime();
+    uint64_t actual = end - start;
+
+    if (profile)
+		profileStream << fmt::format("{:04x} - {:2d} - Expected: {:5d} Actual: {:5d}\n",
+                cpu.getPC(),cycles,expected,actual);
+}
+
+int main(int argc, char* argv[]) {
 	for (int i=1 ; i<argc ; ++i) {
 		if (debugopt == argv[i]) {
 			debug = true;
-		}
-		else if (profileopt == argv[i]) {
-			profile = true;
 		}
 		else if (freqopt == argv[i]) {
 			++i;
@@ -110,26 +131,44 @@ int main(int argc, char* argv[]) {
 		else if (noclockopt == argv[i]) {
 			noclock = true;
 		}
+        else if (profileopt == argv[i]) {
+            profile = true;
+        }
 	}
 
-	if (!noclock)
-		cpuClock.start();
+    if (profile)
+        startProfiler();
+
+	setup();
+
+	cpuClock.start();
+
 	uint8_t cycles = bus.reset();
 
 	while (true) {
 		if (debug) {
 			doDebug();
 		}
+
 		if (!noclock) {
 			cpuClock.wait(cycles);
-			cpuClock.start();
 		}
+
+        if (profile)
+            doProfile(cycles);
+
+		cpuClock.start();
+
 		cycles = bus.tick();
+
 		if (cpu.isHalted())
 			break;
 	}
 
 	shutdown();
+
+    if (profile)
+        stopProfiler();
 
 	return 0;
 }

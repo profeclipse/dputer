@@ -84,7 +84,7 @@ hex 20EA0269. decimal 2constant does-op
 
 : .execution-class  ( IP cfa -- IP' )
     case
-        ['] lit         of cell+     ( ." lit " ) .word              endof
+        ['] lit         of cell+     ." lit "     .word              endof
         ['] (is)        of cell+     ." (IS) "    .word              endof
         ['] (.")        of           ." ."        .string            endof
         ['] (s")        of           ." S"        .string            endof

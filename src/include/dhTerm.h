@@ -27,7 +27,9 @@ namespace dputer {
 				SCREEN_W	= 5,
 				SCREEN_H	= 6,
 				GETCURSOR_X	= 7,
-				GETCURSOR_Y	= 8
+				GETCURSOR_Y	= 8,
+                CHROUT      = 9,
+                RESET       = 10
 			};
 
 			dhTerm();
@@ -39,6 +41,7 @@ namespace dputer {
 
 			void init();
 			void reset();
+            void doReset();
 			void shutdown();
 
 			void tick();
@@ -47,6 +50,8 @@ namespace dputer {
 			void emit(uint8_t c);
 			uint8_t key();
 			bool keyq();
+
+            static void terminalThread(void* pterm);
 
 		private:
 			dhBus* bus;

@@ -1,12 +1,14 @@
 #include <cstdint>
 #include <iostream>
-#include <unistd.h>
 #include <sys/stat.h>
+#include <io.h>
 #include <fcntl.h>
 #include <fmt/format.h>
 #include "dputer.h"
 #include "dhBus.h"
 #include "dhFileIO.h"
+
+#define ftruncate(a,b) _chsize_s(a,b)
 
 namespace dputer {
 	static FILE *fileBuffers[128];
@@ -100,20 +102,20 @@ namespace dputer {
 
 	void dhFileIO::doOpen(uint8_t mode) {
 		std::string flags;
-		int perm = 0;
+		//int perm = 0;
 		char fn[2048];
 
 		switch (mode) {
 			case MODE_READ:
-				flags = "r";
+				flags = "rb";
 				break;
 			case MODE_WRITE:
-				flags = "w";
-				perm = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+				flags = "wb";
+				//perm = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 				break;
 			case MODE_RW:
-				flags = "r+";
-				perm = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+				flags = "rb+";
+				//perm = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 				break;
 			default:
 				bus->write(FILEIO_CSTATUS,STATUS_ERR);

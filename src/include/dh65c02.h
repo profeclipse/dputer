@@ -80,6 +80,10 @@ namespace dputer {
 
 			void disassemble();
 
+            uint16_t getPC() {
+                return PC;
+            }
+
 			inline bool isHalted() {
 				return halted;
 			}
