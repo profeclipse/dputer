@@ -995,6 +995,18 @@ LAB_13AC
 	LDA	Ibuffs,X		; get byte from input buffer
 	BEQ	LAB_13EC		; if null save byte then exit
 
+;*** Begin Mixed-Case Patch
+    CMP #'{'
+    BCS LAB_13EC
+
+    CMP #'a'
+    BCC PATCH_LC
+
+    AND #$DF
+
+PATCH_LC
+;*** End Mixed Case Patch
+
 	CMP	#'_'			; compare with "_"
 	BCS	LAB_13EC		; if >= go save byte then continue crunching
 
@@ -1029,8 +1041,12 @@ LAB_13D0
 	CMP	(ut2_pl),Y		; compare with keyword first character table byte
 	BEQ	LAB_13D1		; go do word_table_chr if match
 
-	BCC	LAB_13EA		; if < keyword first character table byte go restore
+;*** Begin Mixed-Case Patch
+
+    BCC PATCH_LC2
+	;BCC	LAB_13EA		; if < keyword first character table byte go restore
 					; Y and save to crunched
+;*** End Mixed-Case Patch
 
 	INY				; else increment pointer
 	BNE	LAB_13D0		; and loop (branch always)
@@ -1057,7 +1073,11 @@ LAB_13D8
 	BMI	LAB_13EA		; all bytes matched so go save token
 
 	INX				; next buffer byte
-	CMP	Ibuffs,X		; compare with byte from input buffer
+; *** Begin Mixed-Case Patch
+	;CMP	Ibuffs,X		; compare with byte from input buffer
+	EOR	Ibuffs,X		; compare with byte from input buffer
+    AND #$DF
+; *** End Mixed-Case Patch
 	BEQ	LAB_13D6		; go compare next if match
 
 	BNE	LAB_1417		; branch if >< (not found keyword)
@@ -1121,6 +1141,9 @@ LAB_141B
 	BNE	LAB_13D8		; go test next word if not zero byte (end of table)
 
 					; reached end of table with no match
+; *** Begin Mixed-Case Patch
+PATCH_LC2
+; *** End Mixed-Case Patch
 	LDA	Ibuffs,X		; restore byte from input buffer
 	BPL	LAB_13EA		; branch always (all bytes in buffer are $00-$7F)
 					; go save byte in output and continue crunching
