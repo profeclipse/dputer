@@ -250,8 +250,11 @@ IrqBase		= USER_ZP+147	; IRQ handler enabled/setup/triggered flags
 ;			= USER_ZP+148	; IRQ handler addr low byte
 ;			= USER_ZP+149	; IRQ handler addr high byte
 
-Decss		= USER_ZP+150	; number to decimal string start
-Decssp1		= USER_ZP+151	; number to decimal string start
+tmp1        = USER_ZP+150   ; 2 bytes
+ptr1        = USER_ZP+152   ; 2 bytes
+
+Decss		= USER_ZP+154	; number to decimal string start
+Decssp1		= USER_ZP+155	; number to decimal string start
 
 ; token values needed for BASIC
 
@@ -7472,7 +7475,11 @@ LAB_RETNMI
 	JMP	LAB_16E8		; go do rest of RETURN
 
 LAB_EXIT
+; *** Begin Monitor Patch
 	HLT
+    ;BRK #0
+    ;JMP LAB_WARM
+; *** End Monitor Patch
 
 ; MAX() MIN() pre process
 
@@ -8717,7 +8724,9 @@ LAB_BAER
 	.word	ERR_ST		;$1C string too complex
 	.word	ERR_CN		;$1E continue error
 	.word	ERR_UF		;$20 undefined function
-	.word ERR_LD		;$22 LOOP without DO
+	.word   ERR_LD		;$22 LOOP without DO
+    .word   ERR_BF      ;$24 bad or missing filename
+    .word   ERR_IO      ;$26 file i/o error
 
 ; I may implement these two errors to force definition of variables and
 ; dimensioning of arrays before use.
@@ -8746,6 +8755,8 @@ ERR_ST	.text	"String too complex",$00
 ERR_CN	.text	"Can't continue",$00
 ERR_UF	.text	"Undefined function",$00
 ERR_LD	.text	"LOOP without DO",$00
+ERR_BF  .text   "Bad or missing filename",$00
+ERR_IO  .text   "File I/O error",$00
 
 ;ERR_UV	.byte	"Undefined variable",$00
 
