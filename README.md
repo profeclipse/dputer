@@ -10,3 +10,6 @@ and file I/O are provided.
 Also included are a kernel and monitor, a feature-rich ANS-Forth, and an implementation
 of ehBasic.
 
+NOTE: The msbasic directory contains the original msbasic for various retro computers. I have
+not implemented msbasic for DPuter yet.
+
