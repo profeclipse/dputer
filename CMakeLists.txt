@@ -14,7 +14,6 @@ set(warnings
 add_compile_options(
 	${warnings}
 	$<$<CONFIG:RELEASE>:/O2>
-#	$<$<CONFIG:DEBUG>:-g>
 )
 
 include(FetchContent)
@@ -26,7 +25,4 @@ FetchContent_MakeAvailable(fmt)
 
 file(GENERATE OUTPUT .gitignore CONTENT "*")
 
-#find_package(SDL2 REQUIRED)
-
-#include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 add_subdirectory(src)

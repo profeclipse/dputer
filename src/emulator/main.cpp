@@ -8,6 +8,8 @@
 #include "dhFileIO.h"
 #include <windows.h>
 #include <process.h>
+#include <chrono>
+#include <thread>
 
 dputer::dhClock cpuClock;
 dputer::dh65c02 cpu;
@@ -161,14 +163,18 @@ int main(int argc, char* argv[]) {
 
 		cycles = bus.tick();
 
-		if (cpu.isHalted())
+		if (cpu.isHalted()) {
 			break;
+        }
 	}
 
 	shutdown();
 
-    if (profile)
+    if (profile) {
         stopProfiler();
+    }
+
+    std::cout << fmt::format("PC: {:04X}\n",cpu.getPC());
 
 	return 0;
 }

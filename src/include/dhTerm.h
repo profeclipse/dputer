@@ -6,7 +6,7 @@
 #include <string>
 
 namespace dputer {
-	inline const uint16_t TERMIO_BASE		= 0xDC00;
+	inline const uint16_t TERMIO_BASE		= 0x0200;
 	inline const uint16_t TERMIO_IREADY		= TERMIO_BASE+0;
 	inline const uint16_t TERMIO_IDATA		= TERMIO_BASE+1;
 	inline const uint16_t TERMIO_OREADY		= TERMIO_BASE+2;

@@ -1,0 +1,74 @@
+;*****************************************************************************
+; Some Macros
+;*****************************************************************************
+
+PREVHEADER	.var 0
+PREVDEFER	.var 0
+
+wordheader .macro
+-	.ptext \1
+	.word -
+	.word PREVHEADER
+	PREVHEADER ::= -
+	.endmacro
+
+immedwordheader .macro
+-	.byte len(\1) | $80
+	.text \1
+	.word -
+	.word PREVHEADER
+	PREVHEADER ::= -
+	.endmacro
+
+codeword .segment
+	.wordheader \1
+\2:	.word +
++
+	.endsegment
+
+varword .segment
+	.wordheader \1
+\2:	.word DOVAR
+	.endsegment
+
+constword .segment
+	.wordheader \1
+\2:	.word DOCON
+	.word \3
+	.endsegment
+
+deferword .segment
+	.wordheader \1
+\2:	.word DODEFER
+	.word \3
+-	.word PREVDEFER
+	.word \3
+	PREVDEFER ::= -
+	.endsegment
+
+immeddeferword .segment
+	.immedwordheader \1
+\2:	.word DODEFER
+	.word \3
+-	.word PREVDEFER
+	.word \3
+	PREVDEFER ::= -
+	.endsegment
+
+colonword .segment
+	.wordheader \1
+\2:	.word DOCOLON
+	.endsegment
+
+immedcolonword .segment
+	.immedwordheader \1
+\2:	.word DOCOLON
+	.endsegment
+
+valueword .segment
+	.wordheader \1
+\2: .word DOVALUE
+	.word \3
+	.word DOVALUESTORE
+	.word DOVALUEPSTORE
+	.endsegment

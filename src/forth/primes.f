@@ -3,10 +3,10 @@
     do      dup dup * i <
             if      1+
             then    1 over 1+ 3
-            do      j i mod 0=
+            do      j i umod 0=
                     if      1- leave
                     then
             2 +loop
-            if      i .
+            if      i u.
             then
     2 +loop drop ;

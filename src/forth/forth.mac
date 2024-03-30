@@ -2,73 +2,121 @@
 ; Some Macros
 ;*****************************************************************************
 
-PREVHEADER	.var 0
-PREVDEFER	.var 0
+    .feature leading_dot_in_identifiers
 
-wordheader .macro
--	.ptext \1
-	.word -
-	.word PREVHEADER
-	PREVHEADER ::= -
-	.endmacro
+PREVHEADER	.set 0
+.ident (.sprintf("PH%08X",PREVHEADER)) := PREVHEADER
+PREVDEFER	.set 0
+.ident (.sprintf("PD%08X",PREVDEFER))  := PREVDEFER
 
-immedwordheader .macro
--	.byte len(\1) | $80
-	.text \1
-	.word -
-	.word PREVHEADER
-	PREVHEADER ::= -
-	.endmacro
+    .macro .ptext arg
+    .byte .strlen(arg),arg
+    .endmacro
 
-codeword .segment
-	.wordheader \1
-\2:	.word +
-+
-	.endsegment
+    .macro .iptext arg
+    .byte .strlen(arg)|$80,arg
+    .endmacro
 
-varword .segment
-	.wordheader \1
-\2:	.word DOVAR
-	.endsegment
+    .macro .inc16 addr
+    .local skip
+    inc addr
+    bne skip
+    inc addr+1
+skip:
+    .endmacro
 
-constword .segment
-	.wordheader \1
-\2:	.word DOCON
-	.word \3
-	.endsegment
+    .macro .dec16 addr
+    .local skip
+    sec
+    lda addr
+    sbc #1
+    sta addr
+    bcs skip
+    dec addr+1
+skip:
+    .endmacro
 
-deferword .segment
-	.wordheader \1
-\2:	.word DODEFER
-	.word \3
--	.word PREVDEFER
-	.word \3
-	PREVDEFER ::= -
-	.endsegment
+    .macro .wordheader name
+.ident (.sprintf("PH%08X",PREVHEADER+1)):
+    .ptext name
+    .word .ident (.sprintf("PH%08X",PREVHEADER+1))
+    .word .ident (.sprintf("PH%08X",PREVHEADER))
+    PREVHEADER .set PREVHEADER + 1
+    .endmacro
 
-immeddeferword .segment
-	.immedwordheader \1
-\2:	.word DODEFER
-	.word \3
--	.word PREVDEFER
-	.word \3
-	PREVDEFER ::= -
-	.endsegment
+    .macro .iwordheader name
+.ident (.sprintf("PH%08X",PREVHEADER+1)):
+    .iptext name
+    .word .ident (.sprintf("PH%08X",PREVHEADER+1))
+    .word .ident (.sprintf("PH%08X",PREVHEADER))
+    PREVHEADER .set PREVHEADER + 1
+    .endmacro
 
-colonword .segment
-	.wordheader \1
-\2:	.word DOCOLON
-	.endsegment
+    .macro .codeword name,label
+    .wordheader name
+label:
+    .word * + 2
+    .endmacro
 
-immedcolonword .segment
-	.immedwordheader \1
-\2:	.word DOCOLON
-	.endsegment
+    .macro .icodeword name,label
+    .iwordheader name
+label:
+    .word * + 2
+    .endmacro
 
-valueword .segment
-	.wordheader \1
-\2: .word DOVALUE
-	.word \3
+    .macro .colonword name,label
+    .wordheader name
+label:
+    .word DOCOLON
+    .endmacro
+
+    .macro .icolonword name,label
+    .iwordheader name
+label:
+    .word DOCOLON
+    .endmacro
+
+    .macro .varword name,label
+    .wordheader name
+label:
+    .word DOVAR
+    .endmacro
+
+    .macro .constword name,label,value
+    .wordheader name
+label:
+    .word DOCON
+    .word value
+    .endmacro
+
+    .macro .deferword name,label,value
+    .wordheader name
+label:
+    .word DODEFER
+    .word value
+.ident (.sprintf("PD%08X",PREVDEFER+1)):
+    .word .ident (.sprintf("PD%08X",PREVDEFER))
+    .word value
+    PREVDEFER .set PREVDEFER + 1
+    .endmacro
+
+    .macro .ideferword name,label,value
+    .iwordheader name
+label:
+    .word DODEFER
+    .word value
+.ident (.sprintf("PD%08X",PREVDEFER+1)):
+    .word .ident (.sprintf("PD%08X",PREVDEFER))
+    .word value
+    PREVDEFER .set PREVDEFER + 1
+    .endmacro
+
+    .macro .valueword name,label,value
+	.wordheader name
+label:
+    .word DOVALUE
+	.word value
 	.word DOVALUESTORE
 	.word DOVALUEPSTORE
-	.endsegment
+    .endmacro
+

@@ -3,18 +3,24 @@ set (KERNELBINS
 	)
 
 set (KERNELINC
-	macros.inc
-	kernel.inc
-	termio.inc
-	termio.asm
-	fileio.inc
-	monitor.asm
+    kernel.inc
+    bios.s
+    fileio.s
+    jumptable.s
+    loadaddr.s
+    monitor.s
+    termio.s
+    vectors.s
+    zeropage.s
 	)
 
 add_custom_command(
 	OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/kernel.bin ${CMAKE_CURRENT_SOURCE_DIR}/kernel.lbl
-	DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${KERNELINC} ${CMAKE_CURRENT_SOURCE_DIR}/kernel.asm
-	COMMAND 64tass -q --tab-size=4 --verbose-list -l ${CMAKE_CURRENT_SOURCE_DIR}/kernel.lbl -L ${CMAKE_CURRENT_SOURCE_DIR}/kernel.lst ${CMAKE_CURRENT_SOURCE_DIR}/kernel.asm -o ${CMAKE_CURRENT_SOURCE_DIR}/kernel.bin
+    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${KERNELINC} ${CMAKE_CURRENT_SOURCE_DIR}/kernel.cfg ${CMAKE_CURRENT_SOURCE_DIR}/kernel.s
+    COMMAND ca65 ${CMAKE_CURRENT_SOURCE_DIR}/kernel.s -o ${CMAKE_CURRENT_SOURCE_DIR}/kernel.o -l ${CMAKE_CURRENT_SOURCE_DIR}/kernel.lst
+    COMMAND ld65 -C ${CMAKE_CURRENT_SOURCE_DIR}/kernel.cfg ${CMAKE_CURRENT_SOURCE_DIR}/kernel.o -o ${CMAKE_CURRENT_SOURCE_DIR}/kernel.bin -Ln ${CMAKE_CURRENT_SOURCE_DIR}/kernel.nm
+    COMMAND python ${PROJECT_SOURCE_DIR}/scripts/label2inc.py ${CMAKE_CURRENT_SOURCE_DIR}/kernel.nm ${CMAKE_CURRENT_SOURCE_DIR}/kernel.lbl
+    COMMAND cmake -E rm ${CMAKE_CURRENT_SOURCE_DIR}/kernel.nm
 	)
 
 foreach(ROM ${KERNELBINS})

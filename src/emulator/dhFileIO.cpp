@@ -100,22 +100,23 @@ namespace dputer {
 		}
 	}
 
-	void dhFileIO::doOpen(uint8_t mode) {
+	void dhFileIO::doOpen(uint8_t imode) {
 		std::string flags;
 		//int perm = 0;
+        uint8_t mode = imode & ~MODE_BIN;
+        uint8_t bin = imode & MODE_BIN;
+
 		char fn[2048];
 
 		switch (mode) {
 			case MODE_READ:
-				flags = "rb";
+				flags = (bin) ? "rb" : "rt";
 				break;
 			case MODE_WRITE:
-				flags = "wb";
-				//perm = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+				flags = (bin) ? "wb" : "wt";
 				break;
 			case MODE_RW:
-				flags = "rb+";
-				//perm = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+				flags = (bin) ? "r+b" : "r+t";
 				break;
 			default:
 				bus->write(FILEIO_CSTATUS,STATUS_ERR);

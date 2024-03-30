@@ -315,7 +315,7 @@ namespace dputer {
 
 		if (irqLine) {
 			waiting = false;
-			 cyclesUsed += irq();
+			cyclesUsed += irq();
 		}
 
 		if (!waiting) {

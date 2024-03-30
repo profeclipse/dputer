@@ -4,7 +4,7 @@
 
 cr .( Extending Forth Kernel...)
 
-echo on
+\ echo on
 
 fload coreext.f
 fload util.f
@@ -16,7 +16,7 @@ fload asm65c02.f
 fload see.f
 fload forget.f
 
-echo off
+\ echo off
 
 \+ FENCE HERE FENCE !
 

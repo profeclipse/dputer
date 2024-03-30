@@ -6,7 +6,7 @@
 #include "dputer.h"
 
 namespace dputer {
-	inline const uint16_t FILEIO_BASE     	= 0xDC10;
+	inline const uint16_t FILEIO_BASE     	= 0x0210;
 	inline const uint16_t FILEIO_CREADY		= FILEIO_BASE+0;
 	inline const uint16_t FILEIO_CCMD		= FILEIO_BASE+1;
 	inline const uint16_t FILEIO_CFD		= FILEIO_BASE+2;
@@ -17,7 +17,7 @@ namespace dputer {
 	inline const uint16_t FILEIO_CDATA_HI2	= FILEIO_BASE+7;
 	inline const uint16_t FILEIO_CSTATUS	= FILEIO_BASE+8;
 
-	inline const uint16_t FILEIO_FILENAME	= 0xDC1A;
+	inline const uint16_t FILEIO_FILENAME	= FILEIO_BASE+10;
 
 	class dhBus;
 
@@ -39,8 +39,10 @@ namespace dputer {
 			enum FILEIO_MODES: uint8_t {
 				MODE_READ	= 1,
 				MODE_WRITE	= 2,
-				MODE_RW		= 3
+				MODE_RW		= 3,
+                MODE_BIN    = 128
 			};
+
 
 			enum FILEIO_STATUS: uint8_t {
 				STATUS_OK	= 0x00,
