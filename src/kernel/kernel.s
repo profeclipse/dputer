@@ -5,11 +5,12 @@
 ;   $0000 - $00CF       User Zero Page
 ;   $00D0 - $00FF       Reserved Zero Page
 ;   $0100 - $01FF       Stack
-;   $0200 - $02FF       Kernel Keyboard Buffer
-;   $0300 - $03FF       Kernel Input Buffer
-;   $DF00 - $DFFF       Memory Mapped I/O
-;       $DF00 - $DF06     Terminal I/O
-;       $DF10 - $DFFF     File I/O
+;   $0200 - $02FF       Memory Mapped I/O
+;       $0200 - $020F       Terminal I/O
+;       $0210 - $02FF       File I/O
+;   $0300 - $03FF       Kernel Keyboard Buffer
+;   $0400 - $04FF       Kernel Input Buffer
+;   $0500 - $DFFF       User RAM
 ;   $E000 - $FFF8       Kernel
 ;   $FFFA - $FFFB       NMI Vector
 ;   $FFFC - $FFFD       Reset Vector
