@@ -15,3 +15,6 @@
 .ifdef SYM1
 .include "sym1_loadsave.s"
 .endif
+.ifdef DPUTER
+.include "dputer_loadsave.s"
+.endif

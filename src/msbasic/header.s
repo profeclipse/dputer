@@ -1,3 +1,8 @@
+.ifdef DPUTER
+        .segment "LOADADDR"
+        .word *+2
+.endif
+
 		.segment "HEADER"
 .ifdef KBD
         jmp     LE68C
@@ -9,5 +14,8 @@
         .word   AYINT,GIVAYF
 .endif
 .ifdef SYM1
+        jmp     PR_WRITTEN_BY
+.endif
+.ifdef DPUTER
         jmp     PR_WRITTEN_BY
 .endif
