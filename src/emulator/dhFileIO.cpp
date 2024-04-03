@@ -49,7 +49,7 @@ namespace dputer {
 	}
 
 	void dhFileIO::tick() {
-		if (bus->read(FILEIO_CREADY) != 0) {
+		if (bus->read(FILEIO_CREADY) & 0x80) {
 			uint8_t cmd = bus->read(FILEIO_CCMD);
 			uint8_t datalo = bus->read(FILEIO_CDATA_LO);
 			uint8_t datahi = bus->read(FILEIO_CDATA_HI);

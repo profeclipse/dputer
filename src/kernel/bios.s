@@ -93,8 +93,8 @@ IRQ_HANDLER:
     jmp KMONITOR
 
 @notBRK:
-    lda TERMIO::IREADY       ; was it a keyboard interrupt?
-    beq @irqDone             ; no
+    bit TERMIO::IREADY      ; was it a keyboard interrupt?
+    bpl @irqDone            ; no
 
     jsr handleKeyboardIRQ   ; yes, go deal with it
 

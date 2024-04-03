@@ -233,12 +233,12 @@ mon_ReadByteDone:
     rts
 
 mon_waitFileIO:
-    lda FILEIO::READY
-    bne mon_waitFileIO
+    bit FILEIO::READY
+    bmi mon_waitFileIO
     rts
 
 mon_doFileIO:
-    lda #1
+    lda #$FF
     sta FILEIO::READY
     bra mon_waitFileIO
 

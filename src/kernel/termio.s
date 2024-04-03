@@ -39,13 +39,10 @@ KTERMINIT:
 ; Wait for CREADY to clear
 ; ----------------------------------------------------------------------------
 kWaitForTerminalCmd:
-    pha
-
 @checkReady:
-    lda TERMIO::CREADY
-    bne @checkReady
+    bit TERMIO::CREADY
+    bmi @checkReady
 
-    pla
     rts
 
 ; ****************************************************************************
@@ -58,13 +55,8 @@ kWaitForTerminalCmd:
 KCLS:
     pha
 
-    jsr kWaitForTerminalCmd
-
-    lda #TERMIO_CLS
-    sta TERMIO::CCMD
-    sta TERMIO::CDATA
-    lda #$ff
-    sta TERMIO::CREADY
+    lda #12
+    jsr KWRITETERM
 
     pla
 
@@ -252,13 +244,10 @@ KGETCURY:
 ; Wait for OREADY to clear
 ; ----------------------------------------------------------------------------
 kWaitForTerminalOut:
-    pha
-
 @checkReady:
-    lda TERMIO::OREADY
-    bne @checkReady
+    bit TERMIO::OREADY
+    bmi @checkReady
     
-    pla
     rts
 
 ; ****************************************************************************

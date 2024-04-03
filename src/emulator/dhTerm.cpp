@@ -67,49 +67,18 @@ namespace dputer {
 		endwin();
 	}
 
-#if 0
 	void dhTerm::tick() {
 		if (bus->read(TERMIO_IREADY) == 0) {
 			bus->releaseIRQ();
 		}
-		if (bus->read(TERMIO_CREADY) != 0) {
-			uint8_t cmd = bus->read(TERMIO_CCMD);
-			uint8_t data = bus->read(TERMIO_CDATA);
-			handleControl(cmd,data);
-			bus->write(TERMIO_CREADY,0);
-		}
-
-		if (bus->read(TERMIO_IREADY) == 0)
-		{
-			if (keyq()) {
-				bus->write(TERMIO_IDATA,key());
-				bus->write(TERMIO_IREADY,0xff);
-				bus->requestIRQ();
-			}
-		}
-
-		if (bus->read(TERMIO_OREADY) != 0) {
+        if (bus->read(TERMIO_OREADY) & 0x80) {
 			uint8_t data = bus->read(TERMIO_ODATA);
-			emit(data);
-			bus->write(TERMIO_OREADY,0);
-			refresh();
-		}
-	}
-#else
-	void dhTerm::tick() {
-		if (bus->read(TERMIO_IREADY) == 0) {
-			bus->releaseIRQ();
-		}
-        if (bus->read(TERMIO_OREADY) != 0) {
-			uint8_t data = bus->read(TERMIO_ODATA);
-            //std::cerr << "Enqueuing emit request: " << (uint16_t)data << std::endl;
             WaitForSingleObject(hOutQueueMutex,INFINITE);
             outQueue.push_front({CHROUT,data});
             ReleaseMutex(hOutQueueMutex);
             bus->write(TERMIO_OREADY,0);
         }
-		if (bus->read(TERMIO_CREADY) != 0) {
-            //std::cerr << "Enqueuing control request" << std::endl;
+		if (bus->read(TERMIO_CREADY) & 0x80) {
 			uint8_t cmd = bus->read(TERMIO_CCMD);
 			uint8_t data = bus->read(TERMIO_CDATA);
             WaitForSingleObject(hOutQueueMutex,INFINITE);
@@ -125,14 +94,12 @@ namespace dputer {
         if (inQueue.size()) {
             IN_QUEUE_ENTRY i = inQueue.back();
             if ((i.type == KEY_ENTRY) && (bus->read(TERMIO_IREADY) == 0)) {
-                //std::cerr << "Dequeuing key entry" << std::endl;
                 inQueue.pop_back();
                 bus->write(TERMIO_IDATA,i.value);
                 bus->write(TERMIO_IREADY,0xff);
                 bus->requestIRQ();
             }
             else if (i.type == CURSOR_ENTRY) {
-                //std::cerr << "Dequeuing cursor entry" << std::endl;
                 inQueue.pop_back();
 				bus->write(TERMIO_CDATA,i.value);
                 bus->write(TERMIO_CREADY,0);
@@ -140,7 +107,6 @@ namespace dputer {
         }
         ReleaseMutex(hInQueueMutex);
     }
-#endif
 
 	void dhTerm::cls() {
 		clear();
@@ -148,7 +114,6 @@ namespace dputer {
 	}
 
 	void dhTerm::emit(uint8_t c) {
-        //std::cerr << "Emit character: " << (uint16_t)c << std::endl;
 		switch (c) {
 			case '\n':
 			case '\r':
@@ -158,6 +123,9 @@ namespace dputer {
 			case '\a':
 				beep();
 				break;
+            case 12:
+                cls();
+                break;
 			case 8:
 			case 127:
 			case KEY_BACKSPACE:
@@ -247,17 +215,14 @@ namespace dputer {
             while (outQueue.size())
             {
                 OUT_QUEUE_ENTRY o = outQueue.back();
-                //std::cerr << "Dequeuing output request: " << (uint16_t)o.type << "," << (uint16_t)o.value << std::endl;
                 outQueue.pop_back();
                 switch (o.type)
                 {
                     case CHROUT:
-                        //std::cerr << "Doing emit" << std::endl;
                         term->emit(o.value);
                         hadOutput = true;
                         break;
                     case CLS:
-                        //std::cerr << "Doing CLS" << std::endl;
                         term->cls();
                         hadOutput = true;
                         break;
@@ -301,6 +266,7 @@ namespace dputer {
                         break;
                     case RESET:
                         term->doReset();
+                        break;
                 }
             }
             ReleaseMutex(hOutQueueMutex);
@@ -308,7 +274,6 @@ namespace dputer {
                 refresh();
             if (term->keyq())
             {
-                //std::cerr << "Enqueuing key" << std::endl;
                 WaitForSingleObject(hInQueueMutex,INFINITE);
                 inQueue.push_front({KEY_ENTRY,term->key()});
                 ReleaseMutex(hInQueueMutex);

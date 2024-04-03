@@ -28,13 +28,10 @@ KFILEINIT:
 ; Wait for CREADY clear
 ; ----------------------------------------------------------------------------
 kWaitForFileCmd:
-    pha
-
 @checkReady:
-    lda FILEIO::READY
-    bne @checkReady
+    bit FILEIO::READY
+    bmi @checkReady
 
-    pla
     rts
 
 ; ----------------------------------------------------------------------------
