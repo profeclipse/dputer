@@ -47,7 +47,6 @@ namespace dputer {
 	}
 
 	void dhTerm::doReset() {
-		//cbreak();
         raw();
 		noecho();
 		nonl();
@@ -158,42 +157,6 @@ namespace dputer {
 			ungetch(c);
 
 		return (c != ERR);
-	}
-
-	void dhTerm::handleControl(uint8_t cmd,uint8_t data) {
-		int x,y;
-		switch (cmd) {
-			case CLS:
-				cls();
-				break;
-			case HOME:
-				move(0,0);
-				break;
-			case CURSOR_X:
-				getyx(stdscr,y,x);
-				move(y,data);
-				break;
-			case CURSOR_Y:
-				getyx(stdscr,y,x);
-				move(data,x);
-				break;
-			case SCREEN_W:
-				getmaxyx(stdscr,y,x);
-				bus->write(TERMIO_CDATA,(uint8_t)x);
-				break;
-			case SCREEN_H:
-				getmaxyx(stdscr,y,x);
-				bus->write(TERMIO_CDATA,(uint8_t)y);
-				break;
-			case GETCURSOR_X:
-				getyx(stdscr,y,x);
-				bus->write(TERMIO_CDATA,(uint8_t)x);
-				break;
-			case GETCURSOR_Y:
-				getyx(stdscr,y,x);
-				bus->write(TERMIO_CDATA,(uint8_t)y);
-				break;
-		}
 	}
 
     void dhTerm::terminalThread(void* pterm)

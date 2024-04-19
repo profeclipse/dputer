@@ -202,11 +202,11 @@ TabLoop:
 
 ; set-up start values
 
-	LDA	#$00			; clear A
-	STA	NmiBase		; clear NMI handler enabled flag
-	STA	IrqBase		; clear IRQ handler enabled flag
-	STA	FAC1_o		; clear FAC1 overflow byte
-	STA	last_sh		; clear descriptor stack top item pointer high byte
+	;LDA	#$00			; clear A
+	STZ	NmiBase		; clear NMI handler enabled flag
+	STZ	IrqBase		; clear IRQ handler enabled flag
+	STZ	FAC1_o		; clear FAC1 overflow byte
+	STZ	last_sh		; clear descriptor stack top item pointer high byte
 
 	LDA	#$0E			; set default tab size
 	STA	TabSiz		; save it
@@ -498,9 +498,9 @@ LAB_1269:
 
 LAB_1274:
 					; clear ON IRQ/NMI bytes
-	LDA	#$00			; clear A
-	STA	IrqBase		; clear enabled byte
-	STA	NmiBase		; clear enabled byte
+	;LDA	#$00			; clear A
+	STZ	IrqBase		; clear enabled byte
+	STZ	NmiBase		; clear enabled byte
 	LDA	#<LAB_RMSG		; point to "Ready" message low byte
 	LDY	#>LAB_RMSG		; point to "Ready" message high byte
 
@@ -3096,18 +3096,34 @@ LAB_LRMS:
 	JSR	LAB_1C01		; scan for ",", else do syntax error then warm start
 	JSR	LAB_CTST		; check if source is string, else do type mismatch
 
+.if 0
 	PLA				; get function jump vector low byte
 	TAX				; save functions jump vector low byte
+.else
+    PLX
+.endif
+.if 0
 	PLA				; get function jump vector high byte
 	TAY				; save functions jump vector high byte
+.else
+    PLY
+.endif
 	LDA	des_ph		; get descriptor pointer high byte
 	PHA				; push string pointer high byte
 	LDA	des_pl		; get descriptor pointer low byte
 	PHA				; push string pointer low byte
+.if 0
 	TYA				; get function jump vector high byte back
 	PHA				; save functions jump vector high byte
+.else
+    PHY
+.endif
+.if 0
 	TXA				; get function jump vector low byte back
 	PHA				; save functions jump vector low byte
+.else
+    PHX
+.endif
 	JSR	LAB_GTBY		; get byte parameter
 	TXA				; copy byte parameter to A
 	RTS				; go do function
@@ -3622,8 +3638,12 @@ LAB_1E17:
 ; now get the array dimension(s) and stack it (them) before the data type and DIM flag
 
 LAB_1E1F:
+.if 0
 	TYA				; copy dimensions count
 	PHA				; save it
+.else
+    PHY
+.endif
 	LDA	Varnm2		; get array name 2nd byte
 	PHA				; save it
 	LDA	Varnm1		; get array name 1st byte
@@ -3633,8 +3653,12 @@ LAB_1E1F:
 	STA	Varnm1		; restore array name 1st byte
 	PLA				; pull array name 2nd byte
 	STA	Varnm2		; restore array name 2nd byte
+.if 0
 	PLA				; pull dimensions count
 	TAY				; restore it
+.else
+    PLY
+.endif
 	TSX				; copy stack pointer
 	LDA	LAB_STAK+2,X	; get DIM flag
 	PHA				; push it
@@ -4041,8 +4065,12 @@ LAB_200B:
 LAB_201E:
 	JSR	LAB_200B		; check FNx syntax
 	PHA				; push function pointer low byte
+.if 0
 	TYA				; copy function pointer high byte
 	PHA				; push function pointer high byte
+.else
+    PHY
+.endif
 	JSR	LAB_1BFE		; scan for "(", else do syntax error then warm start
 	JSR	LAB_EVEX		; evaluate expression
 	JSR	LAB_1BFB		; scan for ")", else do syntax error then warm start
@@ -4651,8 +4679,12 @@ LAB_22FB:
 
 LAB_CHRS:
 	JSR	LAB_EVBY		; evaluate byte expression, result in X
+.if 0
 	TXA				; copy to A
 	PHA				; save character
+.else
+    PHX
+.endif
 	LDA	#$01			; string is single byte
 	JSR	LAB_MSSP		; make string space A bytes long A=$AC=length,
 					; X=$AD=Sutill=ptr low byte, Y=$AE=Sutilh=ptr high byte
@@ -5472,10 +5504,10 @@ LAB_MULTIPLY:
 	BEQ	LAB_264C		; exit if zero
 
 	JSR	LAB_2673		; test and adjust accumulators
-	LDA	#$00			; clear A
-	STA	FACt_1		; clear temp mantissa1
-	STA	FACt_2		; clear temp mantissa2
-	STA	FACt_3		; clear temp mantissa3
+	;LDA	#$00			; clear A
+	STZ	FACt_1		; clear temp mantissa1
+	STZ	FACt_2		; clear temp mantissa2
+	STZ	FACt_3		; clear temp mantissa3
 	LDA	FAC1_r		; get FAC1 rounding byte
 	JSR	LAB_2622		; go do shift/add FAC2
 	LDA	FAC1_3		; get FAC1 mantissa3
@@ -6478,8 +6510,12 @@ LAB_2ABF:
 					; for possible later negation, b0
 LAB_2AD9:
 	JSR	LAB_279D		; save FAC1 sign and copy ABS(FAC2) to FAC1
+.if 0
 	TYA				; copy sign back ..
 	PHA				; .. and save it
+.else
+    PHY
+.endif
 	JSR	LAB_LOG		; do LOG(n)
 	LDA	#<garb_l		; set pointer low byte
 	LDY	#>garb_l		; set pointer high byte
@@ -6550,8 +6586,8 @@ LAB_2B49:
 	LDA	#<LAB_2AFE		; set counter pointer low byte
 	LDY	#>LAB_2AFE		; set counter pointer high byte
 	JSR	LAB_2B84		; go do series evaluation
-	LDA	#$00			; clear A
-	STA	FAC_sc		; clear sign compare (FAC1 EOR FAC2)
+	;LDA	#$00			; clear A
+	STZ	FAC_sc		; clear sign compare (FAC1 EOR FAC2)
 	PLA				;.get saved FAC2 exponent
 	JMP	LAB_2675		; test and adjust accumulators and return
 
@@ -6678,8 +6714,8 @@ LAB_SIN:
 	JSR	LAB_26C2		; divide by (AY) (X=sign)
 	JSR	LAB_27AB		; round and copy FAC1 to FAC2
 	JSR	LAB_INT		; perform INT
-	LDA	#$00			; clear byte
-	STA	FAC_sc		; clear sign compare (FAC1 EOR FAC2)
+	;LDA	#$00			; clear byte
+	STZ	FAC_sc		; clear sign compare (FAC1 EOR FAC2)
 	JSR	LAB_SUBTRACT	; perform subtraction, FAC2 from FAC1
 	LDA	#<LAB_2C80		; set 0.25 pointer low byte
 	LDY	#>LAB_2C80		; set 0.25 pointer high byte
@@ -6716,8 +6752,8 @@ LAB_2C45:
 
 LAB_TAN:
 	JSR	LAB_276E		; pack FAC1 into Adatal
-	LDA	#$00			; clear byte
-	STA	Cflag			; clear comparison evaluation flag
+	;LDA	#$00			; clear byte
+	STZ	Cflag			; clear comparison evaluation flag
 	JSR	LAB_SIN		; go do SIN(n)
 	LDX	#<func_l		; set sin(n) pointer low byte
 	LDY	#>func_l		; set sin(n) pointer high byte
@@ -6725,8 +6761,8 @@ LAB_TAN:
 	LDA	#<Adatal		; set n pointer low addr
 	LDY	#>Adatal		; set n pointer high addr
 	JSR	LAB_UFAC		; unpack memory (AY) into FAC1
-	LDA	#$00			; clear byte
-	STA	FAC1_s		; clear FAC1 sign (b7)
+	;LDA	#$00			; clear byte
+	STZ	FAC1_s		; clear FAC1 sign (b7)
 	LDA	Cflag			; get comparison evaluation flag
 	JSR	LAB_2C74		; save flag and go do series evaluation
 
@@ -7411,16 +7447,16 @@ LAB_SQR:
 
 					; else do root
 	JSR	LAB_27AB		; round and copy FAC1 to FAC2
-	LDA	#$00			; clear A
+	;LDA	#$00			; clear A
 
-	STA	FACt_3		; clear remainder
-	STA	FACt_2		; ..
-	STA	FACt_1		; ..
-	STA	TempB			; ..
+	STZ	FACt_3		; clear remainder
+	STZ	FACt_2		; ..
+	STZ	FACt_1		; ..
+	STZ	TempB			; ..
 
-	STA	FAC1_3		; clear root
-	STA	FAC1_2		; ..
-	STA	FAC1_1		; ..
+	STZ	FAC1_3		; clear root
+	STZ	FAC1_2		; ..
+	STZ	FAC1_1		; ..
 
 	LDX	#$18			; 24 pairs of bits to do
 	LDA	FAC2_e		; get exponent

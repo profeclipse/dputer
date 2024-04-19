@@ -1,5 +1,0 @@
-SAVE:
-    rts
-
-LOAD:
-    rts

@@ -55,7 +55,5 @@ namespace dputer {
 
 		private:
 			dhBus* bus;
-
-			void handleControl(uint8_t cmd,uint8_t data);
 	};
 }
