@@ -333,7 +333,6 @@ decGP9:
 ;*****************************************************************************
 
 PUSHNEXT:
-    ;jsr dpush
     sta (SP)
     txa
     ldy #1
@@ -341,16 +340,19 @@ PUSHNEXT:
     lda SP
     sub #2
     sta SP
-    bcs @skip
+    bcs NEXT
     dec SP+1
-@skip:
 NEXT:
     lda (IP)
     sta CFA
     ldy #1
     lda (IP),y
     sta CFA+1
-    jsr incIP
+    lda IP
+    add #2
+    sta IP
+    bcc EXEC
+    inc IP+1
 EXEC:
     lda (CFA)
     sta RCFA
