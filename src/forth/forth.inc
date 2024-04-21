@@ -3,10 +3,12 @@
 ;*****************************************************************************
 VERSIONNUM              = 010100
 
-DSTACK                  = $E000-$0200       ; data stack   - DE00-DFFF
+;DSTACK                  = $E000-$0200       ; data stack   - DE00-DFFF
+DSTACK                  = $E000-$0100       ; data stack   - DF00-DFFF
 RSTACK                  = DSTACK-$0400      ; return stack - DA00-DBFF
 
-DSTACK_TOP              = DSTACK+$01FE
+;DSTACK_TOP              = DSTACK+$01FE
+DSTACK_TOP              = DSTACK+$00FE
 RSTACK_TOP              = RSTACK+$03FE
 
 ; ---------------------------------------------------------------------------
