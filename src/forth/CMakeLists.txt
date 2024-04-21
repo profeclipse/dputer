@@ -5,7 +5,7 @@ set (FORTHBINS
 set (FORTHINC
     ../kernel/kernel.lbl
     	forth.inc
-    	forth.mac
+    	forthmac.inc
         zeropage.s
     )
 
