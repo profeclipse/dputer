@@ -30,7 +30,7 @@
     .include "kernel.lbl"
     .include "kernel.inc"
     .include "forth.inc"
-    .include "forth.mac"
+    .include "forthmac.inc"
 
     .include "zeropage.s"
 
