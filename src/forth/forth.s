@@ -62,6 +62,13 @@ incSP:
 @skip:
     rts
 
+dpush:
+    sta (SP)
+    txa
+    ldy #1
+    sta (SP),y
+    ; fall through
+
 decSP:
     lda SP
     sub #2
@@ -70,13 +77,6 @@ decSP:
     dec SP+1
 @skip:
     rts
-
-dpush:
-    sta (SP)
-    txa
-    ldy #1
-    sta (SP),y
-    jmp decSP
 
 dpop:
     jsr incSP
@@ -207,6 +207,13 @@ incRP:
 @skip:
     rts
 
+rpush:
+    sta (RP)
+    txa
+    ldy #1
+    sta (RP),y
+    ; fall through
+
 decRP:
     lda RP
     sub #2
@@ -215,13 +222,6 @@ decRP:
     dec RP+1
 @skip:
     rts
-
-rpush:
-    sta (RP)
-    txa
-    ldy #1
-    sta (RP),y
-    jmp decRP
 
 rpop:
     jsr incRP
@@ -333,7 +333,17 @@ decGP9:
 ;*****************************************************************************
 
 PUSHNEXT:
-    jsr dpush
+    ;jsr dpush
+    sta (SP)
+    txa
+    ldy #1
+    sta (SP),y
+    lda SP
+    sub #2
+    sta SP
+    bcs @skip
+    dec SP+1
+@skip:
 NEXT:
     lda (IP)
     sta CFA
