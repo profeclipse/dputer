@@ -254,83 +254,83 @@ incIP:
 ;-----------------------------------------------------------------------------
 
 incGP0:
-    .inc16 GP0
+    inc16 GP0
     rts
 
 decGP0:
-    .dec16 GP0
+    dec16 GP0
     rts
 
 incGP1:
-    .inc16 GP1
+    inc16 GP1
     rts
 
 decGP1:
-    .dec16 GP1
+    dec16 GP1
     rts
 
 incGP2:
-    .inc16 GP2
+    inc16 GP2
     rts
 
 decGP2:
-    .dec16 GP2
+    dec16 GP2
     rts
 
 incGP3:
-    .inc16 GP3
+    inc16 GP3
     rts
 
 decGP3:
-    .dec16 GP3
+    dec16 GP3
     rts
 
 incGP4:
-    .inc16 GP4
+    inc16 GP4
     rts
 
 decGP4:
-    .dec16 GP4
+    dec16 GP4
     rts
 
 incGP5:
-    .inc16 GP5
+    inc16 GP5
     rts
 
 decGP5:
-    .dec16 GP5
+    dec16 GP5
     rts
 
 incGP6:
-    .inc16 GP6
+    inc16 GP6
     rts
 
 decGP6:
-    .dec16 GP6
+    dec16 GP6
     rts
 
 incGP7:
-    .inc16 GP7
+    inc16 GP7
     rts
 
 decGP7:
-    .dec16 GP7
+    dec16 GP7
     rts
 
 incGP8:
-    .inc16 GP8
+    inc16 GP8
     rts
 
 decGP8:
-    .dec16 GP8
+    dec16 GP8
     rts
 
 incGP9:
-    .inc16 GP9
+    inc16 GP9
     rts
 
 decGP9:
-    .dec16 GP9
+    dec16 GP9
     rts
 
 ;*****************************************************************************
@@ -416,7 +416,7 @@ DODOES:
     sta IP
     pla
     sta IP+1
-    .inc16 IP
+    inc16 IP
     jmp DOVAR
 
 DODEFER:
@@ -525,73 +525,73 @@ DOVOC:
 
 FORTHKERNEL:
     .word 0
-    .ptext "forth.s"
+    ptext "forth.s"
 
-    .varword "LOADFILE",LOADFILE
+    varword "LOADFILE",LOADFILE
     .word FORTHKERNEL
 
 ;*****************************************************************************
 ; Forth Constants
 ;*****************************************************************************
 
-    .constword "VERSION#",VERSIONNUMBER,VERSIONNUM
-    .constword "MAXSTRING",MAXSTRING,255
-    .constword "MAXCOUNTED",MAXCOUNTED,255
-    .constword "MAX-NAME-CHARS",MAXNAMECHARS,63
-    .constword "0",ZERO,0
-    .constword "1",ONE,1
-    .constword "2",TWO,2
-    .constword "3",THREE,3
-    .constword "4",FOUR,4
-    .constword "5",FIVE,5
-    .constword "TRUE",TRUECON,$FFFF
-    .constword "FALSE",FALSECON,0
-    .constword "CELL",CELL,2
-    .constword "BL",BL,32
-    .constword "TOP-OF-MEM",TOPOFMEM,RSTACK
+    constword "VERSION#",VERSIONNUMBER,VERSIONNUM
+    constword "MAXSTRING",MAXSTRING,255
+    constword "MAXCOUNTED",MAXCOUNTED,255
+    constword "MAX-NAME-CHARS",MAXNAMECHARS,63
+    constword "0",ZERO,0
+    constword "1",ONE,1
+    constword "2",TWO,2
+    constword "3",THREE,3
+    constword "4",FOUR,4
+    constword "5",FIVE,5
+    constword "TRUE",TRUECON,$FFFF
+    constword "FALSE",FALSECON,0
+    constword "CELL",CELL,2
+    constword "BL",BL,32
+    constword "TOP-OF-MEM",TOPOFMEM,RSTACK
 
-    .constword "DOCOLON",DOCOLONCON,DOCOLON
-    .constword "DOVAR",DOVARCON,DOVAR
-    .constword "DOCON",DOCONCON,DOCON
-    .constword "DO2CON",DO2CONCON,DO2CON
-    .constword "DODOES",DODOESCON,DODOES
-    .constword "DODEFER",DODEFERCON,DODEFER
-    .constword "DOVALUE",DOVALUECON,DOVALUE
-    .constword "DOVALUE!",DOVALUESTORECON,DOVALUESTORE
-    .constword "DOVALUE+!",DOVALUEPSTORECON,DOVALUEPSTORE
-    .constword "DO2VALUE",DO2VALUECON,DO2VALUE
-    .constword "DOVOC",DOVOCCON,DOVOC
+    constword "DOCOLON",DOCOLONCON,DOCOLON
+    constword "DOVAR",DOVARCON,DOVAR
+    constword "DOCON",DOCONCON,DOCON
+    constword "DO2CON",DO2CONCON,DO2CON
+    constword "DODOES",DODOESCON,DODOES
+    constword "DODEFER",DODEFERCON,DODEFER
+    constword "DOVALUE",DOVALUECON,DOVALUE
+    constword "DOVALUE!",DOVALUESTORECON,DOVALUESTORE
+    constword "DOVALUE+!",DOVALUEPSTORECON,DOVALUEPSTORE
+    constword "DO2VALUE",DO2VALUECON,DO2VALUE
+    constword "DOVOC",DOVOCCON,DOVOC
 
-    .constword "FORTH-KERNEL-START",FORTHKERNELSTART,ENTRY
+    constword "FORTH-KERNEL-START",FORTHKERNELSTART,ENTRY
 
     ; for the assembler
-    .constword "PUSH",PUSHCON,dpush
-    .constword "POP",POPCON,dpop
-    .constword "RPUSH",RPUSHCON,rpush
-    .constword "RPOP",RPOPCON,rpop
-    .constword "EXEC",EXECCON,EXEC
-    .constword "NEXT",NEXTCON,NEXT
-    .constword "PUSHNEXT",PUSHNEXTCON,PUSHNEXT
-    .constword "IP",IPCON,IP
-    .constword "SP",SPCON,SP
-    .constword "RP",RPCON,RP
-    .constword "CFA",CFACON,CFA
-    .constword "RCFA",RCFACON,RCFA
+    constword "PUSH",PUSHCON,dpush
+    constword "POP",POPCON,dpop
+    constword "RPUSH",RPUSHCON,rpush
+    constword "RPOP",RPOPCON,rpop
+    constword "EXEC",EXECCON,EXEC
+    constword "NEXT",NEXTCON,NEXT
+    constword "PUSHNEXT",PUSHNEXTCON,PUSHNEXT
+    constword "IP",IPCON,IP
+    constword "SP",SPCON,SP
+    constword "RP",RPCON,RP
+    constword "CFA",CFACON,CFA
+    constword "RCFA",RCFACON,RCFA
 
 ;*****************************************************************************
 ; Runtime Primitives
 ;*****************************************************************************
 
-    .codeword "UNNEST",UNNEST
+    codeword "UNNEST",UNNEST
     jsr rpop
     sta IP
     stx IP+1
     jmp NEXT
 
-    .codeword "(EXIT)",PEXITP
+    codeword "(EXIT)",PEXITP
     bra UNNEST+2
 
-    .codeword "BRANCH",BRANCH
+    codeword "BRANCH",BRANCH
     ldy #1
     lda (IP),y
     tax
@@ -600,7 +600,7 @@ FORTHKERNEL:
     stx IP+1
     jmp NEXT
 
-    .codeword "?BRANCH",QBRANCH
+    codeword "?BRANCH",QBRANCH
     jsr dpop
     stx GPTEMP
     ora GPTEMP
@@ -610,28 +610,28 @@ FORTHKERNEL:
     jsr incIP
     jmp NEXT
 
-    .codeword "(BEGIN)",PBEGINP
+    codeword "(BEGIN)",PBEGINP
     jmp NEXT
 
-    .codeword "(THEN)",PTHENP
+    codeword "(THEN)",PTHENP
     jmp NEXT
 
-    .codeword "(UNTIL)",PUNTILP
+    codeword "(UNTIL)",PUNTILP
     jmp QBRANCH+2
 
-    .codeword "(AGAIN)",PAGAINP
+    codeword "(AGAIN)",PAGAINP
     jmp BRANCH+2
 
-    .codeword "(WHILE)",PWHILEP
+    codeword "(WHILE)",PWHILEP
     jmp QBRANCH+2
 
-    .codeword "(REPEAT)",PREPEATP
+    codeword "(REPEAT)",PREPEATP
     jmp BRANCH+2
 
-    .codeword "(CASE)",PCASEP
+    codeword "(CASE)",PCASEP
     jmp NEXT
 
-    .codeword "(OF)",POFP
+    codeword "(OF)",POFP
     jsr dpopToGP0
     jsr dpop
     cmp GP0
@@ -652,7 +652,7 @@ FORTHKERNEL:
 @doit:
     jmp NEXT
 
-    .codeword "(ENDOF)",PENDOFP
+    codeword "(ENDOF)",PENDOFP
     lda (IP)
     tax
     ldy #1
@@ -662,11 +662,11 @@ FORTHKERNEL:
     sta IP
     jmp NEXT
 
-    .codeword "(ENDCASE)",PENDCASEP
+    codeword "(ENDCASE)",PENDCASEP
     jsr incSP
     jmp NEXT
 
-    .codeword "(LOOP)",PLOOPP
+    codeword "(LOOP)",PLOOPP
     ldy #2
     clc
     lda (RP),y
@@ -697,7 +697,7 @@ FORTHKERNEL:
 @done:
     jmp NEXT
 
-    .codeword "(+LOOP)",PPLUSLOOPP
+    codeword "(+LOOP)",PPLUSLOOPP
     jsr dpopToGP0
     ldy #2
     clc
@@ -728,7 +728,7 @@ FORTHKERNEL:
 @done:
     jmp NEXT
 
-    .codeword "(DO)",PDOP
+    codeword "(DO)",PDOP
     jsr dpopToGP0
     jsr dpopToGP1
 doPDOP:
@@ -756,7 +756,7 @@ doPDOP:
     jsr rpush
     jmp NEXT
 
-    .codeword "(?DO)",PQDOP
+    codeword "(?DO)",PQDOP
     jsr dpopToGP0
     jsr dpopToGP1
     lda GP0
@@ -776,10 +776,10 @@ doPDOP:
     stx IP
     jmp NEXT
 
-    .varword "LP",LP
+    varword "LP",LP
     .word 0
 
-    .codeword "((LOCALALLOC))",PPLOCALALLOCPP
+    codeword "((LOCALALLOC))",PPLOCALALLOCPP
     jsr dpopToGP0
     lda LP+2
     ldx LP+3
@@ -800,9 +800,9 @@ doPDOP:
     jsr decRP
     jmp NEXT
 
-    .deferword "(LOCALALLOC)",PLOCALALLOCP,PPLOCALALLOCPP
+    deferword "(LOCALALLOC)",PLOCALALLOCP,PPLOCALALLOCPP
 
-    .codeword "((LOCALFREE))",PPLOCALFREEPP
+    codeword "((LOCALFREE))",PPLOCALFREEPP
     lda LP+2
     sta RP
     lda LP+3
@@ -812,9 +812,9 @@ doPDOP:
     stx LP+3
     jmp NEXT
 
-    .deferword "(LOCALFREE)",PLOCALFREEP,PPLOCALFREEPP
+    deferword "(LOCALFREE)",PLOCALFREEP,PPLOCALFREEPP
 
-    .codeword "LIT",LIT
+    codeword "LIT",LIT
     ldy #1
     lda (IP),y
     tax
@@ -919,17 +919,17 @@ moveUp:
     bne @nextbyte
     rts
 
-    .codeword "MOVE",MOVE
+    codeword "MOVE",MOVE
     jsr dpopToGP2
     jsr dpopToGP1
     jsr dpopToGP0
     jsr memMove
     jmp NEXT
 
-    .deferword "CMOVE",CMOVE,MOVE
-    .deferword "CMOVE>",CMOVER,MOVE
+    deferword "CMOVE",CMOVE,MOVE
+    deferword "CMOVE>",CMOVER,MOVE
 
-    .codeword "!",STORE
+    codeword "!",STORE
     jsr dpopToGP0
     jsr incSP
     lda (SP)
@@ -939,7 +939,7 @@ moveUp:
     sta (GP0),y
     jmp NEXT
 
-    .codeword "+!",PLUSSTORE
+    codeword "+!",PLUSSTORE
     jsr dpopToGP0
     jsr dpop
     clc
@@ -951,14 +951,14 @@ moveUp:
     sta (GP0),y
     jmp NEXT
 
-    .codeword "C!",CSTORE
+    codeword "C!",CSTORE
     jsr dpopToGP0
     jsr incSP
     lda (SP)
     sta (GP0)
     jmp NEXT
 
-    .codeword "C+!",CPLUSSTORE
+    codeword "C+!",CPLUSSTORE
     jsr dpopToGP0
     jsr dpop
     clc
@@ -966,7 +966,7 @@ moveUp:
     sta (GP0)
     jmp NEXT
 
-    .codeword "@",FETCH
+    codeword "@",FETCH
     ldy #2
     lda (SP),y
     sta GP0
@@ -982,13 +982,13 @@ moveUp:
     sta (SP),y
     jmp NEXT
 
-    .codeword "C@",CFETCH
+    codeword "C@",CFETCH
     jsr dpopToGP0
     lda (GP0)
     ldx #0
     jmp PUSHNEXT
 
-    .codeword "2!",TWOSTORE
+    codeword "2!",TWOSTORE
     jsr dpopToGP0
     jsr incSP
     lda (SP)
@@ -1005,7 +1005,7 @@ moveUp:
     jsr incSP
     jmp NEXT
 
-    .codeword "2@",TWOFETCH
+    codeword "2@",TWOFETCH
     jsr dpopToGP0
     ldy #3
     lda (GP0),y
@@ -1019,7 +1019,7 @@ moveUp:
     lda (GP0)
     jmp PUSHNEXT
 
-    .codeword "ON",ON
+    codeword "ON",ON
     jsr dpopToGP0
     lda #$ff
     sta (GP0)
@@ -1027,7 +1027,7 @@ moveUp:
     sta (GP0),y
     jmp NEXT
 
-    .codeword "OFF",OFF
+    codeword "OFF",OFF
     jsr dpopToGP0
     lda #0
     sta (GP0)
@@ -1035,11 +1035,11 @@ moveUp:
     sta (GP0),y
     jmp NEXT
 
-    .colonword "TOGGLE",TOGGLE
+    colonword "TOGGLE",TOGGLE
     .word DUP,CFETCH,ROT,DOXOR,SWAP,CSTORE
     .word UNNEST
 
-    .codeword "INCR",INCR
+    codeword "INCR",INCR
     jsr dpopToGP0
     lda (GP0)
     inc a
@@ -1052,7 +1052,7 @@ moveUp:
 @skip:
     jmp NEXT
 
-    .codeword "DECR",DECR
+    codeword "DECR",DECR
     jsr dpopToGP0
     sec
     lda (GP0)
@@ -1066,21 +1066,21 @@ moveUp:
 @skip:
     jmp NEXT
 
-    .codeword "CINCR",CINCR
+    codeword "CINCR",CINCR
     jsr dpopToGP0
     lda (GP0)
     inc a
     sta (GP0)
     jmp NEXT
 
-    .codeword "CDECR",CDECR
+    codeword "CDECR",CDECR
     jsr dpopToGP0
     lda (GP0)
     dec a
     sta (GP0)
     jmp NEXT
 
-    .codeword "FILL",FILL
+    codeword "FILL",FILL
     jsr dpopToGP0
     jsr dpopToGP1
     jsr dpopToGP2
@@ -1111,40 +1111,40 @@ moveUp:
 ; Stack Manipulation Routines
 ;*****************************************************************************
 
-    .varword "SP0",SP0
+    varword "SP0",SP0
     .word 0
 
-    .varword "RP0",RP0
+    varword "RP0",RP0
     .word 0
 
-    .codeword "SP@",SPFETCH
+    codeword "SP@",SPFETCH
     lda SP
     ldx SP+1
     jmp PUSHNEXT
 
-    .codeword "SP!",SPSTORE
+    codeword "SP!",SPSTORE
     jsr dpop
     sta SP
     stx SP+1
     jmp NEXT
 
-    .codeword "RP@",RPFETCH
+    codeword "RP@",RPFETCH
     lda RP
     ldx RP+1
     jmp PUSHNEXT
 
-    .codeword "RP!",RPSTORE
+    codeword "RP!",RPSTORE
     jsr dpop
     sta RP
     stx RP+1
     jmp NEXT
 
-    .codeword ">R",TOR
+    codeword ">R",TOR
     jsr dpop
     jsr rpush
     jmp NEXT
 
-    .codeword "DUP>R",DUPTOR
+    codeword "DUP>R",DUPTOR
     ldy #3
     lda (SP),y
     tax
@@ -1153,7 +1153,7 @@ moveUp:
     jsr rpush
     jmp NEXT
 
-    .codeword "R@",RFETCH
+    codeword "R@",RFETCH
     ldy #3
     lda (RP),y
     tax
@@ -1161,15 +1161,15 @@ moveUp:
     lda (RP),y
     jmp PUSHNEXT
 
-    .codeword "R>",FROMR
+    codeword "R>",FROMR
     jsr rpop
     jmp PUSHNEXT
 
-    .codeword "R>DROP",FROMRDROP
+    codeword "R>DROP",FROMRDROP
     jsr incRP
     jmp NEXT
 
-    .codeword "2>R",TWOTOR
+    codeword "2>R",TWOTOR
     jsr dpopToGP0
     jsr dpop
     jsr rpush
@@ -1178,7 +1178,7 @@ moveUp:
     jsr rpush
     jmp NEXT
 
-    .codeword "2R>",TWOFROMR
+    codeword "2R>",TWOFROMR
     jsr rpop
     sta GP0
     stx GP0+1
@@ -1188,7 +1188,7 @@ moveUp:
     ldx GP0+1
     jmp PUSHNEXT
 
-    .codeword "2R@",TWORFETCH
+    codeword "2R@",TWORFETCH
     ldy #5
     lda (RP),y
     tax
@@ -1215,10 +1215,10 @@ doDup:
     jsr decSP
     jmp NEXT
 
-    .codeword "DUP",DUP
+    codeword "DUP",DUP
     bra doDup
 
-    .codeword "?DUP",QDUP
+    codeword "?DUP",QDUP
     ldy #2
     lda (SP),y
     iny
@@ -1228,11 +1228,11 @@ doDup:
 @skip:
     jmp NEXT
 
-    .codeword "DROP",DROP
+    codeword "DROP",DROP
     jsr incSP
     jmp NEXT
 
-    .codeword "SWAP",SWAP
+    codeword "SWAP",SWAP
     jsr dpopToGP0
     jsr dpopToGP1
     lda GP0
@@ -1242,7 +1242,7 @@ doDup:
     ldx GP1+1
     jmp PUSHNEXT
 
-    .codeword "OVER",OVER
+    codeword "OVER",OVER
     ldy #5
     lda (SP),y
     tax
@@ -1250,7 +1250,7 @@ doDup:
     lda (SP),y
     jmp PUSHNEXT
 
-    .codeword "ROT",ROT
+    codeword "ROT",ROT
     jsr dpopToGP0
     jsr dpopToGP1
     jsr dpopToGP2
@@ -1264,7 +1264,7 @@ doDup:
     ldx GP2+1
     jmp PUSHNEXT
 
-    .codeword "-ROT",NROT
+    codeword "-ROT",NROT
     jsr dpopToGP0
     jsr dpopToGP1
     jsr dpopToGP2
@@ -1278,18 +1278,18 @@ doDup:
     ldx GP1+1
     jmp PUSHNEXT
 
-    .codeword "NIP",NIP
+    codeword "NIP",NIP
     jsr dpopToGP0
     jsr incSP
     lda GP0
     ldx GP0+1
     jmp PUSHNEXT
 
-    .colonword "TUCK",TUCK
+    colonword "TUCK",TUCK
     .word SWAP,OVER
     .word UNNEST
 
-    .codeword "PICK",PICK
+    codeword "PICK",PICK
     jsr dpopToGP0
     jsr incGP0
     asl GP0
@@ -1307,7 +1307,7 @@ doDup:
     lda (GP0)
     jmp PUSHNEXT
 
-    .codeword "2DROP",TWODROP
+    codeword "2DROP",TWODROP
     clc
     lda SP
     adc #4
@@ -1317,20 +1317,20 @@ doDup:
 @skip:
     jmp NEXT
 
-    .colonword "2DUP",TWODUP
+    colonword "2DUP",TWODUP
     .word OVER,OVER
     .word UNNEST
 
-    .colonword "ROLL",ROLL
+    colonword "ROLL",ROLL
     .word DUPTOR,PICK,SPFETCH,CELLPLUS,DUP,CELLPLUS
     .word FROMR,CELLS,MOVE,DROP
     .word UNNEST
 
-    .colonword "2OVER",TWOOVER
+    colonword "2OVER",TWOOVER
     .word LIT,3,PICK,LIT,3,PICK
     .word UNNEST
 
-    .codeword "2SWAP",TWOSWAP
+    codeword "2SWAP",TWOSWAP
     jsr dpopToGP4
     jsr dpopToGP3
     jsr dpopToGP2
@@ -1348,7 +1348,7 @@ doDup:
     ldx GP2+1
     jmp PUSHNEXT
 
-    .colonword "DEPTH",DEPTH
+    colonword "DEPTH",DEPTH
     .word SPFETCH,SP0,FETCH,SWAP,MINUS,TWOSLASH
     .word UNNEST
 
@@ -1356,7 +1356,7 @@ doDup:
 ; Math
 ;*****************************************************************************
 
-    .codeword "1+",ONEPLUS
+    codeword "1+",ONEPLUS
     ldy #2
     lda (SP),y
     ina
@@ -1369,9 +1369,9 @@ doDup:
 @skip:
     jmp NEXT
 
-    .deferword "CHAR+",CHARPLUS,ONEPLUS
+    deferword "CHAR+",CHARPLUS,ONEPLUS
 
-    .codeword "1-",ONEMINUS
+    codeword "1-",ONEMINUS
     sec
     ldy #2
     lda (SP),y
@@ -1385,12 +1385,12 @@ doDup:
 @skip:
     jmp NEXT
 
-    .deferword "CHAR-",CHARMINUS,ONEMINUS
+    deferword "CHAR-",CHARMINUS,ONEMINUS
 
-    .codeword "CHARS",CHARS
+    codeword "CHARS",CHARS
     jmp NEXT
 
-    .codeword "2+",TWOPLUS
+    codeword "2+",TWOPLUS
     clc
     ldy #2
     lda (SP),y
@@ -1404,7 +1404,7 @@ doDup:
 @skip:
     jmp NEXT
 
-    .codeword "2-",TWOMINUS
+    codeword "2-",TWOMINUS
     sec
     ldy #2
     lda (SP),y
@@ -1418,10 +1418,10 @@ doDup:
 @skip:
     jmp NEXT
 
-    .codeword "CELL+",CELLPLUS
+    codeword "CELL+",CELLPLUS
     bra TWOPLUS+2
 
-    .codeword "CELL-",CELLMINUS
+    codeword "CELL-",CELLMINUS
     bra TWOMINUS+2
 
 ;-----------------------------------------------------------------------------
@@ -1625,7 +1625,7 @@ div16x16:
 
 ;-----------------------------------------------------------------------------
 
-    .codeword "+",PLUS
+    codeword "+",PLUS
     clc
     ldy #2
     lda (SP),y
@@ -1640,7 +1640,7 @@ div16x16:
     jsr incSP
     jmp NEXT
 
-    .codeword "D+",DPLUS
+    codeword "D+",DPLUS
     jsr dpopToGP2
     jsr dpopToGP1
     jsr dpopToGP4
@@ -1665,7 +1665,7 @@ div16x16:
     ldx GP6+1
     jmp PUSHNEXT
 
-    .codeword "-",MINUS
+    codeword "-",MINUS
     jsr dpopToGP0
     jsr dpopToGP1
     sec
@@ -1678,7 +1678,7 @@ div16x16:
     lda GP0
     jmp PUSHNEXT
 
-    .codeword "D-",DMINUS
+    codeword "D-",DMINUS
     jsr dpopToGP4
     jsr dpopToGP3
     jsr dpopToGP2
@@ -1703,7 +1703,7 @@ div16x16:
     ldx GP6+1
     jmp PUSHNEXT
 
-    .codeword "2*",TWOSTAR
+    codeword "2*",TWOSTAR
     ldy #2
     lda (SP),y
     asl a
@@ -1714,7 +1714,7 @@ div16x16:
     sta (SP),y
     jmp NEXT
 
-    .codeword "2/",TWOSLASH
+    codeword "2/",TWOSLASH
     ldy #3
     lda (SP),y
     cmp #$80
@@ -1726,7 +1726,7 @@ div16x16:
     sta (SP),y
     jmp NEXT
 
-    .codeword "LSHIFT",LSHIFT
+    codeword "LSHIFT",LSHIFT
     jsr dpopToGP0
     jsr dpopToGP1
     clc
@@ -1742,7 +1742,7 @@ div16x16:
     ldx GP1+1
     jmp PUSHNEXT
 
-    .codeword "RSHIFT",RSHIFT
+    codeword "RSHIFT",RSHIFT
     jsr dpopToGP0
     jsr dpopToGP1
     clc
@@ -1758,7 +1758,7 @@ div16x16:
     ldx GP1+1
     jmp PUSHNEXT
 
-    .codeword "=",EQUAL
+    codeword "=",EQUAL
     jsr incSP
     ldx #0
     ldy #1
@@ -1779,7 +1779,7 @@ div16x16:
     sta (SP),y
     jmp NEXT
 
-    .codeword "0=",ZEQUAL
+    codeword "0=",ZEQUAL
     ldx #0
     ldy #2
     lda (SP),y
@@ -1794,11 +1794,11 @@ div16x16:
     sta (SP),y
     jmp NEXT
 
-    .colonword "<>",NOTEQUAL
+    colonword "<>",NOTEQUAL
     .word EQUAL,ZEQUAL
     .word UNNEST
 
-    .codeword "0<",ZLESS
+    codeword "0<",ZLESS
     ldx #0
     ldy #3
     lda (SP),y
@@ -1813,7 +1813,7 @@ div16x16:
     sta (SP),y
     jmp NEXT
 
-    .codeword "0>",ZGREATER
+    codeword "0>",ZGREATER
     ldx #0
     ldy #3
     lda (SP),y
@@ -1832,15 +1832,15 @@ div16x16:
     sta (SP),y
     jmp NEXT
 
-    .colonword "<",LESS
+    colonword "<",LESS
     .word MINUS,ZLESS
     .word UNNEST
 
-    .colonword ">",GREATER
+    colonword ">",GREATER
     .word SWAP,MINUS,ZLESS
     .word UNNEST
 
-    .codeword "U<",ULESS
+    codeword "U<",ULESS
     jsr dpopToGP2
     jsr dpopToGP1
     ldx #$ff
@@ -1857,11 +1857,11 @@ div16x16:
     txa
     jmp PUSHNEXT
 
-    .colonword "U>",UGREATER
+    colonword "U>",UGREATER
     .word SWAP,ULESS
     .word UNNEST
 
-    .codeword "NEGATE",NEGATE
+    codeword "NEGATE",NEGATE
     ldy #2
     sec
     lda #0
@@ -1873,7 +1873,7 @@ div16x16:
     sta (SP),y
     jmp NEXT
 
-    .codeword "DNEGATE",DNEGATE
+    codeword "DNEGATE",DNEGATE
     jsr dpopToGP1
     jsr dpopToGP0
     sec
@@ -1896,7 +1896,7 @@ div16x16:
     ldx GP1+1
     jmp PUSHNEXT
 
-    .codeword "AND",DOAND
+    codeword "AND",DOAND
     jsr dpopToGP0
     jsr dpopToGP1
     lda GP0+1
@@ -1906,7 +1906,7 @@ div16x16:
     and GP1
     jmp PUSHNEXT
 
-    .codeword "OR",DOOR
+    codeword "OR",DOOR
     jsr dpopToGP0
     jsr dpopToGP1
     lda GP0+1
@@ -1916,7 +1916,7 @@ div16x16:
     ora GP1
     jmp PUSHNEXT
 
-    .codeword "XOR",DOXOR
+    codeword "XOR",DOXOR
     jsr dpopToGP0
     jsr dpopToGP1
     lda GP0+1
@@ -1926,31 +1926,31 @@ div16x16:
     eor GP1
     jmp PUSHNEXT
 
-    .codeword "INVERT",INVERT
+    codeword "INVERT",INVERT
     lda #$ff
     tax
     jsr dpush
     jmp DOXOR+2
 
-    .colonword "+-",PLUSMINUS
+    colonword "+-",PLUSMINUS
     .word ZLESS,QBRANCH,@skip,NEGATE,PTHENP
 @skip:
     .word UNNEST
 
-    .colonword "D+=",DPLUSMINUS
+    colonword "D+=",DPLUSMINUS
     .word ZLESS,QBRANCH,@skip,DNEGATE,PTHENP
 @skip:
     .word UNNEST
 
-    .colonword "ABS",DOABS
+    colonword "ABS",DOABS
     .word DUP,PLUSMINUS
     .word UNNEST
 
-    .colonword "DABS",DODABS
+    colonword "DABS",DODABS
     .word DUP,DPLUSMINUS
     .word UNNEST
 
-    .codeword "U*",USTAR
+    codeword "U*",USTAR
     jsr dpopToGP0
     jsr dpopToGP2
     jsr mul16x16
@@ -1958,7 +1958,7 @@ div16x16:
     ldx GP4+1
     jmp PUSHNEXT
 
-    .codeword "UM*",UMSTAR
+    codeword "UM*",UMSTAR
     jsr dpopToGP0
     jsr dpopToGP2
     jsr mul16x16
@@ -1969,7 +1969,7 @@ div16x16:
     ldx GP5+1
     jmp PUSHNEXT
 
-    .codeword "UD*",UDSTAR
+    codeword "UD*",UDSTAR
     jsr dpopToGP1
     jsr dpopToGP0
     jsr dpopToGP3
@@ -1982,7 +1982,7 @@ div16x16:
     ldx GP5+1
     jmp PUSHNEXT
 
-    .codeword "UD/MOD",UDSLASHMOD
+    codeword "UD/MOD",UDSLASHMOD
     jsr dpopToGP3
     jsr dpopToGP2
     jsr dpopToGP1
@@ -2001,15 +2001,15 @@ div16x16:
     ldx GP1+1
     jmp PUSHNEXT
 
-    .colonword "*",STAR
+    colonword "*",STAR
     .word TWODUP,DOXOR,TOR,DOABS,SWAP,DOABS,USTAR,FROMR,PLUSMINUS
     .word UNNEST
 
-    .colonword "M*",MSTAR
+    colonword "M*",MSTAR
     .word TWODUP,DOXOR,TOR,DOABS,SWAP,DOABS,UMSTAR,FROMR,DPLUSMINUS
     .word UNNEST
 
-    .codeword "UM/MOD",UMSLASHMOD
+    codeword "UM/MOD",UMSLASHMOD
     stz GP3
     stz GP3+1
     jsr dpopToGP2
@@ -2023,15 +2023,15 @@ div16x16:
     ldx GP0+1
     jmp PUSHNEXT
 
-    .colonword "UM/",UMSLASH
+    colonword "UM/",UMSLASH
     .word UMSLASHMOD,SWAP,DROP
     .word UNNEST
 
-    .colonword "UMMOD",UMMOD
+    colonword "UMMOD",UMMOD
     .word UMSLASHMOD,DROP
     .word UNNEST
 
-    .codeword "U/",USLASH
+    codeword "U/",USLASH
     jsr dpopToGP2
     jsr dpopToGP0
     jsr div16x16
@@ -2039,7 +2039,7 @@ div16x16:
     ldx GP0+1
     jmp PUSHNEXT
 
-    .codeword "U/MOD",USLASHMOD
+    codeword "U/MOD",USLASHMOD
     jsr dpopToGP2
     jsr dpopToGP0
     jsr div16x16
@@ -2050,7 +2050,7 @@ div16x16:
     ldx GP0+1
     jmp PUSHNEXT
 
-    .codeword "UMOD",UMOD
+    codeword "UMOD",UMOD
     jsr dpopToGP2
     jsr dpopToGP0
     jsr div16x16
@@ -2058,81 +2058,81 @@ div16x16:
     ldx GP4+1
     jmp PUSHNEXT
 
-    .colonword "/",SLASH
+    colonword "/",SLASH
     .word TWODUP,DOXOR,TOR,DOABS,USLASH,FROMR,PLUSMINUS
     .word UNNEST
 
-    .colonword "MOD",MOD
+    colonword "MOD",MOD
     .word TWODUP,DOXOR,TOR,DOABS,UMOD,FROMR,PLUSMINUS
     .word UNNEST
 
-    .colonword "/MOD",SLASHMOD
+    colonword "/MOD",SLASHMOD
     .word TWODUP,DOXOR,TOR,DOABS,USLASHMOD,FROMR,PLUSMINUS
     .word UNNEST
 
-    .colonword "S>D",STOD
+    colonword "S>D",STOD
     .word DUP,ZLESS
     .word UNNEST
 
-    .colonword "U>D",UTOD
+    colonword "U>D",UTOD
     .word ZERO
     .word UNNEST
 
-    .colonword "*/MOD",STARSLASHMOD
+    colonword "*/MOD",STARSLASHMOD
     .word TOR,MSTAR,DUP,ZLESS,TOR
     .word DODABS,FROMR,FROMR,SWAP,TOR,DUP,ZLESS,TOR,DOABS
     .word UMSLASHMOD,FROMR,FROMR,DOXOR,PLUSMINUS
     .word UNNEST
 
-    .colonword "*/",STARSLASH
+    colonword "*/",STARSLASH
     .word STARSLASHMOD,SWAP,DROP
     .word UNNEST
 
-    .colonword "SM/REM",SMSLASHREM
+    colonword "SM/REM",SMSLASHREM
     .word DUP,ZLESS,TOR,TOR,DUP,ZLESS,FROMR,SWAP,TOR,TOR
     .word DODABS,FROMR,DOABS,UMSLASHMOD
     .word FROMR,FROMR,DOXOR,PLUSMINUS
     .word UNNEST
 
-    .colonword "MIN",MIN
+    colonword "MIN",MIN
     .word TWODUP,GREATER
     .word QBRANCH,@skip,SWAP,PTHENP
 @skip:
     .word DROP
     .word UNNEST
 
-    .colonword "MAX",MAX
+    colonword "MAX",MAX
     .word TWODUP,LESS
     .word QBRANCH,@skip,SWAP,PTHENP
 @skip:
     .word DROP
     .word UNNEST
 
-    .colonword "0MAX",ZMAX
+    colonword "0MAX",ZMAX
     .word ZERO,MAX
     .word UNNEST
 
-    .colonword "CELLS",CELLS
+    colonword "CELLS",CELLS
     .word TWOSTAR
     .word UNNEST
 
-    .colonword "CELLS+",CELLSPLUS
+    colonword "CELLS+",CELLSPLUS
     .word CELLS,PLUS
     .word UNNEST
 
-    .colonword "CELLS-",CELLSMINUS
+    colonword "CELLS-",CELLSMINUS
     .word CELLS,MINUS
     .word UNNEST
 
-    .colonword "BOUNDS",BOUNDS
+    colonword "BOUNDS",BOUNDS
     .word OVER,PLUS,SWAP
     .word UNNEST
 
-    .colonword "BETWEEN",BETWEEN
+    colonword "BETWEEN",BETWEEN
     .word LIT,2,PICK,MIN,TOR,MAX,FROMR,EQUAL
     .word UNNEST
 
-    .colonword "WITHIN",WITHIN
+    colonword "WITHIN",WITHIN
     .word LIT,2,PICK,SWAP,ULESS,NROT,TWODUP,EQUAL,NROT
     .word GREATER,DOOR,DOAND
     .word UNNEST
@@ -2142,7 +2142,7 @@ div16x16:
 ; Core Words
 ;*****************************************************************************
 
-    .codeword "PERFORM",PERFORM
+    codeword "PERFORM",PERFORM
     jsr dpopToGP0
     lda (GP0)
     sta CFA
@@ -2151,11 +2151,11 @@ div16x16:
     sta CFA+1
     jmp EXEC
 
-    .codeword "EXECUTE",EXECUTE
+    codeword "EXECUTE",EXECUTE
     jsr dpopToCFA
     jmp EXEC
 
-    .codeword "LEAVE",LEAVE
+    codeword "LEAVE",LEAVE
     clc
     lda RP
     adc #6
@@ -2170,7 +2170,7 @@ div16x16:
     sta IP+1
     jmp NEXT
 
-    .codeword "?LEAVE",QLEAVE
+    codeword "?LEAVE",QLEAVE
     jsr dpop
     stx GPTEMP
     ora GPTEMP
@@ -2202,15 +2202,15 @@ getLoopIndex:
 	ldx GP0+1
     jmp PUSHNEXT
 
-    .codeword "I",I
+    codeword "I",I
     ldy #2
     bra getLoopIndex
 
-    .codeword "J",J
+    codeword "J",J
     ldy #8
     bra getLoopIndex
 
-    .codeword "UNLOOP",UNLOOP
+    codeword "UNLOOP",UNLOOP
     clc
     lda RP
     adc #6
@@ -2220,17 +2220,17 @@ getLoopIndex:
 @skip:
     jmp NEXT
 
-    .codeword "NOOP",NOOP
+    codeword "NOOP",NOOP
     jmp NEXT
 
-    .codeword "BYE",BYE
+    codeword "BYE",BYE
     brk #$55
     jmp NEXT
 
-    .codeword "HALT",HALT
+    codeword "HALT",HALT
     stp
 
-    .codeword "((\"))",PPQUOTEPP
+    codeword "((\"))",PPQUOTEPP
     jsr rpop
     sta GP0
     stx GP0+1
@@ -2251,7 +2251,7 @@ getLoopIndex:
     jsr rpush
     jmp NEXT
 
-    .codeword "COUNT",COUNT
+    codeword "COUNT",COUNT
     ldy #2
     lda (SP),y
     sta GP0
@@ -2277,14 +2277,14 @@ getLoopIndex:
 ; Forth Terminal Support
 ;*****************************************************************************
 
-    .codeword "(EMIT)",PEMITP
+    codeword "(EMIT)",PEMITP
     jsr dpop
     jsr CHROUT
     jmp NEXT
 
-    .deferword "EMIT",EMIT,PEMITP
+    deferword "EMIT",EMIT,PEMITP
 
-    .codeword "(TYPE)",PTYPEP
+    codeword "(TYPE)",PTYPEP
     jsr dpopToGP0
     jsr dpopToGP1
 @loop:
@@ -2299,15 +2299,15 @@ getLoopIndex:
 @done:
     jmp NEXT
 
-    .deferword "TYPE",TYPE,PTYPEP
+    deferword "TYPE",TYPE,PTYPEP
 
-    .codeword "(CLS)",PCLSP
+    codeword "(CLS)",PCLSP
     jsr CLRSCR
     jmp NEXT
 
-    .deferword "CLS",CLS,PCLSP
+    deferword "CLS",CLS,PCLSP
 
-    .codeword "(GOTOXY)",PGOTOXYP
+    codeword "(GOTOXY)",PGOTOXYP
     jsr dpop
     pha
     jsr dpop
@@ -2316,9 +2316,9 @@ getLoopIndex:
     jsr SETCURXY
     jmp NEXT
 
-    .deferword "GOTOXY",GOTOXY,PGOTOXYP
+    deferword "GOTOXY",GOTOXY,PGOTOXYP
 
-    .codeword "(GETXY)",PGETXYP
+    codeword "(GETXY)",PGETXYP
     jsr GETCURX
     ldx #0
     jsr dpush
@@ -2326,9 +2326,9 @@ getLoopIndex:
     ldx #0
     jmp PUSHNEXT
 
-    .deferword "GETXY",GETXY,PGETXYP
+    deferword "GETXY",GETXY,PGETXYP
 
-    .codeword "(GETCOLROW)",PGETCOLROWP
+    codeword "(GETCOLROW)",PGETCOLROWP
     jsr GETSCRW
     ldx #0
     jsr dpush
@@ -2336,13 +2336,13 @@ getLoopIndex:
     ldx #0
     jmp PUSHNEXT
 
-    .deferword "GETCOLROW",GETCOLROW,PGETCOLROWP
+    deferword "GETCOLROW",GETCOLROW,PGETCOLROWP
 
-    .colonword "COLS",COLS
+    colonword "COLS",COLS
     .word GETCOLROW,DROP
     .word UNNEST
 
-    .colonword "ROWS",ROWS
+    colonword "ROWS",ROWS
     .word GETCOLROW,SWAP,DROP
     .word UNNEST
 
@@ -2397,7 +2397,7 @@ doAccept:
 @done:
     rts
 
-    .codeword "(ACCEPT)",PACCEPTP
+    codeword "(ACCEPT)",PACCEPTP
     jsr dpopToGP2
     jsr dpopToGP1
     jsr doAccept
@@ -2406,9 +2406,9 @@ doAccept:
     jmp PUSHNEXT
 
     ; ( addr len -- len )
-    .deferword "ACCEPT",ACCEPT,PACCEPTP
+    deferword "ACCEPT",ACCEPT,PACCEPTP
 
-    .codeword "(KEY?)",PKEYQP
+    codeword "(KEY?)",PKEYQP
     jsr CHRCHECK
     lda #$ff
     bcs @done
@@ -2418,25 +2418,25 @@ doAccept:
     jmp PUSHNEXT
 
     ; ( -- f )
-    .deferword "KEY?",KEYQ,PKEYQP
+    deferword "KEY?",KEYQ,PKEYQP
 
-    .codeword "(KEY)",PKEYP
+    codeword "(KEY)",PKEYP
     jsr CHRIN
     ldx #0
     jmp PUSHNEXT
 
     ; ( -- c )
-    .deferword "KEY",KEY,PKEYP
+    deferword "KEY",KEY,PKEYP
 
-    .colonword "SPACE",SPACE
+    colonword "SPACE",SPACE
     .word BL,EMIT
     .word UNNEST
 
-    .constword "SPCS-MAX",SPCSMAX,128
-    .varword "SPCS",SPCS
+    constword "SPCS-MAX",SPCSMAX,128
+    varword "SPCS",SPCS
     .res 128,32
 
-    .colonword "SPACES",SPACES
+    colonword "SPACES",SPACES
     .word PBEGINP
 @loop:
         .word DUP,ZGREATER
@@ -2447,18 +2447,18 @@ doAccept:
     .word DROP
     .word UNNEST
 
-    .codeword "(CR)",PCRP
+    codeword "(CR)",PCRP
     lda #$0d
     jsr CHROUT
     jmp NEXT
 
-    .deferword "CR",CR,PCRP
+    deferword "CR",CR,PCRP
 
 ;*****************************************************************************
 ; System Stuff
 ;*****************************************************************************
     ; TODO: This needs to be replaced when a real timer is implemented
-    .codeword "(MS)",PMSP
+    codeword "(MS)",PMSP
     jsr dpop
     sta GP0
     stx GP0+1
@@ -2480,13 +2480,13 @@ doAccept:
     jmp NEXT
 
     ; ( ms -- )
-    .deferword "MS",MS,PMSP
+    deferword "MS",MS,PMSP
 
 ;*****************************************************************************
 ; Forth String Words
 ;*****************************************************************************
 
-    .codeword "CLIP$",CLIPSTRING
+    codeword "CLIP$",CLIPSTRING
     ldy #3
     lda (SP),y
     beq @done
@@ -2505,18 +2505,18 @@ doAccept:
 @done:
     jmp NEXT
 
-    .colonword "PLACE",PLACE
+    colonword "PLACE",PLACE
     .word SWAP,CLIPSTRING,SWAP,TWODUP,TWOTOR,CHARPLUS,SWAP
     .word MOVE,TWOFROMR,CSTORE
     .word UNNEST
 
-    .colonword "+PLACE",PLUSPLACE
+    colonword "+PLACE",PLUSPLACE
     .word TOR,CLIPSTRING,MAXCOUNTED,RFETCH,CFETCH,MINUS,MIN
     .word FROMR,TWODUP,TWOTOR,COUNT,CHARS,PLUS,SWAP,MOVE
     .word TWOFROMR,CPLUSSTORE
     .word UNNEST
 
-    .codeword "SKIP",SKIP
+    codeword "SKIP",SKIP
     jsr dpopToGP0
     jsr dpopToGP1
     jsr dpopToGP2
@@ -2540,7 +2540,7 @@ doAccept:
 
     ; ( addr len char -- addr' len' )
     ; scan string for first occurance of char
-    .codeword "SCAN",SCAN
+    codeword "SCAN",SCAN
     jsr dpopToGP0
     jsr dpopToGP1
     jsr dpopToGP2
@@ -2589,14 +2589,14 @@ doUppercase:
     rts
 
     ; ( addr u -- )
-    .codeword "UPPER",UPPER
+    codeword "UPPER",UPPER
     jsr dpopToGP2
     jsr dpopToGP1
     jsr doUppercase
     jmp NEXT
 
     ; ( caddr -- caddr )
-    .codeword "UPPERCASE",UPPERCASE
+    codeword "UPPERCASE",UPPERCASE
     ldy #2
     lda (SP),y
     sta GP1
@@ -2611,7 +2611,7 @@ doUppercase:
     jmp NEXT
 
     ; ( addr u n -- addr' u' )
-    .colonword "/STRING",SLASHSTRING
+    colonword "/STRING",SLASHSTRING
     .word OVER,MIN,DUPTOR,MINUS,SWAP,FROMR,CHARS,PLUS,SWAP
     .word UNNEST
 
@@ -2675,7 +2675,7 @@ doCompare:
 @done:
     rts
 
-    .codeword "COMPARE",COMPARE
+    codeword "COMPARE",COMPARE
     jsr dpopToGP4
     jsr dpopToGP3
     jsr dpopToGP2
@@ -2687,18 +2687,18 @@ doCompare:
 ; Forth Exception Words
 ;*****************************************************************************
 
-    .varword "HANDLER",HANDLER
+    varword "HANDLER",HANDLER
     .word 0
 
     ; ( xt -- f )
-    .colonword "CATCH",CATCH
+    colonword "CATCH",CATCH
     .word SPFETCH,TOR,LP,FETCH,TOR,HANDLER,FETCH,TOR,RPFETCH,HANDLER,STORE
     .word EXECUTE
     .word FROMR,HANDLER,STORE,FROMR,DROP,FROMR,DROP,ZERO
     .word UNNEST
 
     ; ( n -- )
-    .colonword "THROW",THROW
+    colonword "THROW",THROW
     .word QDUP
     .word QBRANCH,@done
         .word HANDLER,FETCH,RPSTORE,FROMR,HANDLER,STORE,FROMR,LP,STORE
@@ -2707,7 +2707,7 @@ doCompare:
 @done:
     .word UNNEST
 
-    .colonword "?THROW",QTHROW
+    colonword "?THROW",QTHROW
     .word SWAP
     .word QBRANCH,@else
         .word THROW
@@ -2718,147 +2718,147 @@ doCompare:
 @then:
     .word UNNEST
 
-    .constword "THROW_ABORT",THROWABORT,THROW_ABORT
-    .constword "THROW_ABORT?",THROWABORTQ,THROW_ABORTQ
-    .constword "THROW_COMPONLY",THROWCOMPONLY,THROW_COMPONLY
-    .constword "THROW_EXECONLY",THROWEXECONLY,THROW_EXECONLY
-    .constword "THROW_FILECLOSEFAIL",THROWFILECLOSEFAIL,THROW_FILECLOSEFAIL
-    .constword "THROW_FILECREATEFAIL",THROWFILECREATEFAIL,THROW_FILECREATEFAIL
-    .constword "THROW_FILENOTFOUND",THROWFILENOTFOUND,THROW_FILENOTFOUND
-    .constword "THROW_FILEREADFAIL",THROWFILEREADFAIL,THROW_FILEREADFAIL
-    .constword "THROW_FILEWRITEFAIL",THROWFILEWRITEFAIL,THROW_FILEWRITEFAIL
-    .constword "THROW_MISMATCH",THROWMISMATCH,THROW_MISMATCH
-    .constword "THROW_NAMEREQD",THROWNAMEREQD,THROW_NAMEREQD
-    .constword "THROW_NOTDEFER",THROWNOTDEFER,THROW_NOTDEFER
-    .constword "THROW_NOTVALUE",THROWNOTVALUE,THROW_NOTVALUE
-    .constword "THROW_OUTOFMEM",THROWOUTOFMEM,THROW_OUTOFMEM
-    .constword "THROW_STACKCHG",THROWSTACKCHG,THROW_STACKCHG
-    .constword "THROW_STACKUNDER",THROWSTACKUNDER,THROW_STACKUNDER
-    .constword "THROW_UNDEFINED",THROWUNDEFINED,THROW_UNDEFINED
+    constword "THROW_ABORT",THROWABORT,THROW_ABORT
+    constword "THROW_ABORT?",THROWABORTQ,THROW_ABORTQ
+    constword "THROW_COMPONLY",THROWCOMPONLY,THROW_COMPONLY
+    constword "THROW_EXECONLY",THROWEXECONLY,THROW_EXECONLY
+    constword "THROW_FILECLOSEFAIL",THROWFILECLOSEFAIL,THROW_FILECLOSEFAIL
+    constword "THROW_FILECREATEFAIL",THROWFILECREATEFAIL,THROW_FILECREATEFAIL
+    constword "THROW_FILENOTFOUND",THROWFILENOTFOUND,THROW_FILENOTFOUND
+    constword "THROW_FILEREADFAIL",THROWFILEREADFAIL,THROW_FILEREADFAIL
+    constword "THROW_FILEWRITEFAIL",THROWFILEWRITEFAIL,THROW_FILEWRITEFAIL
+    constword "THROW_MISMATCH",THROWMISMATCH,THROW_MISMATCH
+    constword "THROW_NAMEREQD",THROWNAMEREQD,THROW_NAMEREQD
+    constword "THROW_NOTDEFER",THROWNOTDEFER,THROW_NOTDEFER
+    constword "THROW_NOTVALUE",THROWNOTVALUE,THROW_NOTVALUE
+    constword "THROW_OUTOFMEM",THROWOUTOFMEM,THROW_OUTOFMEM
+    constword "THROW_STACKCHG",THROWSTACKCHG,THROW_STACKCHG
+    constword "THROW_STACKUNDER",THROWSTACKUNDER,THROW_STACKUNDER
+    constword "THROW_UNDEFINED",THROWUNDEFINED,THROW_UNDEFINED
 
 TMSG01:
     .word 0
     .word THROW_STACKUNDER
-    .ptext "stack underflow"
+    ptext "stack underflow"
 TMSG02:
     .word TMSG01
     .word THROW_UNDEFINED
-    .ptext "is undefined"
+    ptext "is undefined"
 TMSG03:
     .word TMSG02
     .word THROW_COMPONLY
-    .ptext "is compilation only"
+    ptext "is compilation only"
 TMSG04:
     .word TMSG03
     .word THROW_NAMEREQD
-    .ptext "requires a name"
+    ptext "requires a name"
 TMSG05:
     .word TMSG04
     .word THROW_MISMATCH
-    .ptext "control structure mismatch"
+    ptext "control structure mismatch"
 TMSG06:
     .word TMSG05
     .word THROW_FILENOTFOUND
-    .ptext "file not found"
+    ptext "file not found"
 TMSG40:
     .word TMSG06
     .word THROW_NOTDEFER
-    .ptext "not defered"
+    ptext "not defered"
 TMSG41:
     .word TMSG40
     .word THROW_NOTVALUE
-    .ptext "not value"
+    ptext "not value"
 TMSG42:
     .word TMSG41
     .word THROW_OUTOFMEM
-    .ptext "out of memory"
+    ptext "out of memory"
 TMSG43:
     .word TMSG42
     .word THROW_FILECREATEFAIL
-    .ptext "file create failed"
+    ptext "file create failed"
 TMSG44:
     .word TMSG43
     .word THROW_FILEREADFAIL
-    .ptext "file read failed"
+    ptext "file read failed"
 TMSG45:
     .word TMSG44
     .word THROW_FILEWRITEFAIL
-    .ptext "file write failed"
+    ptext "file write failed"
 TMSG46:
     .word TMSG45
     .word THROW_EXECONLY
-    .ptext "is execution only"
+    ptext "is execution only"
 TMSG47:
     .word TMSG46
     .word THROW_LOCALSTWICE
-    .ptext "locals defined twice"
+    ptext "locals defined twice"
 TMSG48:
     .word TMSG47
     .word THROW_TOOMANYLOCALS
-    .ptext "too many locals"
+    ptext "too many locals"
 TMSG49:
     .word TMSG48
     .word THROW_LOCALSNOCLOSE
-    .ptext "locals missing }"
+    ptext "locals missing }"
 TMSG50:
     .word TMSG49
     .word THROW_STACKCHG
-    .ptext "stack changed"
+    ptext "stack changed"
 TMSG51:
     .word TMSG50
     .word THROW_ARGSNODASHDASH
-    .ptext "locals missing --"
+    ptext "locals missing --"
 TMSG52:
     .word TMSG51
     .word THROW_NOTLOCAL
-    .ptext "is not a LOCAL"
+    ptext "is not a LOCAL"
 TMSG53:
     .word TMSG52
     .word THROW_FILECLOSEFAIL
-    .ptext "file close failed"
+    ptext "file close failed"
 
-    .varword "THROW_MESSAGES",THROWMSGS
+    varword "THROW_MESSAGES",THROWMSGS
     .word TMSG53
 
-    .varword "NULLMSG",NULLMSG
+    varword "NULLMSG",NULLMSG
     .word 0
 
-    .varword "MSG",MSG
+    varword "MSG",MSG
     .word NULLMSG
 
-    .varword "PTRNULL",PTRNULL
+    varword "PTRNULL",PTRNULL
     .word 0
 
-    .valueword "LAST-ERROR",LASTERROR,0
+    valueword "LAST-ERROR",LASTERROR,0
     
 ;*****************************************************************************
 ; Number Input
 ;*****************************************************************************
 
-    .varword "BASE",BASE
+    varword "BASE",BASE
     .word 10
 
-    .colonword "DECIMAL",DECIMAL
+    colonword "DECIMAL",DECIMAL
     .word LIT,10,BASE,STORE
     .word UNNEST
 
-    .colonword "HEX",HEX
+    colonword "HEX",HEX
     .word LIT,16,BASE,STORE
     .word UNNEST
 
-    .colonword "OCTAL",OCTAL
+    colonword "OCTAL",OCTAL
     .word LIT,8,BASE,STORE
     .word UNNEST
 
-    .colonword "BINARY",BINARY
+    colonword "BINARY",BINARY
     .word LIT,2,BASE,STORE
     .word UNNEST
 
-    .valueword "?DOUBLE",QDOUBLE,0
-    .valueword "DP-LOCATION",DPLOCATION,$FFFF
+    valueword "?DOUBLE",QDOUBLE,0
+    valueword "DP-LOCATION",DPLOCATION,$FFFF
 
     ; (char base -- n f)
-    .codeword "DIGIT",DIGIT
+    codeword "DIGIT",DIGIT
     jsr dpopToGP0
     jsr dpopToGP1
     lda GP1
@@ -2889,7 +2889,7 @@ TMSG53:
     jmp PUSHNEXT
 
     ; ( d1 addr len -- d2 addr2 len2 )
-    .colonword ">NUMBER",TONUMBER
+    colonword ">NUMBER",TONUMBER
     .word TWODUP,BOUNDS
     .word PQDOP,@done
 @loop:
@@ -2908,7 +2908,7 @@ TMSG53:
     .word UNNEST
 
     ; ( addr len -- d f )
-    .colonword "NUMNBER?",NUMBERQ
+    colonword "NUMNBER?",NUMBERQ
     .word FALSECON,QDOUBLE+4,LIT,$FFFF,DPLOCATION+4
     .word OVER,CFETCH,LIT,'-',EQUAL,OVER,ZGREATER,DOAND,DUPTOR
     .word QBRANCH,@L1
@@ -2939,14 +2939,14 @@ TMSG53:
     .word UNNEST
 
     ; ( f -- )
-    .colonword "?MISSING",QMISSING
+    colonword "?MISSING",QMISSING
     .word THROWUNDEFINED,QTHROW
     .word UNNEST
 
-    .varword "CAPS",CAPS
+    varword "CAPS",CAPS
     .word $FFFF
 
-    .colonword "?UPPERCASE",QUPPERCASE
+    colonword "?UPPERCASE",QUPPERCASE
     .word CAPS,FETCH
     .word QBRANCH,@then
         .word UPPERCASE
@@ -2955,38 +2955,38 @@ TMSG53:
     .word UNNEST
 
     ; ( str -- d )
-    .colonword "(NUMBER)",PNUMBERP
+    colonword "(NUMBER)",PNUMBERP
     .word COUNT,FINDBUFFER,PLACE
     .word FINDBUFFER,QUPPERCASE,COUNT,NUMBERQ,ZEQUAL,QMISSING
     .word UNNEST
 
-    .deferword "NUMBER",NUMBER,PNUMBERP
+    deferword "NUMBER",NUMBER,PNUMBERP
 
 
 ;*****************************************************************************
 ; Forth Parser
 ;*****************************************************************************
 
-	.varword "TIB",TIB
+	varword "TIB",TIB
     .res 256,0
 
-	.varword "(SOURCE)",PSOURCEP
+	varword "(SOURCE)",PSOURCEP
 	.word 0
 	.word TIB+2
 
-	.colonword "SOURCE",SOURCE
+	colonword "SOURCE",SOURCE
 	.word PSOURCEP,TWOFETCH
 	.word UNNEST
 
-	.constword "#TIB",HASHTIB,PSOURCEP+2
+	constword "#TIB",HASHTIB,PSOURCEP+2
 
-	.varword ">IN",TOIN
+	varword ">IN",TOIN
 	.word 0
 
-    .varword "POCKET",POCKET
+    varword "POCKET",POCKET
     .res 256,0
 
-    .colonword "WORD",WORD
+    colonword "WORD",WORD
     .word TOR,TOIN,FETCH,DUP,PSOURCEP,TWOPLUS,FETCH,PLUS
     .word PSOURCEP,FETCH,ROT,MINUS,DUP,ZGREATER
     .word QBRANCH,@else
@@ -3001,7 +3001,7 @@ TMSG53:
     .word POCKET,PLACE,POCKET
     .word UNNEST
 
-    .colonword "PARSE",PARSE
+    colonword "PARSE",PARSE
     .word TOR,SOURCE,TOIN,FETCH,SLASHSTRING,TWODUP,FROMR,SCAN
     .word NIP,MINUS,DUP,ONEPLUS,TOIN,PLUSSTORE
     .word UNNEST
@@ -3010,10 +3010,10 @@ TMSG53:
 ; QUERY portion of QUERY-INTERPRET
 ;*****************************************************************************
 
-    .valueword "SOURCE-ID",SOURCEID,0
-    .valueword "SOURCE-POSITION",SOURCEPOSITION,0
+    valueword "SOURCE-ID",SOURCEID,0
+    valueword "SOURCE-POSITION",SOURCEPOSITION,0
 
-    .codeword "(SAVE-INPUT)",PSAVEINPUTP
+    codeword "(SAVE-INPUT)",PSAVEINPUTP
     jsr dpop
     jsr rpush
     jsr dpop
@@ -3028,7 +3028,7 @@ TMSG53:
     jsr rpush
     jmp NEXT
 
-    .codeword "(RESTORE-INPUT)",PRESTOREINPUTP
+    codeword "(RESTORE-INPUT)",PRESTOREINPUTP
     jsr rpop
     jsr dpush
     jsr rpop
@@ -3043,7 +3043,7 @@ TMSG53:
     jsr dpush
     jmp NEXT
 
-    .colonword "QUERY",QUERY
+    colonword "QUERY",QUERY
     .word TIB,DUP,MAXSTRING,ACCEPT,PSOURCEP,TWOSTORE
     .word TOIN,OFF,ZERO,SOURCEID+4,ZERO,SOURCEPOSITION+4
     .word UNNEST
@@ -3052,32 +3052,32 @@ TMSG53:
 ; Runtime Primitives Continued
 ;*****************************************************************************
 
-    .colonword "(.\")",PDOTQUOTEP
+    colonword "(.\")",PDOTQUOTEP
     .word PPQUOTEPP,COUNT,TYPE
     .word UNNEST
 
-    .colonword "(S\")",PSQUOTEP
+    colonword "(S\")",PSQUOTEP
     .word PPQUOTEPP,COUNT
     .word UNNEST
 
-    .colonword "(C\")",PCQUOTEP
+    colonword "(C\")",PCQUOTEP
     .word PPQUOTEPP
     .word UNNEST
 
-    .colonword "_(",UNDERPAREN
+    colonword "_(",UNDERPAREN
     .word LIT,')',PARSE,TWODROP
     .word UNNEST
 
-    .icolonword ".(",DOTPAREN
+    icolonword ".(",DOTPAREN
     .word LIT,')',PARSE,TYPE
     .word UNNEST
 
-    .varword "HLD",HLD
+    varword "HLD",HLD
     .res 82,0
 
-    .valueword "PAD",PAD,HLD+80+2
+    valueword "PAD",PAD,HLD+80+2
 
-    .codeword "B>C",BTOC
+    codeword "B>C",BTOC
     ldy #2
     lda (SP),y
     cmp #10
@@ -3093,11 +3093,11 @@ TMSG53:
     sta (SP),y
     jmp NEXT
 
-    .colonword "HOLD",HOLD
+    colonword "HOLD",HOLD
     .word HLD,FETCH,ONEMINUS,DUP,HLD,STORE,CSTORE
     .word UNNEST
 
-    .colonword "SIGN",SIGN
+    colonword "SIGN",SIGN
     .word ZLESS
     .word QBRANCH,@then
         .word LIT,'-',HOLD
@@ -3105,38 +3105,38 @@ TMSG53:
 @then:
     .word UNNEST
 
-    .colonword "<#",BEGNUMBER
+    colonword "<#",BEGNUMBER
     .word PAD,HLD,STORE
     .word UNNEST
 
-    .colonword "#",NUMBERSIGN
+    colonword "#",NUMBERSIGN
     .word BASE,FETCH,ZERO,UDSLASHMOD,TWOSWAP,DROP,BTOC,HOLD
     .word UNNEST
 
-    .colonword "#S",NUMBERSIGNS
+    colonword "#S",NUMBERSIGNS
     .word PBEGINP
 @loop:
         .word NUMBERSIGN,TWODUP,DOOR,ZEQUAL
     .word QBRANCH,@loop
     .word UNNEST
 
-    .colonword "#>",NUMBEREND
+    colonword "#>",NUMBEREND
     .word TWODROP,HLD,FETCH,PAD,OVER,MINUS
     .word UNNEST
 
-    .colonword "(D.)",PDDOTP
+    colonword "(D.)",PDDOTP
     .word TUCK,DODABS,BEGNUMBER,NUMBERSIGNS,ROT,SIGN,NUMBEREND
     .word UNNEST
 
-    .colonword "D.",DDOT
+    colonword "D.",DDOT
     .word PDDOTP,TYPE,SPACE
     .word UNNEST
 
-    .colonword ".",DOT
+    colonword ".",DOT
     .word STOD,DDOT
     .word UNNEST
 
-    .colonword "U.",UDOT
+    colonword "U.",UDOT
     .word ZERO,DDOT
     .word UNNEST
 
@@ -3144,23 +3144,23 @@ TMSG53:
 ; Forth Dictionary Words
 ;*****************************************************************************
 
-    .constword "#VOCS",NUMVOCS,NUMVOCSDEF
+    constword "#VOCS",NUMVOCS,NUMVOCSDEF
 
-    .wordheader "FORTH"
+    wordheader "FORTH"
 FORTH:
     .word DOVOC
     .word 0
     .word COLDNFA
     .word 0
 
-    .varword "CONTEXT",CONTEXT
+    varword "CONTEXT",CONTEXT
     .word FORTH+4
     .res NUMVOCSDEF*2,0
 
-    .varword "CURRENT",CURRENT
+    varword "CURRENT",CURRENT
     .word FORTH+4
 
-    .varword "FIND-BUFFER",FINDBUFFER
+    varword "FIND-BUFFER",FINDBUFFER
     .res 256,0
 
 ;-----------------------------------------------------------------------------
@@ -3290,7 +3290,7 @@ doSearch1WordList:
 
     ; ( addr len wlst -- 0 | cfa 1 | cfa -1
     ; uses GP1,GP2,GP3
-    .codeword "SEARCH-ONE-WORDLIST",SEARCH1WORDLIST
+    codeword "SEARCH-ONE-WORDLIST",SEARCH1WORDLIST
     jsr dpopToGP3
     jsr dpopToGP2
     jsr dpopToGP1
@@ -3308,11 +3308,11 @@ doSearch1WordList:
 @done:
     jmp PUSHNEXT
 
-    .colonword "(SEARCH-WORDLIST)",PSEARCHWORDLISTP
+    colonword "(SEARCH-WORDLIST)",PSEARCHWORDLISTP
     .word FETCH,SEARCH1WORDLIST
     .word UNNEST
 
-    .colonword "(FIND)",PFINDP
+    colonword "(FIND)",PFINDP
     .word DUP,CFETCH,ZEQUAL
     .word QBRANCH,@then1
         .word ZERO,PEXITP
@@ -3340,7 +3340,7 @@ doSearch1WordList:
     .word UNNEST
 
     ; ( cstr -- cstr 0 | cfa 1 | cfa -1 )
-    .colonword "CAPS-FIND",CAPSFIND
+    colonword "CAPS-FIND",CAPSFIND
     .word DUP,COUNT,FINDBUFFER,PLACE,FINDBUFFER,QUPPERCASE,PFINDP
     .word DUPTOR
     .word QBRANCH,@else
@@ -3353,13 +3353,13 @@ doSearch1WordList:
     .word FROMR
     .word UNNEST
 
-    .deferword "FIND",FIND,CAPSFIND
+    deferword "FIND",FIND,CAPSFIND
 
-    .colonword "DEFINED",DEFINED
+    colonword "DEFINED",DEFINED
     .word BL,WORD,FIND
     .word UNNEST
 
-    .colonword "'",TICK
+    colonword "'",TICK
     .word DEFINED,ZEQUAL,QMISSING
     .word UNNEST
 
@@ -3368,53 +3368,53 @@ doSearch1WordList:
 ;*****************************************************************************
 
     ; ( nfa -- lfa )
-    .codeword "N>LINK",NTOLINK
+    codeword "N>LINK",NTOLINK
     jsr dpop
     jsr doNtoLink
     jmp PUSHNEXT
 
     ; ( nfa -- addr len )
-    .colonword "NFA-COUNT",NFACOUNT
+    colonword "NFA-COUNT",NFACOUNT
     .word DUP,ONEPLUS,SWAP,CFETCH,MAXNAMECHARS,DOAND
     .word UNNEST
 
     ; ( nfa -- cfa )
-    .colonword "NAME>",NAMETO
+    colonword "NAME>",NAMETO
     .word NFACOUNT,PLUS,TWO,CELLSPLUS
     .word UNNEST
 
     ; ( cfa -- nfa )
-    .colonword ">NAME",TONAME
+    colonword ">NAME",TONAME
     .word TWO,CELLSMINUS,FETCH
     .word UNNEST
 
     ; ( pfa -- cfa )
-    .colonword "BODY>",BODYTO
+    colonword "BODY>",BODYTO
     .word CELLMINUS
     .word UNNEST
 
     ; ( cfa -- pfa )
-    .colonword ">BODY",TOBODY
+    colonword ">BODY",TOBODY
     .word CELLPLUS
     .word UNNEST
 
     ; ( vcfa -- voc )
-    .colonword "VCFA>VOC",VCFATOVOC
+    colonword "VCFA>VOC",VCFATOVOC
     .word TWO,CELLSPLUS
     .word UNNEST
 
     ; ( voc -- vcfa )
-    .colonword "VOC>VCFA",VOCTOVCFA
+    colonword "VOC>VCFA",VOCTOVCFA
     .word TWO,CELLSMINUS
     .word UNNEST
 
     ; ( vlink -- voc )
-    .colonword "VLINK>VOC",VLINKTOVOC
+    colonword "VLINK>VOC",VLINKTOVOC
     .word CELLPLUS
     .word UNNEST
 
     ; ( voc -- vlink )
-    .colonword "VOC>VLINK",VOCTOVLINK
+    colonword "VOC>VLINK",VOCTOVLINK
     .word CELLMINUS
     .word UNNEST
 
@@ -3422,10 +3422,10 @@ doSearch1WordList:
 ; INTERPRET portion of QUERY-INTERPRET
 ;*****************************************************************************
 
-    .deferword "SAVE-SRC",SAVESRC,NOOP
-    .deferword "?UNSAVE-SRC",QUNSAVESRC,NOOP
+    deferword "SAVE-SRC",SAVESRC,NOOP
+    deferword "?UNSAVE-SRC",QUNSAVESRC,NOOP
 
-    .colonword "(INTERPRET)",PINTERPRETP
+    colonword "(INTERPRET)",PINTERPRETP
     .word PBEGINP
 @L1:
         .word BL,WORD,DUP,CFETCH
@@ -3451,23 +3451,23 @@ doSearch1WordList:
     .word DROP
     .word UNNEST
 
-    .deferword "INTERPRET",INTERPRET,PINTERPRETP
+    deferword "INTERPRET",INTERPRET,PINTERPRETP
 
 ;*****************************************************************************
 ; Forth Compile Words
 ;*****************************************************************************
 
-    .varword "DP",DP
+    varword "DP",DP
     .word ENDOFKERNEL
 
-    .codeword "APP-HERE",APPHERE
+    codeword "APP-HERE",APPHERE
     lda DP+2
     ldx DP+3
     jmp PUSHNEXT
 
-    .deferword "HERE",HERE,APPHERE
+    deferword "HERE",HERE,APPHERE
 
-    .codeword "APP-COMPILE,",APPCOMPILECOMMA
+    codeword "APP-COMPILE,",APPCOMPILECOMMA
     lda DP+2
     sta GP0
     lda DP+3
@@ -3486,9 +3486,9 @@ doSearch1WordList:
 @done:
     jmp NEXT
 
-    .deferword "COMPILE,",COMPILECOMMA,APPCOMPILECOMMA
+    deferword "COMPILE,",COMPILECOMMA,APPCOMPILECOMMA
 
-    .codeword "APP-COMPILE",APPCOMPILE
+    codeword "APP-COMPILE",APPCOMPILE
     lda DP+2
     sta GP0
     lda DP+3
@@ -3514,50 +3514,50 @@ doSearch1WordList:
 @done:
     jmp NEXT
 
-    .deferword "COMPILE",COMPILE,APPCOMPILE
+    deferword "COMPILE",COMPILE,APPCOMPILE
 
-    .colonword "APP-,",APPCOMMA
+    colonword "APP-,",APPCOMMA
     .word HERE,STORE,TWO,DP,PLUSSTORE
     .word UNNEST
 
-    .deferword ",",COMMA,APPCOMMA
+    deferword ",",COMMA,APPCOMMA
 
-    .colonword "APP-C,",APPCCOMMA
+    colonword "APP-C,",APPCCOMMA
     .word HERE,CSTORE,DP,INCR
     .word UNNEST
 
-    .deferword "C,",CCOMMA,APPCCOMMA
+    deferword "C,",CCOMMA,APPCCOMMA
 
-    .colonword "LINK,",LINKCOMMA
+    colonword "LINK,",LINKCOMMA
     .word HERE,OVER,FETCH,COMMA,SWAP,STORE
     .word UNNEST
 
-    .colonword "(ALLOT)",PALLOTP
+    colonword "(ALLOT)",PALLOTP
     .word DP,PLUSSTORE
     .word UNNEST
 
-    .deferword "ALLOT",ALLOT,PALLOTP
+    deferword "ALLOT",ALLOT,PALLOTP
 
-    .deferword "ALIGN",ALIGN,NOOP
+    deferword "ALIGN",ALIGN,NOOP
 
-    .colonword ",\"",COMMAQUOTE
+    colonword ",\"",COMMAQUOTE
     .word LIT,'"',PARSE,HERE,TOR,DUP,CCOMMA
     .word DUP,ALLOT,FROMR,ONEPLUS,SWAP,MOVE
     .word UNNEST
 
-    .icolonword "LITERAL",LITERAL
+    icolonword "LITERAL",LITERAL
     .word COMPILE,LIT,COMMA
     .word UNNEST
 
-    .varword "TEMP$",TEMPSTRING
+    varword "TEMP$",TEMPSTRING
     .res 256,0
 
-    .deferword "NEW$",NEWSTRING,TEMPSTRING
+    deferword "NEW$",NEWSTRING,TEMPSTRING
 
-    .varword "STATE",STATE
+    varword "STATE",STATE
     .word 0
 
-    .icolonword "S\"",SQUOTE
+    icolonword "S\"",SQUOTE
     .word STATE,FETCH
     .word QBRANCH,@else
         .word COMPILE,PSQUOTEP,COMMAQUOTE
@@ -3568,17 +3568,17 @@ doSearch1WordList:
 @then:
     .word UNNEST
 
-    .ideferword "(",PAREN,UNDERPAREN
+    ideferword "(",PAREN,UNDERPAREN
 
-    .icolonword "\\",BACKSLASH  ;"
+    icolonword "\\",BACKSLASH  ;"
     .word SOURCE,TOIN,STORE,DROP
     .word UNNEST
 
-    .colonword "?STACK",QSTACK
+    colonword "?STACK",QSTACK
     .word DEPTH,ZLESS,THROWSTACKUNDER,QTHROW
     .word UNNEST
 
-    .colonword "(NUMBER,)",PNUMBERCOMMAP
+    colonword "(NUMBER,)",PNUMBERCOMMAP
     .word QDOUBLE,ZEQUAL
     .word QBRANCH,@then1
         .word DROP
@@ -3596,44 +3596,44 @@ doSearch1WordList:
 @then2:
     .word UNNEST
 
-    .deferword "NUMBER,",NUMBERCOMMA,PNUMBERCOMMAP
+    deferword "NUMBER,",NUMBERCOMMA,PNUMBERCOMMAP
 
-    .colonword "([)",PLBRACKETP
+    colonword "([)",PLBRACKETP
     .word STATE,OFF
     .word UNNEST
 
-    .ideferword "[",LBRACKET,PLBRACKETP
+    ideferword "[",LBRACKET,PLBRACKETP
 
-    .colonword "(])",PRBRACKETP
+    colonword "(])",PRBRACKETP
     .word STATE,ON
     .word UNNEST
 
-    .deferword "]",RBRACKET,PRBRACKETP
+    deferword "]",RBRACKET,PRBRACKETP
 
-    .colonword "?MEMCHK",QMEMCHK
+    colonword "?MEMCHK",QMEMCHK
     .word ZMAX,HERE,PLUS,TOPOFMEM,ONEMINUS,UGREATER
     .word THROWOUTOFMEM,QTHROW
     .word UNNEST
 
-    .varword "LAST",LAST
+    varword "LAST",LAST
     .word COLDNFA
 
-    .varword "DEFER-LIST",DEFERLIST
+    varword "DEFER-LIST",DEFERLIST
     .word .ident (.sprintf("PD%08X",PREVDEFER))
 
-    .colonword "(HIDE)",PHIDEP
+    colonword "(HIDE)",PHIDEP
     .word LAST,FETCH,NTOLINK,FETCH,CURRENT,FETCH,STORE
     .word UNNEST
 
-    .deferword "HIDE",HIDE,PHIDEP
+    deferword "HIDE",HIDE,PHIDEP
 
-    .colonword "(REVEAL)",PREVEALP
+    colonword "(REVEAL)",PREVEALP
     .word LAST,FETCH,CURRENT,FETCH,STORE
     .word UNNEST
 
-    .deferword "REVEAL",REVEAL,PREVEALP
+    deferword "REVEAL",REVEAL,PREVEALP
 
-    .colonword "\"NAME,",QUOTENAMECOMMA
+    colonword "\"NAME,",QUOTENAMECOMMA
     .word MAXNAMECHARS,MIN,DUP,ZEQUAL,THROWNAMEREQD,QTHROW
     .word CAPS,FETCH
     .word QBRANCH,@then
@@ -3645,55 +3645,55 @@ doSearch1WordList:
     .word FROMR,LAST,STORE
     .word UNNEST
 
-    .colonword "(\"HEADER)",PQUOTEHEADERP
+    colonword "(\"HEADER)",PQUOTEHEADERP
     .word QUOTENAMECOMMA,LAST,FETCH,CURRENT,FETCH,STORE
     .word UNNEST
 
-    .deferword "\"HEADER",QUOTEHEADER,PQUOTEHEADERP
+    deferword "\"HEADER",QUOTEHEADER,PQUOTEHEADERP
 
-    .colonword "(HEADER)",PHEADERP
+    colonword "(HEADER)",PHEADERP
     .word LIT,100,QMEMCHK,BL,WORD,COUNT,QUOTEHEADER
     .word UNNEST
 
-    .deferword "HEADER",HEADER,PHEADERP
+    deferword "HEADER",HEADER,PHEADERP
 
-    .varword "CSP",CSP
+    varword "CSP",CSP
     .word 0
 
-    .colonword "!CSP",STORECSP
+    colonword "!CSP",STORECSP
     .word SPFETCH,CSP,STORE
     .word UNNEST
 
-    .colonword "?CSP",QCSP
+    colonword "?CSP",QCSP
     .word SPFETCH,CSP,FETCH,DOXOR,THROWSTACKCHG,QTHROW
     .word UNNEST
 
-    .colonword "(:)",PCOLONP
+    colonword "(:)",PCOLONP
     .word HEADER,HIDE,DOCOLONCON,COMMA,STORECSP,RBRACKET
     .word UNNEST
 
-    .deferword ":",COLON,PCOLONP
+    deferword ":",COLON,PCOLONP
 
-    .colonword "?COMP",QCOMP
+    colonword "?COMP",QCOMP
     .word STATE,FETCH,ZEQUAL,THROWCOMPONLY,QTHROW
     .word UNNEST
 
-    .colonword "?EXEC",QEXEC
+    colonword "?EXEC",QEXEC
     .word STATE,FETCH,THROWEXECONLY,QTHROW
     .word UNNEST
 
-    .deferword "DO-;CHAIN",DOSEMICHAIN,NOOP
+    deferword "DO-;CHAIN",DOSEMICHAIN,NOOP
 
-    .icolonword ";",SEMICOLON
+    icolonword ";",SEMICOLON
     .word QCOMP,QCSP,REVEAL
     .word COMPILE,UNNEST,LBRACKET,DOSEMICHAIN
     .word UNNEST
 
-    .colonword "CREATE",CREATE
+    colonword "CREATE",CREATE
     .word HEADER,DOVARCON,COMMA
     .word UNNEST
 
-    .codeword "@(IP)",FETCHPIPP
+    codeword "@(IP)",FETCHPIPP
     ldy #2
     lda (RP),y
     sta GP0
@@ -3716,109 +3716,109 @@ doSearch1WordList:
     sta (RP),y
     jmp NEXT
 
-    .colonword "VARIABLE",VARIABLE
+    colonword "VARIABLE",VARIABLE
     .word CREATE,ZERO,COMMA
     .word UNNEST
 
-    .colonword "CONSTANT",CONSTANT
+    colonword "CONSTANT",CONSTANT
     .word HEADER,DOCONCON,COMMA,COMMA
     .word UNNEST
 
-    .constword "IMMEDBIT",IMMEDBIT,$80
+    constword "IMMEDBIT",IMMEDBIT,$80
 
-    .colonword "IMMEDIATE",IMMEDIATE
+    colonword "IMMEDIATE",IMMEDIATE
     .word IMMEDBIT,LAST,FETCH,TOGGLE
     .word UNNEST
 
-    .colonword "?PAIRS",QPAIRS
+    colonword "?PAIRS",QPAIRS
     .word DOXOR,THROWMISMATCH,QTHROW
     .word UNNEST
 
-    .colonword ">MARK",FWDMARK
+    colonword ">MARK",FWDMARK
     .word HERE,ZERO,COMMA
     .word UNNEST
 
-    .colonword ">RESOLVE",FWDRESOLVE
+    colonword ">RESOLVE",FWDRESOLVE
     .word HERE,SWAP,STORE
     .word UNNEST
 
-    .colonword "<MARK",BACKMARK
+    colonword "<MARK",BACKMARK
     .word HERE
     .word UNNEST
 
-    .colonword "<RESOLVE",BACKRESOLVE
+    colonword "<RESOLVE",BACKRESOLVE
     .word COMMA
     .word UNNEST
 
-    .icolonword "AHEAD",AHEAD
+    icolonword "AHEAD",AHEAD
     .word QCOMP,COMPILE,BRANCH,FWDMARK,TWO
     .word UNNEST
 
-    .icolonword "IF",IF
+    icolonword "IF",IF
     .word QCOMP,COMPILE,QBRANCH,FWDMARK,TWO
     .word UNNEST
 
-    .icolonword "THEN",THEN
+    icolonword "THEN",THEN
     .word QCOMP,TWO,QPAIRS,COMPILE,PTHENP,FWDRESOLVE
     .word UNNEST
 
-    .icolonword "ENDIF",ENDIF
+    icolonword "ENDIF",ENDIF
     .word QCOMP,TWO,QPAIRS,COMPILE,PTHENP,FWDRESOLVE
     .word UNNEST
 
-    .icolonword "ELSE",ELSE
+    icolonword "ELSE",ELSE
     .word QCOMP,TWO,QPAIRS,COMPILE,BRANCH,FWDMARK,SWAP,FWDRESOLVE,TWO
     .word UNNEST
 
-    .icolonword "BEGIN",BEGIN
+    icolonword "BEGIN",BEGIN
     .word QCOMP,COMPILE,PBEGINP,BACKMARK,ONE
     .word UNNEST
 
-    .icolonword "UNTIL",UNTIL
+    icolonword "UNTIL",UNTIL
     .word QCOMP,ONE,QPAIRS,COMPILE,PUNTILP,BACKRESOLVE
     .word UNNEST
 
-    .icolonword "WHILE",WHILE
+    icolonword "WHILE",WHILE
     .word QCOMP,COMPILE,PWHILEP,FWDMARK,TWO,TWOSWAP
     .word UNNEST
 
-    .icolonword "REPEAT",REPEAT
+    icolonword "REPEAT",REPEAT
     .word QCOMP,ONE,QPAIRS,COMPILE,PREPEATP,BACKRESOLVE,TWO,QPAIRS,FWDRESOLVE
     .word UNNEST
 
-    .icolonword "DO",DO
+    icolonword "DO",DO
     .word QCOMP,COMPILE,PDOP,FWDMARK,THREE
     .word UNNEST
 
-    .icolonword "LOOP",LOOP
+    icolonword "LOOP",LOOP
     .word QCOMP,THREE,QPAIRS,COMPILE,PLOOPP,DUP,CELLPLUS,BACKRESOLVE,FWDRESOLVE
     .word UNNEST
 
-    .icolonword "+LOOP",PLUSLOOP
+    icolonword "+LOOP",PLUSLOOP
     .word QCOMP,THREE,QPAIRS,COMPILE,PPLUSLOOPP,DUP,CELLPLUS,BACKRESOLVE,FWDRESOLVE
     .word UNNEST
 
-    .icolonword "EXIT",EXIT
+    icolonword "EXIT",EXIT
     .word QCOMP,COMPILE,PEXITP
     .word UNNEST
 
-    .icolonword "RECURSE",RECURSE
+    icolonword "RECURSE",RECURSE
     .word QCOMP,LAST,FETCH,NAMETO,COMPILECOMMA
     .word UNNEST
 
-    .colonword ">IS",TOIS
+    colonword ">IS",TOIS
     .word CELLPLUS
     .word UNNEST
 
-    .colonword "(IS)",PISP
+    colonword "(IS)",PISP
     .word FETCHPIPP,TOIS,STORE
     .word UNNEST
 
-    .colonword "?IS",QIS
+    colonword "?IS",QIS
     .word DUP,FETCH,DODEFERCON,NOTEQUAL,THROWNOTDEFER,QTHROW
     .word UNNEST
 
-    .icolonword "IS",IS
+    icolonword "IS",IS
     .word STATE,FETCH
     .word QBRANCH,@else
         .word COMPILE,PISP,TICK,QIS,COMMA
@@ -3829,19 +3829,19 @@ doSearch1WordList:
 @then:
     .word UNNEST
 
-    .colonword "CALL,",CALLCOMMA
+    colonword "CALL,",CALLCOMMA
     .word LIT,$20EA,COMMA,COMMA     ; $20EA => EA 20 => NOP JSR
     .word UNNEST
 
-    .colonword "(;CODE)",PSEMICODEP
+    colonword "(;CODE)",PSEMICODEP
     .word FROMR,LAST,FETCH,NAMETO,STORE
     .word UNNEST
 
-    .icolonword "DOES>",DOES
+    icolonword "DOES>",DOES
     .word QCOMP,COMPILE,PSEMICODEP,DODOESCON,CALLCOMMA
     .word UNNEST
 
-    .icolonword "POSTPONE",POSTPONE
+    icolonword "POSTPONE",POSTPONE
     .word DEFINED,DUP,ZEQUAL,QMISSING,ZLESS
     .word QBRANCH,@then
         .word COMPILE,COMPILE
@@ -3850,27 +3850,27 @@ doSearch1WordList:
     .word COMPILECOMMA
     .word UNNEST
 
-    .icolonword "[']",BTICKB
+    icolonword "[']",BTICKB
     .word TICK,LITERAL
     .word UNNEST
 
-    .colonword "CHAR",CHAR
+    colonword "CHAR",CHAR
     .word BL,WORD,ONEPLUS,CFETCH
     .word UNNEST
 
-    .icolonword "[CHAR]",BCHARB
+    icolonword "[CHAR]",BCHARB
     .word CHAR,LITERAL
     .word UNNEST
 
-    .icolonword ".\"",DOTQUOTE
+    icolonword ".\"",DOTQUOTE
     .word COMPILE,PDOTQUOTEP,COMMAQUOTE
     .word UNNEST
 
-    .colonword "DEFER",DEFER
+    colonword "DEFER",DEFER
     .word HEADER,DODEFERCON,COMMA,COMPILE,NOOP,DEFERLIST,LINKCOMMA,COMPILE,NOOP
     .word UNNEST
 
-    .colonword "(ABORT\")",PABORTQUOTEP
+    colonword "(ABORT\")",PABORTQUOTEP
     .word PPQUOTEPP,SWAP
     .word QBRANCH,@then
         .word MSG,STORE,THROWABORTQ,THROW
@@ -3879,15 +3879,15 @@ doSearch1WordList:
     .word DROP
     .word UNNEST
 
-    .colonword "ABORT",ABORT
+    colonword "ABORT",ABORT
     .word THROWABORT,THROW
     .word UNNEST
 
-    .icolonword "ABORT\"",ABORTQUOTE
+    icolonword "ABORT\"",ABORTQUOTE
     .word COMPILE,PABORTQUOTEP,COMMAQUOTE
     .word UNNEST
 
-    .colonword "?TO-CHECK",QTOCHECK
+    colonword "?TO-CHECK",QTOCHECK
     .word DUP,FETCH,TOR,TOBODY,DUP,CELLPLUS,FETCH,LIT,$FFFF,EQUAL
     ; PATCH -----------------------
     .word RFETCH,DOVALUECON,NOTEQUAL
@@ -3900,7 +3900,7 @@ doSearch1WordList:
     .word THROWNOTVALUE,QTHROW
     .word UNNEST
 
-    .colonword "TOCOMPEXEC",TOCOMPEXEC
+    colonword "TOCOMPEXEC",TOCOMPEXEC
     .word TICK,QTOCHECK,PLUS,STATE,FETCH
     .word QBRANCH,@else
         .word COMPILECOMMA
@@ -3911,29 +3911,29 @@ doSearch1WordList:
 @then:
     .word UNNEST
 
-    .icolonword "TO",TO
+    icolonword "TO",TO
     .word CELL,TOCOMPEXEC
     .word UNNEST
 
-    .icolonword "+TO",PLUSTO
+    icolonword "+TO",PLUSTO
     .word TWO,CELLS,TOCOMPEXEC
     .word UNNEST
 
-    .deferword "ALIGNED",ALIGNED,NOOP
+    deferword "ALIGNED",ALIGNED,NOOP
 
-    .colonword "_SAVE-INPUT",USAVEINPUT
+    colonword "_SAVE-INPUT",USAVEINPUT
     .word TOIN,FETCH,SOURCEPOSITION,SOURCEID,SOURCE,FIVE
     .word UNNEST
 
-    .colonword "_RESTORE-INPUT",URESTOREINPUT
+    colonword "_RESTORE-INPUT",URESTOREINPUT
     .word FIVE,QPAIRS
     .word PSOURCEP,TWOSTORE,SOURCEID+4,SOURCEPOSITION+4,TOIN,STORE,ZERO
     .word UNNEST
 
-    .deferword "SAVE-INPUT",SAVEINPUT,USAVEINPUT
-    .deferword "RESTORE-INPUT",RESTOREINPUT,URESTOREINPUT
+    deferword "SAVE-INPUT",SAVEINPUT,USAVEINPUT
+    deferword "RESTORE-INPUT",RESTOREINPUT,URESTOREINPUT
 
-    .colonword "EVALUATE",EVALUATE
+    colonword "EVALUATE",EVALUATE
     .word SAVEINPUT,PSAVEINPUTP
     .word PSOURCEP,TWOSTORE,TOIN,OFF,LIT,$FFFF,SOURCEID+4,ZERO,SOURCEPOSITION+4
     .word LIT,INTERPRET,CATCH,DUP
@@ -3949,31 +3949,31 @@ doSearch1WordList:
     .word THROW
     .word UNNEST
 
-    .colonword ":NONAME",NONAME
+    colonword ":NONAME",NONAME
     .word HERE,DOCOLONCON,COMMA,STORECSP,RBRACKET
     .word UNNEST
 
-    .icolonword "?DO",QDO
+    icolonword "?DO",QDO
     .word QCOMP,COMPILE,PQDOP,FWDMARK,THREE
     .word UNNEST
 
-    .icolonword "AGAIN",AGAIN
+    icolonword "AGAIN",AGAIN
     .word QCOMP,ONE,QPAIRS,COMPILE,PAGAINP,BACKRESOLVE
     .word UNNEST
 
-    .icolonword "CASE",CASE
+    icolonword "CASE",CASE
     .word QCOMP,COMPILE,PCASEP,ZERO
     .word UNNEST
 
-    .icolonword "OF",OF
+    icolonword "OF",OF
     .word QCOMP,COMPILE,POFP,FWDMARK,FOUR
     .word UNNEST
 
-    .icolonword "ENDOF",ENDOF
+    icolonword "ENDOF",ENDOF
     .word QCOMP,FOUR,QPAIRS,COMPILE,PENDOFP,FWDMARK,SWAP,FWDRESOLVE,FIVE
     .word UNNEST
 
-    .icolonword "ENDCASE",ENDCASE
+    icolonword "ENDCASE",ENDCASE
     .word QCOMP,COMPILE,PENDCASEP
     .word PBEGINP
 @loop:
@@ -3984,16 +3984,16 @@ doSearch1WordList:
 @done:
     .word UNNEST
 
-    .colonword "VALUE",VALUE
+    colonword "VALUE",VALUE
     .word HEADER,DOVALUECON,COMMA,COMMA
     .word DOVALUESTORECON,COMMA,DOVALUEPSTORECON,COMMA
     .word UNNEST
 
-    .icolonword "[COMPILE]",BCOMPILEB
+    icolonword "[COMPILE]",BCOMPILEB
     .word TICK,COMPILECOMMA
     .word UNNEST
 
-    .icolonword "?EXIT",QEXIT
+    icolonword "?EXIT",QEXIT
     .word QCOMP,COMPILE,QBRANCH,FWDMARK
     .word EXIT,COMPILE,PTHENP,FWDRESOLVE
     .word UNNEST
@@ -4002,35 +4002,35 @@ doSearch1WordList:
 ; Core Extension Words
 ;*****************************************************************************
 
-    .colonword "ERASE",ERASE
+    colonword "ERASE",ERASE
     .word ZERO,FILL
     .word UNNEST
 
-    .colonword "D.R",DDOTR
+    colonword "D.R",DDOTR
     .word TOR,PDDOTP,FROMR,OVER,MINUS,SPACES,TYPE
     .word UNNEST
 
-    .colonword ".R",DOTR
+    colonword ".R",DOTR
     .word TOR,STOD,FROMR,DDOTR
     .word UNNEST
 
-    .colonword "U.R",UDOTR
+    colonword "U.R",UDOTR
     .word ZERO,SWAP,DDOTR
     .word UNNEST
 
-    .colonword "H.",HDOT
+    colonword "H.",HDOT
     .word BASE,FETCH,SWAP,HEX,UDOT,BASE,STORE
     .word UNNEST
 
-    .colonword "?",QUESTION
+    colonword "?",QUESTION
     .word FETCH,DOT
     .word UNNEST
 
-    .colonword "H.R",HDOTR
+    colonword "H.R",HDOTR
     .word BASE,FETCH,TOR,HEX,UDOTR,FROMR,BASE,STORE
     .word UNNEST
 
-    .colonword "H.N",HDOTN
+    colonword "H.N",HDOTN
     .word BASE,FETCH,TOR,HEX,TOR
     .word ZERO,BEGNUMBER,FROMR,ZERO
     .word PQDOP,@done
@@ -4042,43 +4042,43 @@ doSearch1WordList:
     .word FROMR,BASE,STORE
     .word UNNEST
 
-    .colonword "H.2",HDOT2
+    colonword "H.2",HDOT2
     .word TWO,HDOTN
     .word UNNEST
 
-    .colonword "H.4",HDOT4
+    colonword "H.4",HDOT4
     .word FOUR,HDOTN
     .word UNNEST
 
-    .colonword "H.8",HDOT8
+    colonword "H.8",HDOT8
     .word LIT,8,HDOTN
     .word UNNEST
 
-    .colonword "0<>",ZNOTEQUAL
+    colonword "0<>",ZNOTEQUAL
     .word ZEQUAL,INVERT
     .word UNNEST
 
-    .colonword "HOLD$",HOLDSTRING
+    colonword "HOLD$",HOLDSTRING
     .word HLD,FETCH,OVER,MINUS,DUP,HLD,STORE,SWAP,MOVE
     .word UNNEST
 
-    .colonword "PARSE-NAME",PARSENAME
+    colonword "PARSE-NAME",PARSENAME
     .word BL,WORD,COUNT
     .word UNNEST
 
-    .colonword "BUFFER:",BUFFERCOLON
+    colonword "BUFFER:",BUFFERCOLON
     .word CREATE,ALLOT
     .word UNNEST
 
-    .colonword "DEFER!",DEFERSTORE
+    colonword "DEFER!",DEFERSTORE
     .word QIS,TOIS,STORE
     .word UNNEST
 
-    .colonword "DEFER@",DEFERFETCH
+    colonword "DEFER@",DEFERFETCH
     .word QIS,TOIS,FETCH
     .word UNNEST
 
-    .icolonword "ACTION-OF",ACTIONOF
+    icolonword "ACTION-OF",ACTIONOF
     .word TICK,QIS,TOIS,STATE,FETCH
     .word QBRANCH,@else
         .word LITERAL,COMPILE,FETCH
@@ -4089,15 +4089,15 @@ doSearch1WordList:
 @then:
     .word UNNEST
 
-    .icolonword "LOCALALLOC",LOCALALLOC
+    icolonword "LOCALALLOC",LOCALALLOC
     .word COMPILE,PLOCALALLOCP
     .word UNNEST
 
-    .colonword "C+PLACE",CPLUSPLACE
+    colonword "C+PLACE",CPLUSPLACE
     .word DUP,CINCR,COUNT,PLUS,ONEMINUS,STORE
     .word UNNEST
 
-    .icolonword "C\"",CQUOTE
+    icolonword "C\"",CQUOTE
     .word STATE,FETCH
     .word QBRANCH,@else
         .word COMPILE,PCQUOTEP,COMMAQUOTE
@@ -4108,7 +4108,7 @@ doSearch1WordList:
 @then:
     .word UNNEST
 
-    .colonword "UNUSED",UNUSED
+    colonword "UNUSED",UNUSED
     .word TOPOFMEM,HERE,MINUS
     .word UNNEST
 
@@ -4116,23 +4116,23 @@ doSearch1WordList:
 ; Main Forth Interpreter Loop
 ;*****************************************************************************
 
-    .varword "?LOADING",QLOADING
+    varword "?LOADING",QLOADING
     .word 0
 
-    .varword "LOADLINE",LOADLINE
+    varword "LOADLINE",LOADLINE
     .word 0
 
-    .varword ".SMAX",DOTSMAX
+    varword ".SMAX",DOTSMAX
     .word 8
 
-    .colonword "(.PROMPT)",PDOTPROMPTP
+    colonword "(.PROMPT)",PDOTPROMPTP
     .word CR,PDOTQUOTEP
-    .ptext "> "
+    ptext "> "
     .word UNNEST
 
-    .colonword "(.OK)",PDOTOKP
+    colonword "(.OK)",PDOTOKP
     .word PDOTQUOTEP
-    .ptext " ok"
+    ptext " ok"
     .word DEPTH,DOTSMAX,FETCH,MIN,ZERO
     .word PQDOP,@L1
 @L2:
@@ -4141,15 +4141,15 @@ doSearch1WordList:
 @L1:
     .word UNNEST
 
-    .deferword ".OK",DOTOK,PDOTOKP
-    .deferword ".PROMPT",DOTPROMPT,PDOTPROMPTP
-    .deferword ".NOTOK",DOTNOTOK,NOOP
+    deferword ".OK",DOTOK,PDOTOKP
+    deferword ".PROMPT",DOTPROMPT,PDOTPROMPTP
+    deferword ".NOTOK",DOTNOTOK,NOOP
 
-    .varword "(EXCEPTION-SOURCE)",PEXCEPTIONSOURCEP
+    varword "(EXCEPTION-SOURCE)",PEXCEPTIONSOURCEP
     .word 0
     .word 0
 
-    .colonword "?TYPE",QTYPE
+    colonword "?TYPE",QTYPE
     .word COUNT,QDUP
     .word QBRANCH,@else
         .word TYPE,SPACE
@@ -4160,7 +4160,7 @@ doSearch1WordList:
 @then:
     .word UNNEST
 
-    .colonword "(TYPEMSG)",PTYPEMSGP
+    colonword "(TYPEMSG)",PTYPEMSGP
     .word QLOADING,FETCH
     .word QBRANCH,@L1
         .word PEXCEPTIONSOURCEP
@@ -4188,7 +4188,7 @@ doSearch1WordList:
     .word LIT,'(',EMIT
     .word DUP,LASTERROR+4,STOD,PDDOTP,TYPE
     .word PDOTQUOTEP
-    .ptext "): "
+    ptext "): "
     .word POCKET,QTYPE,THROWMSGS
     .word PBEGINP
 @L7:
@@ -4204,23 +4204,23 @@ doSearch1WordList:
     .word MSG,FETCH,QTYPE,NULLMSG,MSG,STORE,QLOADING,FETCH
     .word QBRANCH,@LA
         .word PDOTQUOTEP
-        .ptext "in file "
+        ptext "in file "
         .word LOADFILE,FETCH,CELLPLUS,QTYPE
         .word PDOTQUOTEP
-        .ptext "at line "
+        ptext "at line "
         .word LOADLINE,FETCH,UDOT
     .word PTHENP
 @LA:
     .word FROMR,BASE,STORE
     .word UNNEST
 
-    .deferword "EDIT-ERROR",EDITERROR,NOOP
+    deferword "EDIT-ERROR",EDITERROR,NOOP
 
-    .colonword "(MESSAGE)",PMESSAGEP
+    colonword "(MESSAGE)",PMESSAGEP
     .word DUP,ONEPLUS
     .word QBRANCH,@L1
         .word PSQUOTEP
-        .ptext "Error "
+        ptext "Error "
         .word PTYPEMSGP
         .word QLOADING,FETCH
         .word QBRANCH,@L3
@@ -4234,19 +4234,19 @@ doSearch1WordList:
 @L2:
     .word UNNEST
 
-    .deferword "MESSAGE",MESSAGE,PMESSAGEP
+    deferword "MESSAGE",MESSAGE,PMESSAGEP
 
-    .colonword "(RESET-STACKS)",PRESETSTACKSP
+    colonword "(RESET-STACKS)",PRESETSTACKSP
     .word SP0,FETCH,SPSTORE
     .word UNNEST
 
-    .deferword "RESET-STACKS",RESETSTACKS,PRESETSTACKSP
+    deferword "RESET-STACKS",RESETSTACKS,PRESETSTACKSP
 
-    .colonword "QUERY-INTERPRET",QUERYINTERPRET
+    colonword "QUERY-INTERPRET",QUERYINTERPRET
     .word QUERY,SPACE,INTERPRET
     .word UNNEST
 
-    .colonword "(QUIT)",PQUITP
+    colonword "(QUIT)",PQUITP
     .word RP0,FETCH,RPSTORE
     .word PBEGINP
 @L1:
@@ -4271,28 +4271,28 @@ doSearch1WordList:
     .word PAGAINP,@L1
     .word UNNEST
 
-    .deferword "QUIT",QUIT,PQUITP
+    deferword "QUIT",QUIT,PQUITP
 
 ;*****************************************************************************
 ; Forth File I/O Words
 ;*****************************************************************************
 
-    .constword "R/O",READONLY,FILEIO_MODE_READ
-    .constword "W/O",WRITEONLY,FILEIO_MODE_WRITE
-    .constword "R/W",READWRITE,FILEIO_MODE_RW
-    .constword "BIN-MODE",BINMODE,FILEIO_MODE_BIN
+    constword "R/O",READONLY,FILEIO_MODE_READ
+    constword "W/O",WRITEONLY,FILEIO_MODE_WRITE
+    constword "R/W",READWRITE,FILEIO_MODE_RW
+    constword "BIN-MODE",BINMODE,FILEIO_MODE_BIN
 
-    ;.deferword "BIN",BIN,NOOP
+    ;deferword "BIN",BIN,NOOP
     ; ( mode -- mode' )
-    .colonword "BIN",BIN
+    colonword "BIN",BIN
     .word BINMODE,DOOR
     .word UNNEST
 
-    .varword "_FILE-NAME_",UFILENAMEU
+    varword "_FILE-NAME_",UFILENAMEU
     .res 256
 
     ; ( addr len mode -- fd ior )
-    .codeword "(OPEN-FILE)",POPENFILEP
+    codeword "(OPEN-FILE)",POPENFILEP
     jsr dpopToGP3           ; file mode
     jsr dpopToGP2           ; name length
     jsr dpopToGP0           ; filename
@@ -4322,7 +4322,7 @@ doSearch1WordList:
     jmp PUSHNEXT
 
     ; ( fd -- ior )
-    .codeword "(CLOSE-FILE)",PCLOSEFILEP
+    codeword "(CLOSE-FILE)",PCLOSEFILEP
     jsr dpop
     jsr FILECLOSE
     lda FILEIO::STATUS
@@ -4330,7 +4330,7 @@ doSearch1WordList:
     jmp PUSHNEXT
 
     ; ( addr len fd -- len' ior )
-    .codeword "(READ-FILE)",PREADFILEP
+    codeword "(READ-FILE)",PREADFILEP
     jsr dpopToGP0       ; fd
     jsr dpopToGP1       ; count
     jsr dpopToGP2       ; target
@@ -4379,7 +4379,7 @@ doSearch1WordList:
     jmp PUSHNEXT
 
     ; ( addr len fd -- len' flag ior )
-    .codeword "(READ-LINE)",PREADLINEP
+    codeword "(READ-LINE)",PREADLINEP
     jsr dpopToGP0       ; fd
     jsr dpopToGP1       ; count
     jsr dpopToGP2       ; target
@@ -4447,7 +4447,7 @@ doSearch1WordList:
     jmp PUSHNEXT
 
     ; ( addr len fd -- ior )
-    .codeword "(WRITE-FILE)",PWRITEFILEP
+    codeword "(WRITE-FILE)",PWRITEFILEP
     jsr dpopToGP0       ; fd
     jsr dpopToGP1       ; count
     jsr dpopToGP2       ; source
@@ -4489,7 +4489,7 @@ doSearch1WordList:
     jmp PUSHNEXT
 
     ; ( addr len fd -- ior )
-    .codeword "(WRITE-LINE)",PWRITELINEP
+    codeword "(WRITE-LINE)",PWRITELINEP
     jsr dpopToGP0       ; fd
     jsr dpopToGP1       ; count
     jsr dpopToGP2       ; source
@@ -4534,7 +4534,7 @@ doSearch1WordList:
     jmp PUSHNEXT
 
     ; ( addr len -- ior )
-    .codeword "(DELETE-FILE)",PDELETEFILEP
+    codeword "(DELETE-FILE)",PDELETEFILEP
     jsr dpopToGP2           ; name length
     jsr dpopToGP0           ; filename
     lda #<(UFILENAMEU+2)
@@ -4560,7 +4560,7 @@ doSearch1WordList:
     jmp PUSHNEXT
 
     ; ( fd -- ud ior )
-    .codeword "(FILE-POSITION)",PFILEPOSITIONP
+    codeword "(FILE-POSITION)",PFILEPOSITIONP
     jsr dpop
     sta FILEIO::FD
     lda #FILEIO_FILEPOS
@@ -4577,7 +4577,7 @@ doSearch1WordList:
     jmp PUSHNEXT
 
     ; ( fd -- ud ior )
-    .codeword "(FILE-SIZE)",PFILESIZEP
+    codeword "(FILE-SIZE)",PFILESIZEP
     jsr dpop
     sta FILEIO::FD
     lda #FILEIO_FILESIZ
@@ -4594,12 +4594,12 @@ doSearch1WordList:
     jmp PUSHNEXT
 
     ; ( caddr len -- status ior )
-    .colonword "(FILE-STATUS)",PFILESTATUSP
+    colonword "(FILE-STATUS)",PFILESTATUSP
     .word TWODROP,ZERO,ZERO
     .word UNNEST
 
     ; ( fd -- ior )
-    .codeword "(FILE-FLUSH)",PFILEFLUSHP
+    codeword "(FILE-FLUSH)",PFILEFLUSHP
     jsr dpop
     jsr FILEFLUSH
     lda FILEIO::STATUS
@@ -4607,12 +4607,12 @@ doSearch1WordList:
     jmp PUSHNEXT
 
     ; ( caddr1 len1 caddr2 len2 -- ior )
-    .colonword "(FILE-RENAME)",PFILERENAMEP
+    colonword "(FILE-RENAME)",PFILERENAMEP
     .word TWODROP,TWODROP,FILEIO_STATUS_ERR
     .word UNNEST
 
     ; ( ud fd -- ior )
-    .colonword "(REPOSITION-FILE)",PREPOSITIONFILEP
+    colonword "(REPOSITION-FILE)",PREPOSITIONFILEP
     jsr dpop
     sta FILEIO::FD
     jsr dpop
@@ -4628,7 +4628,7 @@ doSearch1WordList:
     jmp PUSHNEXT
 
     ; ( ud fd -- ior )
-    .colonword "(RESIZE-FILE)",PRESIZEFILEP
+    colonword "(RESIZE-FILE)",PRESIZEFILEP
     jsr dpop
     sta FILEIO::FD
     jsr dpop
@@ -4643,32 +4643,32 @@ doSearch1WordList:
     ldx #0
     jmp PUSHNEXT
 
-    .deferword "OPEN-FILE",OPENFILE,POPENFILEP
-    .deferword "CREATE-FILE",CREATEFILE,PCLOSEFILEP
-    .deferword "CLOSE-FILE",CLOSEFILE,PCLOSEFILEP
-    .deferword "READ-FILE",READFILE,PREADFILEP
-    .deferword "READ-LINE",READLINE,PREADLINEP
-    .deferword "WRITE-FILE",WRITEFILE,PWRITEFILEP
-    .deferword "WRITE-LINE",WRITELINE,PWRITELINEP
-    .deferword "DELETE-FILE",DELETEFILE,PDELETEFILEP
-    .deferword "FILE-POSITION",FILEPOSITION,PFILEPOSITIONP
-    .deferword "FILE-SIZE",FILESIZE,PFILESIZEP
-    .deferword "FILE-STATUS",FFILESTATUS,PFILESTATUSP
-    .deferword "FILE-FLUSH",FFILEFLUSH,PFILEFLUSHP
-    .deferword "FILE-RENAME",FILERENAME,PFILERENAMEP
-    .deferword "REPOSITION-FILE",REPOSITIONFILE,PREPOSITIONFILEP
-    .deferword "RESIZE-FILE",RESIZEFILE,PRESIZEFILEP
+    deferword "OPEN-FILE",OPENFILE,POPENFILEP
+    deferword "CREATE-FILE",CREATEFILE,PCLOSEFILEP
+    deferword "CLOSE-FILE",CLOSEFILE,PCLOSEFILEP
+    deferword "READ-FILE",READFILE,PREADFILEP
+    deferword "READ-LINE",READLINE,PREADLINEP
+    deferword "WRITE-FILE",WRITEFILE,PWRITEFILEP
+    deferword "WRITE-LINE",WRITELINE,PWRITELINEP
+    deferword "DELETE-FILE",DELETEFILE,PDELETEFILEP
+    deferword "FILE-POSITION",FILEPOSITION,PFILEPOSITIONP
+    deferword "FILE-SIZE",FILESIZE,PFILESIZEP
+    deferword "FILE-STATUS",FFILESTATUS,PFILESTATUSP
+    deferword "FILE-FLUSH",FFILEFLUSH,PFILEFLUSHP
+    deferword "FILE-RENAME",FILERENAME,PFILERENAMEP
+    deferword "REPOSITION-FILE",REPOSITIONFILE,PREPOSITIONFILEP
+    deferword "RESIZE-FILE",RESIZEFILE,PRESIZEFILEP
 
-    .varword "OPENBUF",OPENBUF
+    varword "OPENBUF",OPENBUF
     .res MAXBUFSIZE,0
 
-    .varword "CUR-FILE",CURFILE
+    varword "CUR-FILE",CURFILE
     .res MAXBUFSIZE,0
 
-    .varword "CUR-LINE",CURLINE
+    varword "CUR-LINE",CURLINE
     .word 0
 
-    .colonword "LINKFILE",LINKFILE
+    colonword "LINKFILE",LINKFILE
     .word QLOADING,FETCH
     .word QBRANCH,@else
         .word LOADFILE,LINKCOMMA
@@ -4680,13 +4680,13 @@ doSearch1WordList:
 @then:
     .word UNNEST
 
-    .varword "START-LINE",STARTLINE
+    varword "START-LINE",STARTLINE
     .word 0
 
-    .varword "ECHO",ECHO
+    varword "ECHO",ECHO
     .word 0
 
-    .colonword "?.REFILL",QDOTREFILL
+    colonword "?.REFILL",QDOTREFILL
     .word ECHO,FETCH
     .word QBRANCH,@then
         .word CR,SOURCE,TYPE
@@ -4694,13 +4694,13 @@ doSearch1WordList:
 @then:
     .word UNNEST
 
-    .deferword ".REFILL",DOTREFILL,QDOTREFILL
+    deferword ".REFILL",DOTREFILL,QDOTREFILL
 
-    .valueword "INCLUDING?",INCLUDINGQ,0
+    valueword "INCLUDING?",INCLUDINGQ,0
 
-    .valueword "LEN-PREV",LENPREV,0
+    valueword "LEN-PREV",LENPREV,0
 
-    .colonword "REFILL",REFILL
+    colonword "REFILL",REFILL
     .word SOURCEID,QDUP
     .word QBRANCH,@L4
         .word ONEPLUS
@@ -4725,7 +4725,7 @@ doSearch1WordList:
     .word CR,QUERY,TRUECON
     .word UNNEST
 
-    .colonword ">LINE",TOLINE
+    colonword ">LINE",TOLINE
     .word ONEMINUS,ZERO,MAX,QDUP
     .word QBRANCH,@L3
         .word ZERO
@@ -4738,9 +4738,9 @@ doSearch1WordList:
 @L3:
     .word UNNEST
 
-    .deferword "STACK-CHECK",STACKCHECK,NOOP
+    deferword "STACK-CHECK",STACKCHECK,NOOP
 
-    .colonword "DO-INCLUDE",DOINCLUDE
+    colonword "DO-INCLUDE",DOINCLUDE
     .word INCLUDINGQ,TOR,TRUECON,INCLUDINGQ+4
     .word STARTLINE,FETCH,TOLINE,STARTLINE,OFF
     .word SOURCEPOSITION,TOR,ZERO,SOURCEPOSITION+4
@@ -4755,10 +4755,10 @@ doSearch1WordList:
     .word FROMR,LENPREV+4,FROMR,SOURCEPOSITION+4,FROMR,INCLUDINGQ+4
     .word UNNEST
 
-    .deferword "START-INCLUDE",STARTINCLUDE,NOOP
-    .deferword "END-INCLUDE",ENDINCLUDE,NOOP
+    deferword "START-INCLUDE",STARTINCLUDE,NOOP
+    deferword "END-INCLUDE",ENDINCLUDE,NOOP
 
-    .colonword "INCLUDE-FILE",INCLUDEFILE
+    colonword "INCLUDE-FILE",INCLUDEFILE
     .word MAXSTRING,PLOCALALLOCP,TOR,TIB,RFETCH,MAXSTRING,MOVE
     .word LOADFILE,FETCH,CELLPLUS,TOR,QLOADING,FETCH,TOR
     .word LOADLINE,FETCH,TOR,TOIN,FETCH,TOR,SOURCEID,TOR
@@ -4780,7 +4780,7 @@ doSearch1WordList:
     .word UNNEST
 
     ; ( addr len -- fd f )
-    .colonword "(\"OPEN)",PQUOTEOPENP
+    colonword "(\"OPEN)",PQUOTEOPENP
     .word OPENBUF,PLACE
     .word OPENBUF,COUNT,READWRITE,OPENFILE,DUP,ZEQUAL
     .word QBRANCH,@then
@@ -4790,21 +4790,21 @@ doSearch1WordList:
     .word OPENBUF,COUNT,POCKET,PLACE
     .word UNNEST
 
-    .deferword "\"OPEN",QUOTEOPEN,PQUOTEOPENP
+    deferword "\"OPEN",QUOTEOPEN,PQUOTEOPENP
 
-    .colonword "INCLUDED",INCLUDED
+    colonword "INCLUDED",INCLUDED
     .word QUOTEOPEN,THROWFILENOTFOUND,QTHROW,INCLUDEFILE
     .word UNNEST
 
-    .colonword "FLOAD",FLOAD
+    colonword "FLOAD",FLOAD
     .word BL,WORD,COUNT,INCLUDED
     .word UNNEST
 
-    .colonword "FORTH-KERNEL-SIZE",FORTHKERNELSIZE
+    colonword "FORTH-KERNEL-SIZE",FORTHKERNELSIZE
     .word DP,FETCH,FORTHKERNELSTART,MINUS
     .word UNNEST
 
-    .colonword "FSAVE",FSAVE
+    colonword "FSAVE",FSAVE
     .word BL,WORD,COUNT
     .word WRITEONLY,BIN,OPENFILE,THROWFILECREATEFAIL,QTHROW,TOR
     .word FORTHKERNELSTART,HERE,STORE,HERE,LIT,2,RFETCH
@@ -4819,10 +4819,10 @@ doSearch1WordList:
 ; Forth cold start initialization
 ;*****************************************************************************
 
-    .deferword "WELCOME",WELCOME,NOOP
+    deferword "WELCOME",WELCOME,NOOP
 
 COLDNFA:
-    .colonword "COLD",COLD
+    colonword "COLD",COLD
     .word WELCOME,QUIT
     .word UNNEST
 
