@@ -2,8 +2,6 @@
 ; Some Macros
 ;*****************************************************************************
 
-    .feature leading_dot_in_identifiers
-
 PREVHEADER	.set 0
 .ident (.sprintf("PH%08X",PREVHEADER)) := PREVHEADER
 PREVDEFER	.set 0
