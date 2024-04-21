@@ -7,6 +7,24 @@ PREVHEADER	.set 0
 PREVDEFER	.set 0
 .ident (.sprintf("PD%08X",PREVDEFER))  := PREVDEFER
 
+    .macro add arg1,arg2
+    clc
+    .ifblank arg2
+        adc arg1
+    .else
+        adc arg1,arg2
+    .endif
+    .endmacro
+
+    .macro sub arg1,arg2
+    sec
+    .ifblank arg2
+        sbc arg1
+    .else
+        sbc arg1,arg2
+    .endif
+    .endmacro
+
     .macro ptext arg
     .byte .strlen(arg),arg
     .endmacro

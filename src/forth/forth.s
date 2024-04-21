@@ -54,9 +54,8 @@ ENTRY:
 ;-----------------------------------------------------------------------------
 
 incSP:
-    clc
     lda SP
-    adc #2
+    add #2
     sta SP
     bcc @skip
     inc SP+1
@@ -64,9 +63,8 @@ incSP:
     rts
 
 decSP:
-    sec
     lda SP
-    sbc #2
+    sub #2
     sta SP
     bcs @skip
     dec SP+1
@@ -201,9 +199,8 @@ dpopToGPTEMP:
 ;-----------------------------------------------------------------------------
 
 incRP:
-    clc
     lda RP
-    adc #2
+    add #2
     sta RP
     bcc @skip
     inc RP+1
@@ -211,9 +208,8 @@ incRP:
     rts
 
 decRP:
-    sec
     lda RP
-    sbc #2
+    sub #2
     sta RP
     bcs @skip
     dec RP+1
@@ -240,9 +236,8 @@ rpop:
 ;-----------------------------------------------------------------------------
 
 incIP:
-    clc
     lda IP
-    adc #2
+    add #2
     sta IP
     bcc @skip
     inc IP+1
@@ -362,9 +357,8 @@ DOCOLON:
     lda IP
     ldx IP+1
     jsr rpush
-    clc
     lda CFA
-    adc #2
+    add #2
     sta IP
     lda CFA+1
     bcc @skip
@@ -374,9 +368,8 @@ DOCOLON:
     jmp NEXT
 
 DOVAR:
-    clc
     lda CFA
-    adc #2
+    add #2
     tay
     lda CFA+1
     adc #0
@@ -445,8 +438,7 @@ DOVALUESTORE:
     sta GP0+1
     lda CFA
     sta GP0
-    sec
-    sbc #2
+    sub #2
     sta GP0
     bcs @skip
     dec GP0+1
@@ -464,15 +456,13 @@ DOVALUEPSTORE:
     sta GP0+1
     lda CFA
     sta GP0
-    sec
-    sbc #4
+    sub #4
     sta GP0
     bcs @skip
     dec GP0+1
 @skip:
     jsr dpop
-    clc
-    adc (GP0)
+    add (GP0)
     sta (GP0)
     txa
     ldy #1
@@ -501,9 +491,8 @@ DOVALUEPSTORE:
      jmp PUSHNEXT
 
 DOVOC:
-    clc
     lda CFA
-    adc #4
+    add #4
     sta CFA
     bcc @skip
     inc CFA+1
@@ -668,9 +657,8 @@ FORTHKERNEL:
 
     codeword "(LOOP)",PLOOPP
     ldy #2
-    clc
     lda (RP),y
-    adc #1
+    add #1
     sta (RP),y
     iny
     lda (RP),y
@@ -688,9 +676,8 @@ FORTHKERNEL:
     jmp NEXT
 @skip:
     jsr incIP
-    clc
     lda RP
-    adc #6
+    add #6
     sta RP
     bcc @done
     inc RP+1
@@ -700,9 +687,8 @@ FORTHKERNEL:
     codeword "(+LOOP)",PPLUSLOOPP
     jsr dpopToGP0
     ldy #2
-    clc
     lda (RP),y
-    adc GP0
+    add GP0
     sta (RP),y
     iny
     lda (RP),y
@@ -719,9 +705,8 @@ FORTHKERNEL:
     jmp NEXT
 @skip:
     jsr incIP
-    clc
     lda RP
-    adc #6
+    add #6
     sta RP
     bcc @done
     inc RP+1
@@ -738,16 +723,14 @@ doPDOP:
     lda (IP)
     jsr rpush
     jsr incIP
-    clc
     lda #$80
-    adc GP1+1
+    add GP1+1
     sta GP1+1
     lda GP1
     ldx GP1+1
     jsr rpush
-    sec
     lda GP0
-    sbc GP1
+    sub GP1
     tay
     lda GP0+1
     sbc GP1+1
@@ -788,9 +771,8 @@ doPDOP:
     sta LP+2
     lda RP+1
     sta LP+3
-    sec
     lda RP
-    sbc GP0
+    sub GP0
     sta RP
     lda RP+1
     sbc GP0+1
@@ -890,13 +872,11 @@ moveDown:
 ;-----------------------------------------------------------------------------
 moveUp:
     ldx GP2+1
-    clc
     txa
-    adc GP0+1
+    add GP0+1
     sta GP0+1
-    clc
     txa
-    adc GP1+1
+    add GP1+1
     sta GP1+1
     inx
     ldy GP2
@@ -942,8 +922,7 @@ moveUp:
     codeword "+!",PLUSSTORE
     jsr dpopToGP0
     jsr dpop
-    clc
-    adc (GP0)
+    add (GP0)
     sta (GP0)
     ldy #1
     txa
@@ -961,8 +940,7 @@ moveUp:
     codeword "C+!",CPLUSSTORE
     jsr dpopToGP0
     jsr dpop
-    clc
-    adc (GP0)
+    add (GP0)
     sta (GP0)
     jmp NEXT
 
@@ -1054,9 +1032,8 @@ moveUp:
 
     codeword "DECR",DECR
     jsr dpopToGP0
-    sec
     lda (GP0)
-    sbc #1
+    sub #1
     sta (GP0)
     bcs @skip
     ldy #1
@@ -1294,9 +1271,8 @@ doDup:
     jsr incGP0
     asl GP0
     rol GP0+1
-    clc
     lda SP
-    adc GP0
+    add GP0
     sta GP0
     lda SP+1
     adc GP0+1
@@ -1308,9 +1284,8 @@ doDup:
     jmp PUSHNEXT
 
     codeword "2DROP",TWODROP
-    clc
     lda SP
-    adc #4
+    add #4
     sta SP
     bcc @skip
     inc SP+1
@@ -1372,10 +1347,9 @@ doDup:
     deferword "CHAR+",CHARPLUS,ONEPLUS
 
     codeword "1-",ONEMINUS
-    sec
     ldy #2
     lda (SP),y
-    sbc #1
+    sub #1
     sta (SP),y
     bcs @skip
     iny
@@ -1391,10 +1365,9 @@ doDup:
     jmp NEXT
 
     codeword "2+",TWOPLUS
-    clc
     ldy #2
     lda (SP),y
-    adc #2
+    add #2
     sta (SP),y
     bcc @skip
     iny
@@ -1405,10 +1378,9 @@ doDup:
     jmp NEXT
 
     codeword "2-",TWOMINUS
-    sec
     ldy #2
     lda (SP),y
-    sbc #2
+    sub #2
     sta (SP),y
     bcs @skip
     iny
@@ -1459,9 +1431,8 @@ mul32x32:
     ror mul32x32mulr+1
     ror mul32x32mulr+0
     bcc @rotate
-    clc
     lda mul32x32prod+4
-    adc mul32x32mulnd+0
+    add mul32x32mulnd+0
     sta mul32x32prod+4
     lda mul32x32prod+5
     adc mul32x32mulnd+1
@@ -1510,9 +1481,8 @@ mul16x16:
     ror mul16x16mulr+1
     ror mul16x16mulr+0
     bcc @rotate
-    clc
     lda mul16x16prod+2
-    adc mul16x16mulnd+0
+    add mul16x16mulnd+0
     sta mul16x16prod+2
     lda mul16x16prod+3
     adc mul16x16mulnd+1
@@ -1559,8 +1529,7 @@ div32x32:
     rol div32x32rem+2
     rol div32x32rem+3
     lda div32x32rem+0
-    sec
-    sbc div32x32divisor+0
+    sub div32x32divisor+0
     tay
     lda div32x32rem+1
     sbc div32x32divisor+1
@@ -1609,8 +1578,7 @@ div16x16:
     rol div16x16rem+0
     rol div16x16rem+1
     lda div16x16rem+0
-    sec
-    sbc div16x16divisor+0
+    sub div16x16divisor+0
     tay
     lda div16x16rem+1
     sbc div16x16divisor+1
@@ -1626,11 +1594,10 @@ div16x16:
 ;-----------------------------------------------------------------------------
 
     codeword "+",PLUS
-    clc
     ldy #2
     lda (SP),y
     ldy #4
-    adc (SP),y
+    add (SP),y
     sta (SP),y
     ldy #3
     lda (SP),y
@@ -1645,9 +1612,8 @@ div16x16:
     jsr dpopToGP1
     jsr dpopToGP4
     jsr dpopToGP3
-    clc
     lda GP1
-    adc GP3
+    add GP3
     sta GP5
     lda GP1+1
     adc GP3+1
@@ -1668,9 +1634,8 @@ div16x16:
     codeword "-",MINUS
     jsr dpopToGP0
     jsr dpopToGP1
-    sec
     lda GP1
-    sbc GP0
+    sub GP0
     sta GP0
     lda GP1+1
     sbc GP0+1
@@ -1683,9 +1648,8 @@ div16x16:
     jsr dpopToGP3
     jsr dpopToGP2
     jsr dpopToGP1
-    sec
     lda GP1
-    sbc GP3
+    sub GP3
     sta GP5
     lda GP1+1
     sbc GP3+1
@@ -1863,9 +1827,8 @@ div16x16:
 
     codeword "NEGATE",NEGATE
     ldy #2
-    sec
     lda #0
-    sbc (SP),y
+    sub (SP),y
     sta (SP),y
     iny
     lda #0
@@ -1876,9 +1839,8 @@ div16x16:
     codeword "DNEGATE",DNEGATE
     jsr dpopToGP1
     jsr dpopToGP0
-    sec
     lda #0
-    sbc GP0
+    sub GP0
     sta GP0
     lda #0
     sbc GP0+1
@@ -2156,9 +2118,8 @@ div16x16:
     jmp EXEC
 
     codeword "LEAVE",LEAVE
-    clc
     lda RP
-    adc #6
+    add #6
     sta RP
     bcc @skip
     inc RP+1
@@ -2191,9 +2152,8 @@ getLoopIndex:
     iny
     lda (RP),y
     sta GP1+1
-    clc
 	lda GP0
-	adc GP1
+	add GP1
 	sta GP0
 	lda GP0+1
 	adc GP1+1
@@ -2211,9 +2171,8 @@ getLoopIndex:
     bra getLoopIndex
 
     codeword "UNLOOP",UNLOOP
-    clc
     lda RP
-    adc #6
+    add #6
     sta RP
     bcc @skip
     inc RP+1
@@ -2236,8 +2195,7 @@ getLoopIndex:
     stx GP0+1
     jsr dpush
     lda (GP0)
-    clc
-    adc GP0
+    add GP0
     sta GP0
     bcc @skip
     inc GP0+1
@@ -2862,8 +2820,7 @@ TMSG53:
     jsr dpopToGP0
     jsr dpopToGP1
     lda GP1
-    sec
-    sbc #48
+    sub #48
     bcc @isnt
     cmp #9
     bcc @mightbe
@@ -3082,11 +3039,9 @@ TMSG53:
     lda (SP),y
     cmp #10
     bcc @skip
-    clc
-    adc #7
+    add #7
 @skip:
-    clc
-    adc #'0'
+    add #'0'
     sta (SP),y
     lda #0
     iny
@@ -3182,8 +3137,7 @@ doNtoLink:
     stx GP0+1
     lda (GP0)
     and #63
-    clc
-    adc GP0
+    add GP0
     sta GP0
     bcc @skip
     inc GP0+1
@@ -3224,9 +3178,8 @@ doSearch1WordList:
     and #63                 ; length of current word
     cmp GP2                 ; is it same as search word length?
     bne @s1wnext            ; no, try next word
-    clc
     lda GP3
-    adc #1
+    add #1
     sta GP5
     lda GP3+1
     adc #0
@@ -3257,8 +3210,7 @@ doSearch1WordList:
     lda (GP3)               ; get length|immed byte
     sta GP4
     and #63
-    clc
-    adc GP3                 ; wlst + len
+    add GP3                 ; wlst + len
     sta GP3
     bcc @s1wmatcha
     inc GP3+1
@@ -3477,9 +3429,8 @@ doSearch1WordList:
     txa
     ldy #1
     sta (GP0),y
-    clc
     lda DP+2
-    adc #2
+    add #2
     sta DP+2
     bcc @done
     inc DP+3
@@ -3498,9 +3449,8 @@ doSearch1WordList:
     sta (GP0),y
     lda (IP)
     sta (GP0)
-    clc
     lda DP+2
-    adc #2
+    add #2
     sta DP+2
     bcc @skip
     inc DP+3
@@ -3705,9 +3655,8 @@ doSearch1WordList:
     tax
     lda (GP0)
     jsr dpush
-    clc
     lda GP0
-    adc #2
+    add #2
     ldy #2
     sta (RP),y
     iny
@@ -4301,9 +4250,8 @@ doSearch1WordList:
     lda #>(UFILENAMEU+2)
     sta GP1+1
     jsr memMove
-    clc
     lda GP2
-    adc #<(UFILENAMEU+2)
+    add #<(UFILENAMEU+2)
     sta GP0
     lda #0
     adc #>(UFILENAMEU+2)
@@ -4362,9 +4310,8 @@ doSearch1WordList:
     bne @skip2
     inc GP3+1
 @skip2:
-    sec
     lda GP1
-    sbc #1
+    sub #1
     sta GP1
     bcs @skip3
     dec GP1+1
@@ -4417,9 +4364,8 @@ doSearch1WordList:
     bne @skip2
     inc GP3+1
 @skip2:
-    sec
     lda GP1
-    sbc #1
+    sub #1
     sta GP1
     bcs @skip3
     dec GP1+1
@@ -4542,9 +4488,8 @@ doSearch1WordList:
     lda #>(UFILENAMEU+2)
     sta GP1+1
     jsr memMove
-    clc
     lda GP2
-    adc #<(UFILENAMEU+2)
+    add #<(UFILENAMEU+2)
     sta GP0
     lda #0
     adc #>(UFILENAMEU+2)
