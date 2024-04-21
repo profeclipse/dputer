@@ -48,15 +48,33 @@ KMONITOR:
 @notCold:
     ; are we here due to a BRK instruction?
     lda MON_FROM_BRK
-    beq @cmdLoop
+    beq @cmdLoop                ; no, skip it
 
-    ; in a BRK - display status info
-    jsr mDisplayBrkStatus
-    lda BRK_PC_VECTOR
+    ; we got here from a BRK
+    ; copy state for display
+    tsx
+    stx BRK_SAVE_SP
+
+    lda $101,x
+    sta BRK_SAVE_Y
+    lda $102,x
+    sta BRK_SAVE_X
+    lda $103,x
+    sta BRK_SAVE_Y
+
+    lda $104,x
+    sta BRK_STATUS_REG
+    lda $105,x
+    sec
+    sbc #2                      ; -2 to get the location of the BRK instruction
+    sta BRK_PC_VECTOR
     sta MON_ADDR_VECTOR
-    lda BRK_PC_VECTOR+1
+    lda $106,x
+    sbc #0
+    sta BRK_PC_VECTOR+1
     sta MON_ADDR_VECTOR+1
-    stz MON_FROM_BRK
+
+    jsr mDisplayBrkStatus
 
 @cmdLoop:
     jsr mPutStr
@@ -178,6 +196,8 @@ mCommands:
     .word mDoLoadCommand
     .byte 'h'
     .word mDoHelpCommand
+    .byte 't'
+    .word mDoTestCommand
     .byte $00
     .word mDoHelpCommand
 
@@ -359,30 +379,13 @@ mDoJumpCommand:
 ; Continue from breakpoint
 ; ----------------------------------------------------------------------------
 mDoContinueCommand:
-    clc
-    lda BRK_PC_VECTOR
-    adc #$02
-    sta BRK_PC_VECTOR
-    lda BRK_PC_VECTOR+1
-    adc #$00
-    sta BRK_PC_VECTOR+1
-
+    ; restore state and return from interrupt
     ldx BRK_SAVE_SP
     txs
-    pla                     ; SP on BRK was pointing after status and return addr
-    pla                     ; so throw away the junk that is there
+
+    ply
+    plx
     pla
-
-    lda BRK_PC_VECTOR+1
-    pha
-    lda BRK_PC_VECTOR
-    pha
-    lda BRK_STATUS_REG
-    pha
-
-    lda BRK_SAVE_A
-    ldx BRK_SAVE_X
-    ldy BRK_SAVE_Y
 
     rti
 
@@ -1267,6 +1270,24 @@ mDoLoadCommand:
 @closeFile:
     lda MON_FD
     jsr KFILECLOSE
+
+    rts
+
+mDoTestCommand:
+    lda #1
+    pha
+    lda #2
+    pha
+    lda #3
+    pha
+
+    tsx
+
+    brk #1
+
+    pla
+    pla
+    pla
 
     rts
 

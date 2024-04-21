@@ -39,16 +39,14 @@ NMI_HANDLER:
 ;*****************************************************************************
 IRQ_HANDLER:
     ; save registers
-    sta IRQ_SAVE_A
-    stx IRQ_SAVE_X
-    sty IRQ_SAVE_Y
-    tsx
-    stx IRQ_SAVE_SP
+    pha
+    phx
+    phy
 
     ; peak at the status register
-    pla
-    pha
+    tsx
 
+    lda $104,x
     and #BRK_MASK       ; are we here because of BRK?
     beq @notBRK         ; no
 
@@ -57,38 +55,6 @@ IRQ_HANDLER:
 
     lda #$01            ; tell the monitor we're entering due to a breakpoint
     sta MON_FROM_BRK
-
-    ; pop and save the status register and return IRQ return addres
-    pla
-    sta BRK_STATUS_REG
-    plx
-    stx BRK_PC_VECTOR
-    plx
-    stx BRK_PC_VECTOR+1
-
-    pha                 ; repush status register
-
-    ; backup PC vector to actual BRK instruction
-    sec
-    lda BRK_PC_VECTOR
-    sbc #$02
-    sta BRK_PC_VECTOR
-    lda BRK_PC_VECTOR+1
-    sbc #$00
-    sta BRK_PC_VECTOR+1
-
-    ; restore state
-    ldx IRQ_SAVE_SP
-    stx BRK_SAVE_SP
-    txs
-    ldy IRQ_SAVE_Y
-    sty BRK_SAVE_Y
-    ldx IRQ_SAVE_X
-    stx BRK_SAVE_X
-    lda IRQ_SAVE_A
-    sta BRK_SAVE_A
-
-    plp
 
     jmp KMONITOR
 
@@ -100,11 +66,8 @@ IRQ_HANDLER:
 
 @irqDone:
     ; restore state
-    ldx IRQ_SAVE_SP
-    txs
-    ldy IRQ_SAVE_Y
-    ldx IRQ_SAVE_X
-    lda IRQ_SAVE_A
+    ply
+    plx
+    pla
 
     rti
-
