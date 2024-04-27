@@ -1,4 +1,4 @@
-DPuter - A 65c02-based Computr Emulator
+DPuter - A 65c02-based Computer Emulator
 
 Why "DPuter"? It's short for "Da 'puter!" or "Dave's comPuter".
 
@@ -9,7 +9,4 @@ and file I/O are provided.
 
 Also included are a kernel and monitor, a feature-rich ANS-Forth, and an implementation
 of ehBasic.
-
-NOTE: The msbasic directory contains the original msbasic for various retro computers. I have
-not implemented msbasic for DPuter yet.
 
