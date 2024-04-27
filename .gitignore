@@ -3,3 +3,5 @@ build
 *.lbl
 *.lst
 *.o
+.cache
+compile_commands.json
