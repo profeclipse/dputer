@@ -10,10 +10,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 set(CMAKE_CXX_STANDARD 17)
 
 set(warnings
-	)
+)
 add_compile_options(
-	${warnings}
-	$<$<CONFIG:RELEASE>:/O2>
+  ${warnings}
+  $<$<CONFIG:RELEASE>:/O2>
 )
 
 include(FetchContent)
