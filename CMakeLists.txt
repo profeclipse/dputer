@@ -9,20 +9,19 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(warnings
-)
-add_compile_options(
-  ${warnings}
-  $<$<CONFIG:RELEASE>:/O2>
-)
+set(WARNINGS)
+add_compile_options(${WARNINGS} $<$<CONFIG:RELEASE>:/O2>)
 
 include(FetchContent)
-FetchContent_Declare(fmt
+FetchContent_Declare(
+  fmt
   GIT_REPOSITORY https://github.com/fmtlib/fmt.git
-  GIT_TAG master
-)
+  GIT_TAG master)
 FetchContent_MakeAvailable(fmt)
 
-file(GENERATE OUTPUT .gitignore CONTENT "*")
+file(
+  GENERATE
+  OUTPUT .gitignore
+  CONTENT "*")
 
 add_subdirectory(src)
