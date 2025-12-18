@@ -1,4 +1,4 @@
-    .setcpu "65C02"
+    .setcpu "W65C02"
 
     .segment "ZEROPAGE"
 
