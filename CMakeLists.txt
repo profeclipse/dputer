@@ -12,13 +12,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(WARNINGS)
 add_compile_options(${WARNINGS} $<$<CONFIG:RELEASE>:/O2>)
 
-include(FetchContent)
-FetchContent_Declare(
-  fmt
-  GIT_REPOSITORY https://github.com/fmtlib/fmt.git
-  GIT_TAG master)
-FetchContent_MakeAvailable(fmt)
-
 file(
   GENERATE
   OUTPUT .gitignore
