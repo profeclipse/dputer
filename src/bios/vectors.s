@@ -3,6 +3,8 @@
     .feature string_escapes
     .debuginfo 
 
+    .import bios, biosIRQ
+
     .segment "VECTORS"
     .word 0
     .word bios

@@ -3,9 +3,12 @@
     .feature string_escapes
     .debuginfo 
 
+    .include "io.inc"
     .include "acia.inc"
 
     .segment "BIOS"
+
+    .export acia_init, acia_read, acia_write
 
 WDC_BUG = 1
 

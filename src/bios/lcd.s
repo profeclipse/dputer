@@ -3,9 +3,14 @@
     .feature string_escapes
     .debuginfo 
 
+    .include "io.inc"
+    .include "via.inc"
     .include "lcd.inc"
 
     .segment "BIOS"
+
+    .importzp STROUT_VECTOR
+    .export lcd_outch, lcd_print, lcd_clear, lcd_instruction, lcd_init
 
 lcd_outch:
     jsr lcd_wait

@@ -3,7 +3,13 @@
     .feature string_escapes
     .debuginfo 
 
+    .include "io.inc"
+    .include "via.inc"
+
     .segment "BIOS"
+
+    .importzp TIMER_TICKS, SLEEP_TIME, SLEEP_TICKS
+    .export timer_init, timer_sleep, timerIRQ
 
 TENMILLIS = 40000 - 2
 

@@ -13,9 +13,6 @@ set(CMAKE_C_COMPILER_ID cc65)
 set(CMAKE_ASM_COMPILER ${_CL65})
 set(CMAKE_ASM_COMPILER_ID ca65)
 
-# Specify ld65 as the linker find_program(_LD65 ld65) set(CMAKE_LINK_LINKER
-# ${_LD65}) set(CMAKE_LINK_LLD ld65)
-
 # Specify ar65 as the archiver
 find_program(_AR ar65)
 set(CMAKE_AR
@@ -39,7 +36,6 @@ set(CC65_OPT_MIN_SIZE
 set(CA65_TARGET_FLAG
     "-t none"
     CACHE STRING "Target flag for ca65")
-# set(LD65_TARGET_FLAG "-t none" CACHE STRING "Target flag for ld65")
 
 set(CMAKE_C_FLAGS_INIT "--no-utf8")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS_INIT} ${CC65_TARGET_FLAG}")
@@ -54,9 +50,12 @@ set(CMAKE_C_FLAGS_MINSIZEREL
 set(CMAKE_ASM_FLAGS_INIT "--no-utf8")
 set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS_INIT} ${CA65_TARGET_FLAG}")
 
-# set(CMAKE_EXE_LINKER_FLAGS_INIT "-t none --no-utf8")
-# set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS_INIT}
-# ${LD65_TARGET_FLAG}")
+set(CMAKE_C_DEPFILE_FORMAT gcc)
+set(CMAKE_ASM_DEPFILE_FORMAT gcc)
+set(CMAKE_C_DEPENDS_USE_COMPILER TRUE)
+set(CMAKE_ASM_DEPENDS_USE_COMPILER TRUE)
+set(CMAKE_DEPFILE_FLAGS_ASM "--create-dep <DEP_FILE>")
+set(CMAKE_DEPFILE_FLAGS_C "--create-dep <DEP_FILE>")
 
 set(CMAKE_C_COMPILE_OBJECT
     "<CMAKE_C_COMPILER> <FLAGS> <DEFINES> <INCLUDES> -E -o <OBJECT>.c -S <SOURCE>"
@@ -68,8 +67,11 @@ set(CMAKE_ASM_COMPILE_OBJECT
     "<CMAKE_ASM_COMPILER> <FLAGS> <DEFINES> <INCLUDES> -l <OBJECT>.lst -o <OBJECT> -c <SOURCE>"
 )
 
-# set(CMAKE_LINK_EXECUTABLE "<CMAKE_LINK_LINKER> <FLAGS> <OBJECTS> -o <TARGET>
-# <LINK_LIBRARIES>")
+set(CMAKE_C_CREATE_STATIC_LIBRARY
+    "<CMAKE_COMMAND> -E remove <TARGET>"
+    "<CMAKE_AR> a <TARGET> <LINK_FLAGS> <OBJECTS>"
+)
+set(CMAKE_ASM_CREATE_STATIC_LIBRARY ${CMAKE_C_CREATE_STATIC_LIBRARY})
 
 # HACK: Work around to prevent Cmake from editing some variables
 macro(set_readonly VAR)
@@ -89,9 +91,6 @@ macro(readonly_guard VAR access value current_list_file stack)
   endif()
 endmacro()
 
-set_readonly(CMAKE_INCLUDE_FLAG_ASM "--asm-include-dir")
+set_readonly(CMAKE_INCLUDE_FLAG_ASM "--asm-include-dir ")
 
 set_readonly(CMAKE_EXECUTABLE_SUFFIX ".bin")
-
-set(CMAKE_DEPFILE_FLAGS_ASM "--create-dep <DEP_FILE>")
-set(CMAKE_DEPFILE_FLAGS_C "--create-dep <DEP_FILE>")

@@ -3,9 +3,18 @@
     .feature string_escapes
     .debuginfo 
 
+    .include "io.inc"
+    .include "acia.inc"
     .include "term.inc"
 
     .segment "BIOS"
+
+    .importzp KBD_WPTR, KBD_RPTR, STRIN_VECTOR, STROUT_VECTOR
+    .import acia_write
+    .export term_init, term_write_buffer, term_read_buffer, term_read
+    .export term_get_char, term_get_string, term_unread, term_haschar
+    .export term_write, term_write_string, term_write_crlf, term_get_buffer_space
+    .export termIRQ
 
 ; ****************************************************************************
 ; Function:     term_init

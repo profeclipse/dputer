@@ -26,4 +26,4 @@ add_custom_target(basic ALL
 	DEPENDS ${BASIC_RESULTS}
 	)
 
-add_dependencies(basic kernel)
+add_dependencies(basic bios)

@@ -1,4 +1,3 @@
-add_subdirectory(kernel)
-add_subdirectory(forth)
-add_subdirectory(ehbasic)
-add_subdirectory(sandbox)
+add_subdirectory(bios)
+#add_subdirectory(forth)
+#add_subdirectory(ehbasic)

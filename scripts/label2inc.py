@@ -8,11 +8,12 @@ def doConvert(iname, oname):
     with open(oname, "w") as outfile:
         with open(iname, "r") as infile:
             for line in infile:
-                (junk, addr, name) = line.rstrip("\n").split(" ")
+                junk, addr, name = line.rstrip("\n").split(" ")
                 name = name.removeprefix(".")
                 if name[0].isupper():
                     addr = addr.removeprefix("00")
-                    labels.append([name, addr])
+                    if not [name, addr] in labels:
+                        labels.append([name, addr])
             labels.sort(key=lambda value: value[1])
             for name, addr in labels:
                 outfile.write("{:<30} = ${}\n".format(name, addr))

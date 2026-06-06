@@ -3,9 +3,15 @@
     .feature string_escapes
     .debuginfo 
 
-    .include "bios.inc"
-
     .segment "BIOS"
+
+    .import lcd_init, acia_init, term_init
+    .import termIRQ
+    .import lcd_outch, acia_write
+    .import monitor
+    .import timer_init, timerIRQ
+
+    .export bios, biosIRQ
 
 bios:
     ldx #$ff
@@ -55,12 +61,3 @@ biosIRQ:
 
 welcome:
     .asciiz "DPuter v1.0"
-
-    .include "zeropage.s"
-    .include "lcd.s"
-    .include "acia.s"
-    .include "term.s"
-    .include "timer.s"
-    .include "monitor.s"
-    .include "jumptable.s"
-    .include "vectors.s"

@@ -3,7 +3,14 @@
     .feature string_escapes
     .debuginfo 
 
+    .include "term.inc"
+
     .segment "BIOS"
+
+    .importzp MON_JUMP_VECTOR, MON_ADDR_VECTOR, MON_HEX_BYTE_BUFFER, MON_HEX_ADDR_BUFFER
+    .import term_get_string, term_write, term_write_crlf, term_write_string
+    .import timer_sleep
+    .export monitor
 
 monitor:
 

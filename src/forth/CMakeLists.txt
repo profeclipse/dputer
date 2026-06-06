@@ -24,4 +24,4 @@ add_custom_target(forth ALL
   DEPENDS ${FORTH_RESULTS}
 )
 
-add_dependencies(forth kernel)
+add_dependencies(forth bios)
