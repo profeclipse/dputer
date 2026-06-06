@@ -1,14 +1,3 @@
-TIMER_TICKS                    = $00ED
-SLEEP_TICKS                    = $00F1
-SLEEP_TIME                     = $00F2
-MON_JUMP_VECTOR                = $00F3
-MON_HEX_ADDR_BUFFER            = $00F5
-MON_HEX_BYTE_BUFFER            = $00F7
-MON_ADDR_VECTOR                = $00F8
-STRIN_VECTOR                   = $00FA
-STROUT_VECTOR                  = $00FC
-KBD_WPTR                       = $00FE
-KBD_RPTR                       = $00FF
 LCDOUTCH                       = $FF00
 LCDPRINT                       = $FF03
 LCDCLEAR                       = $FF06

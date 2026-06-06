@@ -32,9 +32,9 @@ target_link_options(
 add_custom_command(
     TARGET bios
     POST_BUILD
-    COMMAND
-        python
-            ${PROJECT_SOURCE_DIR}/scripts/label2inc.py
+    COMMAND python
+            ${PROJECT_SOURCE_DIR}/scripts/genbiosinc.py
             ${CMAKE_CURRENT_SOURCE_DIR}/bios.lbl
-            ${CMAKE_CURRENT_SOURCE_DIR}/bios.inc
+            ${CMAKE_CURRENT_SOURCE_DIR}/../include/bios.inc
+    COMMAND cmake -E rm ${CMAKE_CURRENT_SOURCE_DIR}/bios.lbl
     VERBATIM)
