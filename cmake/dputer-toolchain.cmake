@@ -8,10 +8,13 @@ list(APPEND CMAKE_PREFIX_PATH $Env:{CC65_PATH})
 
 # Specify cc65 as the C compiler
 find_program(_CL65 cl65)
+find_program(_CA65 ca65)
+find_program(_LD65 ld65)
 set(CMAKE_C_COMPILER ${_CL65})
 set(CMAKE_C_COMPILER_ID cc65)
-set(CMAKE_ASM_COMPILER ${_CL65})
+set(CMAKE_ASM_COMPILER ${_CA65})
 set(CMAKE_ASM_COMPILER_ID ca65)
+set(CMAKE_LINKER ${_CL65})
 
 # Specify ar65 as the archiver
 find_program(_AR ar65)
@@ -21,7 +24,7 @@ set(CMAKE_AR
 
 # Set up overridable default arguments
 set(CC65_TARGET_FLAG
-    "-t none"
+    "--target none"
     CACHE STRING "Target flag for cc65")
 set(CC65_DEBUG_FLAG
     "-g -DDEBUG --asm-define DEBUG"
@@ -34,7 +37,7 @@ set(CC65_OPT_MIN_SIZE
     CACHE STRING "Optimization flags for minimum size build for cc65")
 
 set(CA65_TARGET_FLAG
-    "-t none"
+    "--target none"
     CACHE STRING "Target flag for ca65")
 
 set(CMAKE_C_FLAGS_INIT "--no-utf8")
@@ -62,10 +65,10 @@ set(CMAKE_C_COMPILE_OBJECT
     "<CMAKE_C_COMPILER> <FLAGS> <DEFINES> <INCLUDES> -o <OBJECT>.s -S <SOURCE>"
     "<CMAKE_C_COMPILER> <FLAGS> <DEFINES> <INCLUDES> -l <OBJECT>.lst -o <OBJECT> -c <OBJECT>.s"
 )
-
 set(CMAKE_ASM_COMPILE_OBJECT
-    "<CMAKE_ASM_COMPILER> <FLAGS> <DEFINES> <INCLUDES> -l <OBJECT>.lst -o <OBJECT> -c <SOURCE>"
+    "<CMAKE_ASM_COMPILER> <FLAGS> <DEFINES> <INCLUDES> -l <OBJECT>.lst -o <OBJECT> <SOURCE>"
 )
+set(CMAKE_ASM_LINK_EXECUTABLE "<CMAKE_LINKER> <FLAGS> <CMAKE_ASM_LINK_FLAGS> <LINK_FLAGS> <OBJECTS> -o <TARGET> <LINK_LIBRARIES>")
 
 set(CMAKE_C_CREATE_STATIC_LIBRARY
     "<CMAKE_COMMAND> -E remove <TARGET>"
@@ -92,5 +95,6 @@ macro(readonly_guard VAR access value current_list_file stack)
 endmacro()
 
 set_readonly(CMAKE_INCLUDE_FLAG_ASM "--asm-include-dir ")
-
 set_readonly(CMAKE_EXECUTABLE_SUFFIX ".bin")
+#set(CMAKE_INCLUDE_FLAG_ASM "--asm-include-dir ")
+#set(CMAKE_EXECUTABLE_SUFFIX ".bin")
