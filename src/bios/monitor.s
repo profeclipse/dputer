@@ -1,4 +1,5 @@
     .setcpu "W65C02"
+
     .feature org_per_seg
     .feature string_escapes
     .debuginfo 
@@ -11,6 +12,7 @@
     .import term_get_string, term_write, term_write_crlf, term_write_string
     .import timer_sleep
     .export monitor
+    .export writeHexByte
 
 monitor:
 

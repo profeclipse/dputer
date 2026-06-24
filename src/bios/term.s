@@ -4,6 +4,7 @@
     .debuginfo 
 
     .include "io.inc"
+    .include "via.inc"
     .include "acia.inc"
     .include "term.inc"
 
@@ -11,6 +12,7 @@
 
     .importzp KBD_WPTR, KBD_RPTR, STRIN_VECTOR, STROUT_VECTOR
     .import acia_write
+    .import writeHexByte
     .export term_init, term_write_buffer, term_read_buffer, term_read
     .export term_get_char, term_get_string, term_unread, term_haschar
     .export term_write, term_write_string, term_write_crlf, term_get_buffer_space
@@ -69,8 +71,10 @@ term_read_buffer:
 ; Flags:        Carry set if character, clear otherwise
 ; ****************************************************************************
 term_read:
+    sei
     lda KBD_RPTR
     cmp KBD_WPTR
+    cli
     bne @haveChar
 
     clc
@@ -79,18 +83,18 @@ term_read:
 @haveChar:
     phx
     jsr term_read_buffer
-    plx
 
     pha
     jsr term_get_buffer_space
-    cmp #$B0
+    cmp #$80
     bcs @mostly_full
-    lda ACIA_CMD
-    ora #%00001000
-    sta ACIA_CMD
+    lda #%11111110
+    and VIA0_PORTA
+    sta VIA0_PORTA
 
 @mostly_full:
     pla
+    plx
     sec
 
 @done:
@@ -202,8 +206,10 @@ term_unread:
 ;               n,z
 ; ****************************************************************************
 term_haschar:
+    sei
     lda KBD_RPTR
     cmp KBD_WPTR
+    cli
     beq @noChar
 
     sec
@@ -286,9 +292,11 @@ term_write_crlf:
 ; Flags:
 ; ****************************************************************************
 term_get_buffer_space:
+;    sei
     lda KBD_WPTR
     sec
     sbc KBD_RPTR
+;    cli
     rts
 
 ; ****************************************************************************
@@ -300,20 +308,21 @@ term_get_buffer_space:
 ; Flags:
 ; ****************************************************************************
 termIRQ:
-    bit ACIA_STATUS
-    bpl @noIRQ
+    lda ACIA_STATUS
+    bpl @noIRQ                  ; not an ACIA interrupt
+    and #%00001000              ; is it an RDRF interrupt?
+    beq @noIRQ                  ; no idea what it might be
     lda ACIA_DATA
     jsr term_write_buffer
     jsr term_get_buffer_space
     cmp #$F0
     bcc @not_full
-    lda ACIA_CMD
-    and #%11110111
-    sta ACIA_CMD
+    lda #%00000001
+    ora VIA0_PORTA
+    sta VIA0_PORTA
 
 @not_full:
     ; nothing
 
 @noIRQ:
     rts
-

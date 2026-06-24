@@ -19,8 +19,8 @@ LCDOUTCH:           jmp lcd_outch
 LCDPRINT:           jmp lcd_print
 LCDCLEAR:           jmp lcd_clear
 LCDINST:            jmp lcd_instruction
-ACIAREAD:           jmp acia_read
-ACIAWRITE:          jmp acia_write
+ACIAREAD:           jmp acia_read                   ; this shouldn't be here. acia_read shouldn't be called from user code.
+ACIAWRITE:          jmp acia_write                  ; this shouldn't be here. acia_write shouldn't be called from user code.
 TERMREAD:           jmp term_read
 TERMGETCH:          jmp term_get_char
 TERMGETSTR:         jmp term_get_string

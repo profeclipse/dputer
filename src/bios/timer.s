@@ -3,6 +3,7 @@
     .feature string_escapes
     .debuginfo 
 
+    .include "kernel.inc"
     .include "io.inc"
     .include "via.inc"
 
@@ -11,7 +12,7 @@
     .importzp TIMER_TICKS, SLEEP_TIME, SLEEP_TICKS
     .export timer_init, timer_sleep, timerIRQ
 
-TENMILLIS = 40000 - 2
+TENMILLIS = MHZ * 10000 - 2
 
 ; ****************************************************************************
 ; Function:     timer_init

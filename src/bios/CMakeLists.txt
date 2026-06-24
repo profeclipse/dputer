@@ -10,6 +10,7 @@ set(SOURCES
     vectors.s)
 
 set(INCLUDES
+    kernel.inc
     acia.inc
     io.inc
     lcd.inc

@@ -3,29 +3,35 @@
     .feature string_escapes
     .debuginfo 
 
+    .include "kernel.inc"
     .include "io.inc"
+    .include "via.inc"
     .include "acia.inc"
 
     .segment "BIOS"
 
     .export acia_init, acia_read, acia_write
 
-WDC_BUG = 1
+;WDC_BUG := 1
 
 acia_init:
-    lda #ACIA_STATUS_RESET
-    sta ACIA_STATUS
-    lda #(ACIA_CTRL_1_STOP | ACIA_CTRL_8_BITS | ACIA_CTRL_RCS_BAUD | ACIA_CTRL_SBR_115K2)
-    ;lda #(ACIA_CTRL_1_STOP | ACIA_CTRL_8_BITS | ACIA_CTRL_RCS_BAUD | ACIA_CTRL_SBR_19200)
+    lda #%00011111      ; 8-N-1, 19200 baud
+    ;lda #%00010000      ; 8-N-1, 115.2k baud
     sta ACIA_CTRL
-    lda #(ACIA_CMD_NP | ACIA_CMD_ECHO_OFF | ACIA_CMD_IRQ_LOFF | ACIA_CMD_RIRD_OFF | ACIA_CMD_DTRL)
+    lda #%10001001      ; No parity, no echo, rx interrupts
     sta ACIA_CMD
+
+    lda #%00000001      ; hijacking PA0 for RTS flow control
+    sta VIA0_DDRA
+    lda #%11111110
+    and VIA0_PORTA
+    sta VIA0_PORTA
 
     rts
 
 acia_read:
     lda ACIA_STATUS
-    and #ACIA_STATUS_RDRF
+    and #%00001000
     beq acia_read
 
     lda ACIA_DATA
@@ -33,25 +39,28 @@ acia_read:
     rts
 
 acia_write:
+    .ifdef WDC_BUG
     pha
     sta ACIA_DATA
-    .if WDC_BUG
     jsr acia_write_delay
+    pla
     .else
+    pha
 acia_write_loop:
     lda ACIA_STATUS
-    and #ACIA_STATUS_TDRE
+    and #%00010000
     beq acia_write_loop
+    pla
+    sta ACIA_DATA
     .endif
 
-    pla
     rts
 
-    .if WDC_BUG
+    .ifdef WDC_BUG
 acia_write_delay:
     phx
     phy
-    ldy #4
+    ldy #MHZ
 acia_write_loop_0:
     ldx #100
 acia_write_loop_1:
