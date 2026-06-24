@@ -1,0 +1,10 @@
+- [ ] Design SD card interface
+- [ ] Add KiCad project to repository
+- [ ] Break out debug clock module to its own project
+- [ ] Add clock to current schematic
+- [ ] Verify schematic against the current circuit
+- [ ] Add I/O selector to schematic
+- [ ] Add I/O modules to schematic
+  - [ ] VIA-1/LCD
+  - [ ] ACIA
+  - [ ] VIA-2/SD Card
