@@ -79,6 +79,11 @@
 .endif
 		keyword_rts "NEW", NEW
 
+.ifdef DPUTER
+        keyword_rts "LCDCMD", LCD_CMD
+        keyword_rts "LCDCLEAR", LCD_CLEAR
+        keyword_rts "LCDPRINT", LCD_PRINT
+.endif
 		count_tokens
 
 		keyword	"TAB(", TOKEN_TAB
