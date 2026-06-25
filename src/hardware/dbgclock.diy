@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project>
+  <fileVersion>
+    <major>5</major>
+    <minor>14</minor>
+    <build>0</build>
+  </fileVersion>
+  <title>dbgclock</title>
+  <author>david</author>
+  <width value="29.0" unit="cm"/>
+  <height value="21.0" unit="cm"/>
+  <gridSpacing value="0.1" unit="in"/>
+  <dotSpacing>1</dotSpacing>
+  <components>
+    <diylc.boards.Breadboard>
+      <id>d67457ec-1332-4e00-98d4-f87f9361875f</id>
+      <name>BB2</name>
+      <orientation>_270</orientation>
+      <point x="3.0" y="5.5"/>
+      <breadboardSize>Half</breadboardSize>
+      <powerStripPosition>Inline</powerStripPosition>
+    </diylc.boards.Breadboard>
+    <diylc.boards.Breadboard>
+      <id>d2b34ab9-d116-4b9d-9e98-eb471d9f02eb</id>
+      <name>BB1</name>
+      <orientation>_270</orientation>
+      <point x="3.0" y="3.7"/>
+      <breadboardSize>Half</breadboardSize>
+      <powerStripPosition>Inline</powerStripPosition>
+    </diylc.boards.Breadboard>
+    <diylc.semiconductors.DIL__IC>
+      <id>5cf4e0b5-0af9-4120-b737-b66e77e7f01d</id>
+      <name>555</name>
+      <alphaPercent>
+        <value>100</value>
+      </alphaPercent>
+      <value></value>
+      <orientation>_270</orientation>
+      <pinCount>_8</pinCount>
+      <pinSpacing value="0.1" unit="in"/>
+      <rowSpacing value="0.3" unit="in"/>
+      <controlPoints>
+        <point x="3.6" y="2.7"/>
+        <point x="3.7" y="2.7"/>
+        <point x="3.8" y="2.7"/>
+        <point x="3.9" y="2.7"/>
+        <point x="3.6" y="2.4"/>
+        <point x="3.7" y="2.4"/>
+        <point x="3.8" y="2.4"/>
+        <point x="3.9" y="2.4"/>
+      </controlPoints>
+      <display>BOTH</display>
+      <bodyColor hex="808080"/>
+      <borderColor hex="595959"/>
+      <labelColor hex="ffffff"/>
+      <indentColor hex="595959"/>
+      <displayNumbers>NO</displayNumbers>
+    </diylc.semiconductors.DIL__IC>
+    <diylc.semiconductors.DIL__IC>
+      <id>9beb2afa-4f67-4e80-9e11-9c25b8de5828</id>
+      <name>555</name>
+      <alphaPercent>
+        <value>100</value>
+      </alphaPercent>
+      <value></value>
+      <orientation>_270</orientation>
+      <pinCount>_8</pinCount>
+      <pinSpacing value="0.1" unit="in"/>
+      <rowSpacing value="0.3" unit="in"/>
+      <controlPoints>
+        <point x="4.1" y="2.7"/>
+        <point x="4.2" y="2.7"/>
+        <point x="4.3" y="2.7"/>
+        <point x="4.4" y="2.7"/>
+        <point x="4.1" y="2.4"/>
+        <point x="4.2" y="2.4"/>
+        <point x="4.3" y="2.4"/>
+        <point x="4.4" y="2.4"/>
+      </controlPoints>
+      <display>BOTH</display>
+      <bodyColor hex="808080"/>
+      <borderColor hex="595959"/>
+      <labelColor hex="ffffff"/>
+      <indentColor hex="595959"/>
+      <displayNumbers>NO</displayNumbers>
+    </diylc.semiconductors.DIL__IC>
+    <diylc.semiconductors.DIL__IC>
+      <id>59eb819d-7450-4c14-b257-7ae03c0f3d10</id>
+      <name>Oscillator</name>
+      <alphaPercent>
+        <value>100</value>
+      </alphaPercent>
+      <value>1MHz</value>
+      <orientation>_270</orientation>
+      <pinCount>_8</pinCount>
+      <pinSpacing value="0.1" unit="in"/>
+      <rowSpacing value="0.3" unit="in"/>
+      <controlPoints>
+        <point x="3.1" y="2.7"/>
+        <point x="3.2" y="2.7"/>
+        <point x="3.3" y="2.7"/>
+        <point x="3.4" y="2.7"/>
+        <point x="3.1" y="2.4"/>
+        <point x="3.2" y="2.4"/>
+        <point x="3.3" y="2.4"/>
+        <point x="3.4" y="2.4"/>
+      </controlPoints>
+      <display>BOTH</display>
+      <bodyColor hex="808080"/>
+      <borderColor hex="595959"/>
+      <labelColor hex="ffffff"/>
+      <indentColor hex="595959"/>
+      <displayNumbers>NO</displayNumbers>
+    </diylc.semiconductors.DIL__IC>
+  </components>
+  <groups/>
+  <groupsEx/>
+  <lockedLayers/>
+  <lockedComponents/>
+  <hiddenLayers/>
+  <font name="Dialog.plain" size="14" style="0"/>
+</project>
