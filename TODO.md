@@ -8,3 +8,6 @@
   - [ ] VIA-1/LCD
   - [ ] ACIA
   - [ ] VIA-2/SD Card
+- [ ] Figure out weird MS-BASIC immediate mode print behavior
+  - PRINT "HELLO, WORLD!" results in the last char replaced with ASCII $AF
+  - Note that it's not always the last character, nor is it always the 13th character.
