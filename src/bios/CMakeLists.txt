@@ -9,14 +9,6 @@ set(SOURCES
     jumptable.s
     vectors.s)
 
-set(INCLUDES
-    kernel.inc
-    acia.inc
-    io.inc
-    lcd.inc
-    term.inc
-    via.inc)
-
 add_executable(bios ${SOURCES} ${INCLUDES})
 
 set_property(
