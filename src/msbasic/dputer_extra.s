@@ -32,3 +32,6 @@ LCD_PRINT:
     bne @loop
 
     rts
+
+GO_MONITOR:
+    jmp MONITOR

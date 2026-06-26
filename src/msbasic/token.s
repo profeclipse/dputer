@@ -83,6 +83,7 @@
         keyword_rts "LCDCMD", LCD_CMD
         keyword_rts "LCDCLEAR", LCD_CLEAR
         keyword_rts "LCDPRINT", LCD_PRINT
+        keyword_rts "MONITOR", GO_MONITOR
 .endif
 		count_tokens
 
