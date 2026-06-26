@@ -15,6 +15,20 @@ LCD_CLEAR:
     jmp LCDCLEAR
 
 LCD_PRINT:
-    jsr GETBYT
-    txa
-    jmp LCDOUTCH
+    jsr FRMEVL
+    bit VALTYP
+    bmi @print
+    jsr FOUT
+    jsr STRLIT
+@print:
+    jsr FREFAC
+    tax
+    ldy #$00
+@loop:
+    lda (INDEX),y
+    jsr LCDOUTCH
+    iny
+    dex
+    bne @loop
+
+    rts
