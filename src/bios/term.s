@@ -95,6 +95,7 @@ term_read:
 @mostly_full:
     pla
     plx
+    and #$FF        ; restore status flags
     sec
 
 @done:
