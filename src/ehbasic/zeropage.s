@@ -6,7 +6,7 @@
 
     .segment "ZEROPAGE"
 
-    .org USER_ZP
+;    .org USER_ZP
 
 LAB_WARM: 	.res 1		; BASIC warm start entry point
 Wrmjpl: 		.res 1	; BASIC warm start vector jump low byte

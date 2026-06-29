@@ -1,29 +1,22 @@
-set (BASICBINS
-	basic
-	)
-
-set (BASICINC
-	../kernel/kernel.lbl
-	basic.s
+set(SOURCES
     min_mon.s
-    zeropage.s
 	)
 
-add_custom_command(
-    OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/basic.bin ${CMAKE_CURRENT_SOURCE_DIR}/basic.o ${CMAKE_CURRENT_SOURCE_DIR}/basic.lbl
-    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${BASICINC} ${CMAKE_CURRENT_SOURCE_DIR}/basic.cfg
-    COMMAND ca65 ${CMAKE_CURRENT_SOURCE_DIR}/min_mon.s -I ${CMAKE_CURRENT_SOURCE_DIR}/../kernel -o ${CMAKE_CURRENT_SOURCE_DIR}/basic.o -l ${CMAKE_CURRENT_SOURCE_DIR}/basic.lst
-    COMMAND ld65 -C ${CMAKE_CURRENT_SOURCE_DIR}/basic.cfg ${CMAKE_CURRENT_SOURCE_DIR}/basic.o -o ${CMAKE_CURRENT_SOURCE_DIR}/basic.bin -Ln ${CMAKE_CURRENT_SOURCE_DIR}/basic.nm
-    COMMAND python ${PROJECT_SOURCE_DIR}/scripts/label2inc.py ${CMAKE_CURRENT_SOURCE_DIR}/basic.nm ${CMAKE_CURRENT_SOURCE_DIR}/basic.lbl
-    COMMAND cmake -E rm ${CMAKE_CURRENT_SOURCE_DIR}/basic.nm
-	)
+set(INCLUDES
+    ../include
+    )
 
-foreach(BIN ${BASICBINS})
-	list(APPEND BASIC_RESULTS ${CMAKE_CURRENT_SOURCE_DIR}/${BIN}.bin)
-endforeach()
+add_executable(ehbasic ${SOURCES} ${INCLUDES})
 
-add_custom_target(basic ALL
-	DEPENDS ${BASIC_RESULTS}
-	)
+target_include_directories(ehbasic PRIVATE ${INCLUDES})
 
-add_dependencies(basic bios)
+set_property(
+    TARGET ehbasic
+    APPEND
+    PROPERTY LINK_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/ehbasic.cfg)
+
+target_link_options(
+    ehbasic
+    PRIVATE
+    -C ${CMAKE_CURRENT_SOURCE_DIR}/ehbasic.cfg
+    -Ln ${CMAKE_CURRENT_SOURCE_DIR}/ehbasic.lbl)

@@ -125,10 +125,10 @@ TK_MIDS		= TK_RIGHTS+1	; MID$ token
 
 ; offsets from a base of X or Y
 
-PLUS_0		= USER_ZP+0	; X or Y plus 0
-PLUS_1		= USER_ZP+1	; X or Y plus 1
-PLUS_2		= USER_ZP+2	; X or Y plus 2
-PLUS_3		= USER_ZP+3	; X or Y plus 3
+PLUS_0		= $00	; X or Y plus 0
+PLUS_1		= $01	; X or Y plus 1
+PLUS_2		= $02	; X or Y plus 2
+PLUS_3		= $03	; X or Y plus 3
 
 LAB_STAK	= $0100	; stack bottom, no offset
 
@@ -155,7 +155,7 @@ Ibuffs		= VEC_SV+$16
 Ibuffe		= Ibuffs+$47; end of input buffer
 
 Ram_base	= $0600	; start of user RAM (set as needed, should be page aligned)
-Ram_top		= $B600	; end of user RAM+1 (set as needed, should be page aligned)
+Ram_top		= $B500	; end of user RAM+1 (set as needed, should be page aligned)
 
 ; This start can be changed to suit your system
 
@@ -2170,10 +2170,9 @@ LAB_1866:
 
 LAB_CRLF:
 	LDA	#$0D			; load [CR]
-	BRA LAB_PRNA
-	;JSR	LAB_PRNA		; go print the character
-	;LDA	#$0A			; load [LF]
-	;BNE	LAB_PRNA		; go print the character and return, branch always
+	JSR	LAB_PRNA		; go print the character
+	LDA	#$0A			; load [LF]
+	BNE	LAB_PRNA		; go print the character and return, branch always
 
 LAB_188B:
 	LDA	TPos			; get terminal position
@@ -7260,9 +7259,7 @@ LAB_RETNMI:
 
 LAB_EXIT:
 ; *** Begin Monitor Patch
-	STP
-    ;BRK #0
-    ;JMP LAB_WARM
+    JMP MONITOR
 ; *** End Monitor Patch
 
 ; MAX() MIN() pre process
@@ -7656,11 +7653,11 @@ StrTab:
 EndTab:
 
 LAB_MSZM:
-	.byte	$0A,"Memory size ",$00
+	.byte	$0D,$0A,"Memory size ",$00
 
 LAB_SMSG:
-	.byte	" Bytes free",$0A; ,$0A
-	.byte	"Enhanced BASIC 2.22",$0A,$00
+	.byte	" Bytes free",$0D,$0A; ,$0A
+	.byte	"Enhanced BASIC 2.22",$0D,$0A,$00
 
 ; numeric constants and series
 
@@ -8550,12 +8547,12 @@ ERR_IO:  .byte   "I/O error",$00
 
 ;ERR_UA	.byte	"Undimensioned array",$00
 
-LAB_BMSG:	.byte	$0A,"Break",$00
+LAB_BMSG:	.byte	$0D,$0A,"Break",$00
 LAB_EMSG:	.byte	" Error",$00
 LAB_LMSG:	.byte	" in line ",$00
-LAB_RMSG:	.byte	$0A,"Ready",$0A,$00
+LAB_RMSG:	.byte	$0D,$0A,"Ready",$0D,$0A,$00
 
-LAB_IMSG:	.byte	" Extra ignored",$0A,$00
-LAB_REDO:	.byte	" Redo from start",$0A,$00
+LAB_IMSG:	.byte	" Extra ignored",$0D,$0A,$00
+LAB_REDO:	.byte	" Redo from start",$0D,$0A,$00
 
 AA_end_basic:

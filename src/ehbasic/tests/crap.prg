@@ -1,0 +1,8 @@
+10 FOR I = 0 TO 15
+20 FOR J = 0 TO 15
+30 C$ = MID$(STR$(I*16+J),2)
+40 REM PRINT CHR$(27);"[38;5;";C$;"m ";C$;SPC(4-LEN(C$));
+50 NEXT J
+60 PRINT CHR$(27);"[0m"
+70 NEXT I
+
